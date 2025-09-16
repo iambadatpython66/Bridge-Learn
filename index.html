@@ -442,15 +442,15 @@
                 <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
                     <div class="text-center">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">500+</div>
-                        <div class="text-white/80">Active Mentors</div>
+                        <div class="text-white/80" data-i18n="stats.activeMentors">Active Mentors</div>
                     </div>
                     <div class="text-center">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">2,000+</div>
-                        <div class="text-white/80">Students Learning</div>
+                        <div class="text-white/80" data-i18n="stats.studentsLearning">Students Learning</div>
                     </div>
                     <div class="text-center">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">50+</div>
-                        <div class="text-white/80">Countries Represented</div>
+                        <div class="text-white/80" data-i18n="stats.countries">Countries Represented</div>
                     </div>
                 </div>
             </div>
@@ -505,7 +505,7 @@
                         </div>
                         
                         <button class="w-full btn-primary py-3 text-center group-hover:scale-105 transition-transform">
-                            <i class="fas fa-bookmark mr-2"></i>Book Session
+                            <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
                 </div>
@@ -544,7 +544,7 @@
                         </div>
                         
                         <button class="w-full btn-secondary py-3 text-center group-hover:scale-105 transition-transform">
-                            <i class="fas fa-bookmark mr-2"></i>Book Session
+                            <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
                 </div>
@@ -583,7 +583,7 @@
                         </div>
                         
                         <button class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-xl font-semibold text-center group-hover:scale-105 transition-transform">
-                            <i class="fas fa-bookmark mr-2"></i>Book Session
+                            <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
                 </div>
@@ -605,7 +605,7 @@
     <section id="about" class="bg-white py-16 lg:py-24 section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800" data-i18n="why.title">
                     Why Choose BridgeLearn?
                 </h3>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
@@ -765,7 +765,7 @@
                         </div>
                         <div class="flex items-center space-x-4">
                             <button onclick="showCreateSessionModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                                <i class="fas fa-plus mr-2"></i>Create Session
+                                <i class="fas fa-plus mr-2"></i><span data-i18n="actions.createSession">Create Session</span>
                             </button>
                             <span id="userGreeting" class="text-gray-600"></span>
                             <button onclick="logout()" class="text-red-600 hover:text-red-800">
@@ -814,9 +814,9 @@
                 <!-- My Sessions -->
                 <div class="mt-8 bg-white rounded-lg shadow">
                     <div class="p-6 border-b flex justify-between items-center">
-                        <h3 class="text-xl font-semibold">My Sessions</h3>
+                        <h3 class="text-xl font-semibold" data-i18n="dashboard.mySessions">My Sessions</h3>
                         <button onclick="showCreateSessionModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
-                            <i class="fas fa-plus mr-2"></i>Add New Session
+                            <i class="fas fa-plus mr-2"></i><span data-i18n="actions.addSession">Add New Session</span>
                         </button>
                     </div>
                     <div class="p-6">
@@ -829,21 +829,21 @@
                 <!-- Recent Activity -->
                 <div class="mt-8 bg-white rounded-lg shadow">
                     <div class="p-6 border-b">
-                        <h3 class="text-xl font-semibold">Recent Activity</h3>
+                        <h3 class="text-xl font-semibold" data-i18n="dashboard.recentActivity">Recent Activity</h3>
                     </div>
                     <div class="p-6">
                         <div class="space-y-4">
                             <div class="flex items-center p-4 bg-blue-50 rounded-lg">
                                 <i class="fas fa-calendar-plus text-blue-600 mr-3"></i>
                                 <div>
-                                    <p class="font-semibold">New session booked</p>
+                                    <p class="font-semibold" data-i18n="dashboard.activityBooked">New session booked</p>
                                     <p class="text-sm text-gray-600">Web Development Basics - Dec 29, 2024</p>
                                 </div>
                             </div>
                             <div class="flex items-center p-4 bg-green-50 rounded-lg">
                                 <i class="fas fa-check-circle text-green-600 mr-3"></i>
                                 <div>
-                                    <p class="font-semibold">Session completed</p>
+                                    <p class="font-semibold" data-i18n="dashboard.activityCompleted">Session completed</p>
                                     <p class="text-sm text-gray-600">Business Strategy fundamentals</p>
                                 </div>
                             </div>
@@ -1224,11 +1224,10 @@
             
             if (userSessions.length === 0) {
                 sessionsContainer.innerHTML = `
-                    <div class="col-span-full text-center py-8 text-gray-500">
-                        <i class="fas fa-calendar-plus text-4xl mb-4"></i>
-                        <p>No sessions created yet. Click "Add New Session" to get started!</p>
-                    </div>
+                    <div class=\"col-span-full text-center py-8 text-gray-500\">\n                        <i class=\"fas fa-calendar-plus text-4xl mb-4\"></i>\n                        <p data-i18n=\"dashboard.noSessions\">No sessions created yet. Click \"Add New Session\" to get started!</p>\n                    </div>
                 `;
+                // Re-apply translations for dynamic content
+                applyTranslations(currentLang || (localStorage.getItem('lang') || 'en'));
                 return;
             }
             
@@ -1278,15 +1277,17 @@
                         </div>
                         <div class="mt-3 flex space-x-2">
                             <button onclick="editSession(${session.id})" class="flex-1 text-blue-600 hover:bg-blue-50 py-1 px-3 rounded text-sm transition">
-                                Edit
+                                <span data-i18n=\"actions.edit\">Edit</span>
                             </button>
                             <button onclick="deleteSession(${session.id})" class="flex-1 text-red-600 hover:bg-red-50 py-1 px-3 rounded text-sm transition">
-                                Delete
+                                <span data-i18n=\"actions.delete\">Delete</span>
                             </button>
                         </div>
                     </div>
                 `;
             }).join('');
+            // Re-apply translations for dynamic list
+            applyTranslations(currentLang || (localStorage.getItem('lang') || 'en'));
         }
 
         function editSession(sessionId) {
@@ -1369,6 +1370,7 @@
         });
 
         // --- Simple i18n ---
+        let currentLang = 'en';
         const translations = {
             en: {
                 'nav.home': 'Home',
@@ -1381,6 +1383,20 @@
                 'hero.ctaMentor': "I'm a Mentor",
                 'sessions.title': 'Featured Learning Sessions',
                 'sessions.subtitle': 'Discover amazing learning opportunities from expert mentors around the world',
+                'stats.activeMentors': 'Active Mentors',
+                'stats.studentsLearning': 'Students Learning',
+                'stats.countries': 'Countries Represented',
+                'actions.bookSession': 'Book Session',
+                'why.title': 'Why Choose BridgeLearn?',
+                'actions.createSession': 'Create Session',
+                'actions.addSession': 'Add New Session',
+                'actions.edit': 'Edit',
+                'actions.delete': 'Delete',
+                'dashboard.mySessions': 'My Sessions',
+                'dashboard.recentActivity': 'Recent Activity',
+                'dashboard.activityBooked': 'New session booked',
+                'dashboard.activityCompleted': 'Session completed',
+                'dashboard.noSessions': 'No sessions created yet. Click "Add New Session" to get started!',
                 'about.title': 'About BridgeLearn',
                 'about.body': 'A platform connecting generations through knowledge sharing.',
                 'login.title': 'Welcome to BridgeLearn',
@@ -1404,6 +1420,20 @@
                 'hero.ctaMentor': 'أنا مُرشد',
                 'sessions.title': 'جلسات تعليمية مميزة',
                 'sessions.subtitle': 'اكتشف فرص تعلم مذهلة من خبراء حول العالم',
+                'stats.activeMentors': 'مرشدون نشطون',
+                'stats.studentsLearning': 'طلاب يتعلمون',
+                'stats.countries': 'دول ممثلة',
+                'actions.bookSession': 'احجز جلسة',
+                'why.title': 'لماذا تختار BridgeLearn؟',
+                'actions.createSession': 'إنشاء جلسة',
+                'actions.addSession': 'إضافة جلسة جديدة',
+                'actions.edit': 'تعديل',
+                'actions.delete': 'حذف',
+                'dashboard.mySessions': 'جلساتي',
+                'dashboard.recentActivity': 'النشاط الأخير',
+                'dashboard.activityBooked': 'تم حجز جلسة جديدة',
+                'dashboard.activityCompleted': 'تم إكمال الجلسة',
+                'dashboard.noSessions': 'لا توجد جلسات حتى الآن. انقر "إضافة جلسة جديدة" للبدء!',
                 'about.title': 'حول BridgeLearn',
                 'about.body': 'منصة تربط الأجيال من خلال تبادل المعرفة.',
                 'login.title': 'مرحبًا بك في BridgeLearn',
@@ -1427,6 +1457,20 @@
                 'hero.ctaMentor': 'मैं मेंटर हूँ',
                 'sessions.title': 'विशेष शिक्षण सत्र',
                 'sessions.subtitle': 'दुनिया भर के विशेषज्ञ मेंटर्स से अद्भुत सीखने के अवसर खोजें',
+                'stats.activeMentors': 'सक्रिय मेंटर्स',
+                'stats.studentsLearning': 'सीखते हुए छात्र',
+                'stats.countries': 'प्रतिनिधित्व करने वाले देश',
+                'actions.bookSession': 'सेशन बुक करें',
+                'why.title': 'BridgeLearn क्यों चुनें?',
+                'actions.createSession': 'नया सेशन बनाएँ',
+                'actions.addSession': 'नया सेशन जोड़ें',
+                'actions.edit': 'संपादित करें',
+                'actions.delete': 'हटाएँ',
+                'dashboard.mySessions': 'मेरे सेशंस',
+                'dashboard.recentActivity': 'हाल की गतिविधि',
+                'dashboard.activityBooked': 'नया सेशन बुक किया गया',
+                'dashboard.activityCompleted': 'सेशन पूरा हुआ',
+                'dashboard.noSessions': 'अभी तक कोई सेशन नहीं बनाया गया। शुरू करने के लिए "नया सेशन जोड़ें" क्लिक करें!',
                 'about.title': 'ब्रिजलर्न के बारे में',
                 'about.body': 'ज्ञान साझा करने के माध्यम से पीढ़ियों को जोड़ने वाला मंच।',
                 'login.title': 'BridgeLearn में आपका स्वागत है',
@@ -1450,6 +1494,20 @@
                 'hero.ctaMentor': 'ഞാൻ മെന്ററാണ്',
                 'sessions.title': 'പ്രമുഖ പഠന സെഷനുകൾ',
                 'sessions.subtitle': 'ലോകമെമ്പാടുമുള്ള വിദഗ്ധ മെന്റർമാരിൽ നിന്ന് അതുല്യമായ പഠന അവസരങ്ങൾ കണ്ടെത്തുക',
+                'stats.activeMentors': 'സജീവ മെന്റർമാർ',
+                'stats.studentsLearning': 'പഠിക്കുന്ന വിദ്യാർത്ഥികൾ',
+                'stats.countries': 'പ്രതിനിധീകരിക്കുന്ന രാജ്യങ്ങൾ',
+                'actions.bookSession': 'സെഷൻ ബുക്ക് ചെയ്യുക',
+                'why.title': 'എന്തുകൊണ്ട് BridgeLearn?',
+                'actions.createSession': 'പുതിയ സെഷൻ സൃഷ്‌ടിക്കുക',
+                'actions.addSession': 'പുതിയ സെഷൻ ചേർക്കുക',
+                'actions.edit': 'തിരുത്തുക',
+                'actions.delete': 'ഇല്ലാതാക്കുക',
+                'dashboard.mySessions': 'എന്റെ സെഷനുകൾ',
+                'dashboard.recentActivity': 'സമീപകാല പ്രവർത്തനം',
+                'dashboard.activityBooked': 'പുതിയ സെഷൻ ബുക്ക് ചെയ്തു',
+                'dashboard.activityCompleted': 'സെഷൻ പൂർത്തിയായി',
+                'dashboard.noSessions': 'ഇതുവരെ ഒരു സെഷനും സൃഷ്ടിച്ചിട്ടില്ല. ആരംഭിക്കാൻ "പുതിയ സെഷൻ ചേർക്കുക" ക്ലിക്ക് ചെയ്യുക!',
                 'about.title': 'ബ്രിഡ്ജ്‌ലേണിനെ കുറിച്ച്',
                 'about.body': 'അറിവ് പങ്കിടുന്നതിലൂടെ തലമുറകളെ ബന്ധിപ്പിക്കുന്ന ഒരു പ്ലാറ്റ്‌ഫോം.',
                 'login.title': 'BridgeLearn-ലേക്ക് സ്വാഗതം',
@@ -1473,6 +1531,20 @@
                 'hero.ctaMentor': 'நான் வழிகாட்டி',
                 'sessions.title': 'சிறப்பு கற்றல் அமர்வுகள்',
                 'sessions.subtitle': 'உலகம் முழுவதும் உள்ள நிபுணர்களிடமிருந்து அற்புதமான கற்றல் வாய்ப்புகளை கண்டறியவும்',
+                'stats.activeMentors': 'செயலில் உள்ள வழிகாட்டிகள்',
+                'stats.studentsLearning': 'கற்றுக் கொண்டிருக்கும் மாணவர்கள்',
+                'stats.countries': 'பிரதிநிதித்துவம் செய்கின்ற நாடுகள்',
+                'actions.bookSession': 'அமர்வு பதிவு',
+                'why.title': 'ஏன் BridgeLearn?',
+                'actions.createSession': 'புதிய அமர்வு உருவாக்கவும்',
+                'actions.addSession': 'புதிய அமர்வைச் சேர்க்கவும்',
+                'actions.edit': 'திருத்து',
+                'actions.delete': 'அழி',
+                'dashboard.mySessions': 'என் அமர்வுகள்',
+                'dashboard.recentActivity': 'சமீபத்திய செயல்பாடு',
+                'dashboard.activityBooked': 'புதிய அமர்வு பதிவு செய்யப்பட்டது',
+                'dashboard.activityCompleted': 'அமர்வு முடிந்தது',
+                'dashboard.noSessions': 'இன்னும் எந்த அமர்வும் உருவாக்கப்படவில்லை. தொடங்க "புதிய அமர்வைச் சேர்க்கவும்" கிளிக் செய்யவும்!',
                 'about.title': 'BridgeLearn பற்றி',
                 'about.body': 'அறிவைப் பகிர்வதன் மூலம் தலைமுறைகளை இணைக்கும் தளம்.',
                 'login.title': 'BridgeLearn-க்கு வரவேற்கிறோம்',
@@ -1496,6 +1568,20 @@
                 'hero.ctaMentor': 'నేను మార్గదర్శిని',
                 'sessions.title': 'ప్రత్యేక అభ్యాస సెషన్లు',
                 'sessions.subtitle': 'ప్రపంచవ్యాప్తంగా ఉన్న నిపుణుల నుండి అద్భుతమైన అభ్యాస అవకాశాలను కనుగొనండి',
+                'stats.activeMentors': 'సక్రియ మార్గదర్శకులు',
+                'stats.studentsLearning': 'నేర్చుకుంటున్న విద్యార్థులు',
+                'stats.countries': 'ప్రతినిధ్యం వహించే దేశాలు',
+                'actions.bookSession': 'సెషన్ బుక్ చేయండి',
+                'why.title': 'ఎందుకు BridgeLearn?',
+                'actions.createSession': 'క్రొత్త సెషన్ సృష్టించండి',
+                'actions.addSession': 'క్రొత్త సెషన్ జోడించండి',
+                'actions.edit': 'సవరించండి',
+                'actions.delete': 'తొలగించండి',
+                'dashboard.mySessions': 'నా సెషన్లు',
+                'dashboard.recentActivity': 'ఇటీవలి కార్యాచరణ',
+                'dashboard.activityBooked': 'క్రొత్త సెషన్ బుక్ చేయబడింది',
+                'dashboard.activityCompleted': 'సెషన్ పూర్తి అయింది',
+                'dashboard.noSessions': 'ఇప్పటివరకు ఏ సెషన్ సృష్టించబడలేదు. ప్రారంభించడానికి "క్రొత్త సెషన్ జోడించండి" క్లిక్ చేయండి!',
                 'about.title': 'BridgeLearn గురించి',
                 'about.body': 'జ్ఞాన పంచుకోవడం ద్వారా తరాలను అనుసంధానించే వేదిక.',
                 'login.title': 'BridgeLearn కు స్వాగతం',
@@ -1533,6 +1619,7 @@
 
         function setLanguage(lang) {
             localStorage.setItem('lang', lang);
+            currentLang = lang;
             // Sync dropdowns
             const desktop = document.getElementById('langSelect');
             const mobile = document.getElementById('langSelectMobile');
