@@ -359,9 +359,9 @@
                 
                 <!-- Desktop Menu -->
                 <div class="desktop-menu hidden md:flex space-x-8">
-                    <a href="#home" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">Home</a>
-                    <a href="#sessions" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">Sessions</a>
-                    <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">About</a>
+                    <a href="#home" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.home">Home</a>
+                    <a href="#sessions" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.sessions">Sessions</a>
+                    <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.about">About</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -372,9 +372,13 @@
                 </div>
                 
                 <!-- Desktop Login Button -->
-                <div class="hidden md:block">
+                <div class="hidden md:flex items-center space-x-3">
+                    <select id="langSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="en">English</option>
+                        <option value="ar">العربية</option>
+                    </select>
                     <button id="loginBtn" class="btn-primary">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
                     </button>
                 </div>
             </div>
@@ -382,11 +386,15 @@
             <!-- Mobile Menu -->
             <div id="mobileMenu" class="mobile-menu hidden md:hidden pb-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="#home" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">Home</a>
-                    <a href="#sessions" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">Sessions</a>
-                    <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200">About</a>
+                    <a href="#home" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.home">Home</a>
+                    <a href="#sessions" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.sessions">Sessions</a>
+                    <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.about">About</a>
+                    <select id="langSelectMobile" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="en">English</option>
+                        <option value="ar">العربية</option>
+                    </select>
                     <button id="mobileLoginBtn" class="btn-primary w-full text-center">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                        <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
                     </button>
                 </div>
             </div>
@@ -398,7 +406,7 @@
         <div class="hero-content">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="mb-8">
-                    <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                    <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-i18n="hero.title">
                         Bridge Generations Through 
                         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
                             Learning
@@ -406,7 +414,7 @@
                     </h2> 
                 </div>
                 
-                <p class="hero-subtitle text-lg sm:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-white/90">
+                <p class="hero-subtitle text-lg sm:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-white/90" data-i18n="hero.tagline">
                     Connect with experienced Emirati mentors and international professionals in the UAE. 
                     Share knowledge, preserve traditions, and build the future together.
                 </p>
@@ -414,11 +422,11 @@
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mobile-stack">
                     <button onclick="showLoginModal('student')" class="btn-primary w-full sm:w-auto px-8 py-4 text-lg mobile-full">
                         <i class="fas fa-user-graduate mr-2"></i>
-                        I'm a Student 
+                        <span data-i18n="hero.ctaStudent">I'm a Student</span>
                     </button>
                     <button onclick="showLoginModal('mentor')" class="btn-secondary w-full sm:w-auto px-8 py-4 text-lg mobile-full">
                         <i class="fas fa-chalkboard-teacher mr-2"></i>
-                        I'm a Mentor 
+                        <span data-i18n="hero.ctaMentor">I'm a Mentor</span>
                     </button>
                 </div>
                 
@@ -445,11 +453,11 @@
     <section id="sessions" class="py-16 lg:py-24 bg-gray-50 section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800" data-i18n="sessions.title">
                     Featured Learning Sessions
                 </h3>
                 <div class="w-24 h-1 mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
-                <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+                <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto" data-i18n="sessions.subtitle">
                     Discover amazing learning opportunities from expert mentors around the world
                 </p>
             </div>
@@ -575,6 +583,16 @@
         </div>
     </section>
 
+    <!-- About Section anchor (ensure target exists) -->
+    <section id="about" class="py-16 lg:py-24 section-padding">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl sm:text-4xl font-bold mb-4" data-i18n="about.title">About BridgeLearn</h3>
+                <p class="text-lg text-gray-600" data-i18n="about.body">A platform connecting generations through knowledge sharing.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="bg-white py-16 lg:py-24 section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -684,41 +702,41 @@
                 <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
                     <i class="fas fa-graduation-cap text-2xl text-white"></i>
                 </div>
-                <h3 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">Welcome to BridgeLearn</h3>
-                <p class="text-gray-600">Enter your details to join the learning community</p>
+                <h3 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800" data-i18n="login.title">Welcome to BridgeLearn</h3>
+                <p class="text-gray-600" data-i18n="login.subtitle">Enter your details to join the learning community</p>
             </div>
             
             <form id="loginForm" class="space-y-6">
                 <div>
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">Full Name</label>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" data-i18n="login.fullName">Full Name</label>
                     <input type="text" id="fullName" 
                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" 
                            placeholder="Enter your full name" required>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" data-i18n="login.email">Email</label>
                     <input type="email" id="email" 
                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" 
                            placeholder="Enter your email" required>
                 </div>
                 
                 <div>
-                    <label class="block text-gray-700 text-sm font-semibold mb-2">I am a:</label>
+                    <label class="block text-gray-700 text-sm font-semibold mb-2" data-i18n="login.iam">I am a:</label>
                     <select id="userType" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
-                        <option value="student">Student</option>
-                        <option value="retired">Retired Professional / Mentor</option>
+                        <option value="student" data-i18n="login.roleStudent">Student</option>
+                        <option value="retired" data-i18n="login.roleMentor">Retired Professional / Mentor</option>
                     </select>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-4 pt-4">
                     <button type="button" onclick="closeLoginModal()" 
-                            class="flex-1 border-2 border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold">
+                            class="flex-1 border-2 border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold" data-i18n="common.cancel">
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="flex-1 btn-primary py-3 text-center">
+                            class="flex-1 btn-primary py-3 text-center" data-i18n="login.submit">
                         <i class="fas fa-rocket mr-2"></i>Get Started
                     </button>
                 </div>
@@ -1341,6 +1359,97 @@
                 }
             });
         });
+
+        // --- Simple i18n ---
+        const translations = {
+            en: {
+                'nav.home': 'Home',
+                'nav.sessions': 'Sessions',
+                'nav.about': 'About',
+                'nav.login': 'Login',
+                'hero.title': 'Bridge Generations Through Learning',
+                'hero.tagline': 'Connect with experienced Emirati mentors and international professionals in the UAE. Share knowledge, preserve traditions, and build the future together.',
+                'hero.ctaStudent': "I'm a Student",
+                'hero.ctaMentor': "I'm a Mentor",
+                'sessions.title': 'Featured Learning Sessions',
+                'sessions.subtitle': 'Discover amazing learning opportunities from expert mentors around the world',
+                'about.title': 'About BridgeLearn',
+                'about.body': 'A platform connecting generations through knowledge sharing.',
+                'login.title': 'Welcome to BridgeLearn',
+                'login.subtitle': 'Enter your details to join the learning community',
+                'login.fullName': 'Full Name',
+                'login.email': 'Email',
+                'login.iam': 'I am a:',
+                'login.roleStudent': 'Student',
+                'login.roleMentor': 'Retired Professional / Mentor',
+                'login.submit': 'Get Started',
+                'common.cancel': 'Cancel'
+            },
+            ar: {
+                'nav.home': 'الرئيسية',
+                'nav.sessions': 'الجلسات',
+                'nav.about': 'من نحن',
+                'nav.login': 'تسجيل الدخول',
+                'hero.title': 'جسر الأجيال عبر التعلم',
+                'hero.tagline': 'تواصل مع مرشدين إماراتيين محترفين وخبرات دولية في الإمارات. شارك المعرفة، واحفظ التقاليد، وابنِ المستقبل معًا.',
+                'hero.ctaStudent': 'أنا طالب',
+                'hero.ctaMentor': 'أنا مُرشد',
+                'sessions.title': 'جلسات تعليمية مميزة',
+                'sessions.subtitle': 'اكتشف فرص تعلم مذهلة من خبراء حول العالم',
+                'about.title': 'حول BridgeLearn',
+                'about.body': 'منصة تربط الأجيال من خلال تبادل المعرفة.',
+                'login.title': 'مرحبًا بك في BridgeLearn',
+                'login.subtitle': 'أدخل تفاصيلك للانضمام إلى مجتمع التعلم',
+                'login.fullName': 'الاسم الكامل',
+                'login.email': 'البريد الإلكتروني',
+                'login.iam': 'أنا:',
+                'login.roleStudent': 'طالب',
+                'login.roleMentor': 'محترف متقاعد / مرشد',
+                'login.submit': 'ابدأ الآن',
+                'common.cancel': 'إلغاء'
+            }
+        };
+
+        function applyTranslations(lang) {
+            const dict = translations[lang] || translations.en;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dict[key];
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+
+            // Handle dir for RTL languages
+            const rtl = lang === 'ar';
+            document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem('lang', lang);
+            // Sync dropdowns
+            const desktop = document.getElementById('langSelect');
+            const mobile = document.getElementById('langSelectMobile');
+            if (desktop) desktop.value = lang;
+            if (mobile) mobile.value = lang;
+            applyTranslations(lang);
+        }
+
+        // Initialize language
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+
+        // Wire dropdowns
+        const langSelect = document.getElementById('langSelect');
+        const langSelectMobile = document.getElementById('langSelectMobile');
+        if (langSelect) langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+        if (langSelectMobile) langSelectMobile.addEventListener('change', (e) => setLanguage(e.target.value));
     </script>
 </body>
 </html>
