@@ -376,6 +376,10 @@
                     <select id="langSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="en">English</option>
                         <option value="ar">العربية</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
                     </select>
                     <button id="loginBtn" class="btn-primary">
                         <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
@@ -392,6 +396,10 @@
                     <select id="langSelectMobile" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <option value="en">English</option>
                         <option value="ar">العربية</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ml">മലയാളം</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
                     </select>
                     <button id="mobileLoginBtn" class="btn-primary w-full text-center">
                         <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
@@ -1387,8 +1395,8 @@
             },
             ar: {
                 'nav.home': 'الرئيسية',
-                'nav.sessions': 'الجلسات',
-                'nav.about': 'من نحن',
+                'nav.sessions': 'الجلسات ',
+                'nav.about': ' من نحن',
                 'nav.login': 'تسجيل الدخول',
                 'hero.title': 'جسر الأجيال عبر التعلم',
                 'hero.tagline': 'تواصل مع مرشدين إماراتيين محترفين وخبرات دولية في الإمارات. شارك المعرفة، واحفظ التقاليد، وابنِ المستقبل معًا.',
@@ -1407,6 +1415,98 @@
                 'login.roleMentor': 'محترف متقاعد / مرشد',
                 'login.submit': 'ابدأ الآن',
                 'common.cancel': 'إلغاء'
+            },
+            hi: {
+                'nav.home': 'होम',
+                'nav.sessions': 'सेशंस',
+                'nav.about': 'हमारे बारे में',
+                'nav.login': 'लॉगिन',
+                'hero.title': 'सीखने के माध्यम से पीढ़ियों को जोड़ें',
+                'hero.tagline': 'यूएई में अनुभवी अमीराती मेंटर्स और अंतरराष्ट्रीय पेशेवरों से जुड़ें। ज्ञान साझा करें, परंपराओं को सहेजें, और मिलकर भविष्य बनाएं।',
+                'hero.ctaStudent': 'मैं छात्र हूँ',
+                'hero.ctaMentor': 'मैं मेंटर हूँ',
+                'sessions.title': 'विशेष शिक्षण सत्र',
+                'sessions.subtitle': 'दुनिया भर के विशेषज्ञ मेंटर्स से अद्भुत सीखने के अवसर खोजें',
+                'about.title': 'ब्रिजलर्न के बारे में',
+                'about.body': 'ज्ञान साझा करने के माध्यम से पीढ़ियों को जोड़ने वाला मंच।',
+                'login.title': 'BridgeLearn में आपका स्वागत है',
+                'login.subtitle': 'लर्निंग कम्युनिटी से जुड़ने के लिए अपनी जानकारी दर्ज करें',
+                'login.fullName': 'पूरा नाम',
+                'login.email': 'ईमेल',
+                'login.iam': 'मैं हूँ:',
+                'login.roleStudent': 'छात्र',
+                'login.roleMentor': 'सेवानिवृत्त प्रोफेशनल / मेंटर',
+                'login.submit': 'शुरू करें',
+                'common.cancel': 'रद्द करें'
+            },
+            ml: {
+                'nav.home': 'ഹോം',
+                'nav.sessions': 'സെഷനുകൾ',
+                'nav.about': 'ഞങ്ങളെക്കുറിച്ച്',
+                'nav.login': 'ലോഗിൻ',
+                'hero.title': 'പഠനത്തിലൂടെ തലമുറകളെ ബന്ധിപ്പിക്കുക',
+                'hero.tagline': 'യുഎഇയിലെ പരിചയസമ്പന്നരായ എമിറാത്തി മെന്റർമാരുമായും അന്താരാഷ്ട്ര പ്രൊഫഷണലുമായും ബന്ധപ്പെടുക. അറിവ് പങ്കിടുക, പാരമ്പര്യം സംരക്ഷിക്കുക, ഒരുമിച്ച് ഭാവി നിർമ്മിക്കുക.',
+                'hero.ctaStudent': 'ഞാൻ വിദ്യാർത്ഥിയാണ്',
+                'hero.ctaMentor': 'ഞാൻ മെന്ററാണ്',
+                'sessions.title': 'പ്രമുഖ പഠന സെഷനുകൾ',
+                'sessions.subtitle': 'ലോകമെമ്പാടുമുള്ള വിദഗ്ധ മെന്റർമാരിൽ നിന്ന് അതുല്യമായ പഠന അവസരങ്ങൾ കണ്ടെത്തുക',
+                'about.title': 'ബ്രിഡ്ജ്‌ലേണിനെ കുറിച്ച്',
+                'about.body': 'അറിവ് പങ്കിടുന്നതിലൂടെ തലമുറകളെ ബന്ധിപ്പിക്കുന്ന ഒരു പ്ലാറ്റ്‌ഫോം.',
+                'login.title': 'BridgeLearn-ലേക്ക് സ്വാഗതം',
+                'login.subtitle': 'ലേണിംഗ് കമ്മ്യൂണിറ്റിയിൽ ചേരാൻ നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക',
+                'login.fullName': 'പൂർണ്ണ പേര്',
+                'login.email': 'ഇമെയിൽ',
+                'login.iam': 'ഞാൻ:',
+                'login.roleStudent': 'വിദ്യാർത്ഥി',
+                'login.roleMentor': 'വിശ്രമജീവിതത്തിലുള്ള പ്രൊഫഷണൽ / മെന്റർ',
+                'login.submit': 'തുടങ്ങുക',
+                'common.cancel': 'റദ്ദാക്കുക'
+            },
+            ta: {
+                'nav.home': 'முகப்பு',
+                'nav.sessions': 'அமர்வுகள்',
+                'nav.about': 'எங்களை பற்றி',
+                'nav.login': 'உள் நுழை',
+                'hero.title': 'கற்றலின் மூலம் தலைமுறைகளை இணைப்போம்',
+                'hero.tagline': 'ஐக்கிய அரபு அமீரகத்தில் அனுபவமுள்ள எமிராத்தி வழிகாட்டிகள் மற்றும் சர்வதேச நிபுணர்களுடன் இணைக. அறிவை பகிர்ந்து, பாரம்பரியங்களை காக்க, ஒன்றாக எதிர்காலத்தை உருவாக்கலாம்.',
+                'hero.ctaStudent': 'நான் மாணவன்',
+                'hero.ctaMentor': 'நான் வழிகாட்டி',
+                'sessions.title': 'சிறப்பு கற்றல் அமர்வுகள்',
+                'sessions.subtitle': 'உலகம் முழுவதும் உள்ள நிபுணர்களிடமிருந்து அற்புதமான கற்றல் வாய்ப்புகளை கண்டறியவும்',
+                'about.title': 'BridgeLearn பற்றி',
+                'about.body': 'அறிவைப் பகிர்வதன் மூலம் தலைமுறைகளை இணைக்கும் தளம்.',
+                'login.title': 'BridgeLearn-க்கு வரவேற்கிறோம்',
+                'login.subtitle': 'கற்றல் சமூகத்தில் சேர உங்கள் விவரங்களை உள்ளிடவும்',
+                'login.fullName': 'முழு பெயர்',
+                'login.email': 'மின்னஞ்சல்',
+                'login.iam': 'நான்:',
+                'login.roleStudent': 'மாணவர்',
+                'login.roleMentor': 'ஓய்வு பெற்ற நிபுணர் / வழிகாட்டி',
+                'login.submit': 'தொடங்கவும்',
+                'common.cancel': 'ரத்து'
+            },
+            te: {
+                'nav.home': 'హోమ్',
+                'nav.sessions': 'సెషన్లు',
+                'nav.about': 'మన గురించి',
+                'nav.login': 'లాగిన్',
+                'hero.title': 'అభ్యాసం ద్వారా తరాలను అనుసంధానం చేయండి',
+                'hero.tagline': 'యుఏఈలో అనుభవజ్ఞులైన ఎమిరాటి మెంటర్లు మరియు అంతర్జాతీయ నిపుణులతో కనెక్ట్ అవ్వండి. జ్ఞానాన్ని పంచుకోండి, సంప్రదాయాలను కాపాడండి, కలిసి భవిష్యత్తును నిర్మించండి.',
+                'hero.ctaStudent': 'నేను విద్యార్థిని',
+                'hero.ctaMentor': 'నేను మార్గదర్శిని',
+                'sessions.title': 'ప్రత్యేక అభ్యాస సెషన్లు',
+                'sessions.subtitle': 'ప్రపంచవ్యాప్తంగా ఉన్న నిపుణుల నుండి అద్భుతమైన అభ్యాస అవకాశాలను కనుగొనండి',
+                'about.title': 'BridgeLearn గురించి',
+                'about.body': 'జ్ఞాన పంచుకోవడం ద్వారా తరాలను అనుసంధానించే వేదిక.',
+                'login.title': 'BridgeLearn కు స్వాగతం',
+                'login.subtitle': 'లెర్నింగ్ కమ్యూనిటీలో చేరడానికి మీ వివరాలను నమోదు చేయండి',
+                'login.fullName': 'పూర్తి పేరు',
+                'login.email': 'ఈమెయిల్',
+                'login.iam': 'నేను:',
+                'login.roleStudent': 'విద్యార్థి',
+                'login.roleMentor': 'విరమించిన నిపుణుడు / మార్గదర్శి',
+                'login.submit': 'ప్రారంభించండి',
+                'common.cancel': 'రద్దు'
             }
         };
 
