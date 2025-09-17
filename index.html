@@ -1130,7 +1130,8 @@
             document.querySelector('nav').classList.remove('hidden');
             document.querySelector('section[id="home"]').classList.remove('hidden');
             document.querySelector('section[id="sessions"]').classList.remove('hidden');
-            document.querySelector('section[id="about"]').classList.remove('hidden');
+            const aboutSection = document.querySelector('section[id="about"]');
+            if (aboutSection) aboutSection.classList.remove('hidden');
             document.getElementById('dashboard').classList.add('hidden');
         }
 
@@ -1249,7 +1250,11 @@
                 document.querySelector('nav').classList.add('hidden');
                 document.querySelector('section[id="home"]').classList.add('hidden');
                 document.querySelector('section[id="sessions"]').classList.add('hidden');
-                document.querySelector('section[id="about"]').classList.add('hidden');
+                const aboutToHide = document.querySelector('section[id="about"]');
+                if (aboutToHide) {
+                    aboutToHide.classList.add('hidden');
+                    aboutToHide.remove();
+                }
                 document.getElementById('dashboard').classList.remove('hidden');
                 
                 // Update greeting
