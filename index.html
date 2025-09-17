@@ -504,7 +504,7 @@
                             </div>
                         </div>
                         
-                        <button class="w-full btn-primary py-3 text-center group-hover:scale-105 transition-transform">
+                        <button onclick="showLoginModal('student')" class="w-full btn-primary py-3 text-center group-hover:scale-105 transition-transform">
                             <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
@@ -543,7 +543,7 @@
                             </div>
                         </div>
                         
-                        <button class="w-full btn-secondary py-3 text-center group-hover:scale-105 transition-transform">
+                        <button onclick="showLoginModal('student')" class="w-full btn-secondary py-3 text-center group-hover:scale-105 transition-transform">
                             <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
@@ -582,7 +582,7 @@
                             </div>
                         </div>
                         
-                        <button class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-xl font-semibold text-center group-hover:scale-105 transition-transform">
+                        <button onclick="showLoginModal('student')" class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white py-3 rounded-xl font-semibold text-center group-hover:scale-105 transition-transform">
                             <i class="fas fa-bookmark mr-2"></i><span data-i18n="actions.bookSession">Book Session</span>
                         </button>
                     </div>
@@ -916,7 +916,8 @@
         
         // Chatbot functionality
         // Note: In production, this API key should be stored securely on the server side
-        const CHATGPT_API_KEY = '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';
+        // Backend API base (same origin)
+        const API_BASE = window.location.origin;
         let isChatbotOpen = false;
         let conversationHistory = [];
 
@@ -1011,23 +1012,16 @@
                 // Add typing indicator
                 addTypingIndicator();
                 
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                const response = await fetch(`${API_BASE}/api/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${CHATGPT_API_KEY}`
                     },
                     body: JSON.stringify({
-                        model: 'gpt-3.5-turbo',
                         messages: [
-                            {
-                                role: 'system',
-                                content: 'You are a helpful AI assistant for BridgeLearn, a platform that connects Emirati mentors with international professionals in the UAE. You help users with questions about learning sessions, mentorship, and the platform. Be friendly, helpful, and culturally aware of the UAE context.'
-                            },
+                            { role: 'system', content: 'You are a helpful AI assistant for BridgeLearn, a platform that connects Emirati mentors with international professionals in the UAE. You help users with questions about learning sessions, mentorship, and the platform. Be friendly, helpful, and culturally aware of the UAE context.' },
                             ...conversationHistory
-                        ],
-                        max_tokens: 500,
-                        temperature: 0.7
+                        ]
                     })
                 });
 
@@ -1036,7 +1030,7 @@
                 }
 
                 const data = await response.json();
-                const aiResponse = data.choices[0].message.content;
+                const aiResponse = data.message || data.choices?.[0]?.message?.content || 'Sorry, I could not get a response.';
                 
                 // Remove typing indicator
                 removeTypingIndicator();
