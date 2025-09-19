@@ -829,10 +829,10 @@
                                     </div>
                                     
                                     <div class="flex items-center text-blue-100">
-                                        <i class="fas fa-users text-lg mr-3"></i>
+                                        <i class="fas fa-user-friends text-lg mr-3"></i>
                                         <div>
-                                            <p class="font-semibold">12 participants online</p>
-                                            <p class="text-sm">Max capacity: 25</p>
+                                            <p class="font-semibold">One-on-One Session</p>
+                                            <p class="text-sm">Personal mentoring with Dr. Sarah</p>
                                         </div>
                                     </div>
                                 </div>
@@ -989,7 +989,7 @@
                 </div>
                 <div>
                     <h3 class="text-white font-semibold text-lg" id="callSessionTitle">Advanced Web Development</h3>
-                    <p class="text-gray-300 text-sm">Dr. Sarah Ahmed • 12 participants</p>
+                    <p class="text-gray-300 text-sm">Dr. Sarah Ahmed • One-on-One Session</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
@@ -1015,30 +1015,65 @@
         <div class="flex-1 flex overflow-hidden">
             <!-- Main Video Area -->
             <div class="flex-1 bg-gray-900 relative">
-                <!-- Main Speaker Video -->
-                <div class="w-full h-full bg-gray-800 flex items-center justify-center relative">
-                    <div class="text-center">
-                        <div class="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-user text-4xl text-white"></i>
+                <!-- One-on-One Video Layout -->
+                <div class="w-full h-full flex">
+                    <!-- Mentor Video (Main) -->
+                    <div class="flex-1 bg-gray-800 flex items-center justify-center relative">
+                        <div class="text-center">
+                            <div class="w-40 h-40 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chalkboard-teacher text-5xl text-white"></i>
+                            </div>
+                            <h4 class="text-white text-2xl font-semibold">Dr. Sarah Ahmed</h4>
+                            <p class="text-gray-400 text-lg">Your Mentor</p>
+                            <div class="flex items-center justify-center mt-2">
+                                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
+                                <span class="text-green-400 text-sm">Speaking</span>
+                            </div>
                         </div>
-                        <h4 class="text-white text-xl font-semibold">Dr. Sarah Ahmed</h4>
-                        <p class="text-gray-400">Speaking</p>
                     </div>
-                    <!-- Video Controls Overlay -->
-                    <div class="absolute bottom-4 left-4 right-4 flex justify-center space-x-4">
-                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                            <i class="fas fa-microphone"></i>
-                        </button>
-                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                            <i class="fas fa-video"></i>
-                        </button>
-                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                            <i class="fas fa-share-screen"></i>
-                        </button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
-                            <i class="fas fa-phone-slash"></i>
-                        </button>
+                    
+                    <!-- Student Video (Side) -->
+                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex items-center justify-center relative">
+                        <!-- User Video Element -->
+                        <video id="userVideo" autoplay muted class="w-full h-full object-cover rounded-lg" style="display: none;"></video>
+                        
+                        <!-- Fallback when video is not available -->
+                        <div id="userVideoPlaceholder" class="text-center">
+                            <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-user-graduate text-2xl text-white"></i>
+                            </div>
+                            <h4 class="text-white text-lg font-semibold">You</h4>
+                            <p class="text-gray-400 text-sm">Student</p>
+                            <div class="flex items-center justify-center mt-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></div>
+                                <span class="text-green-400 text-xs">Online</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Video Status Overlay -->
+                        <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                            <span id="videoStatus">Camera Off</span>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- Video Controls Overlay -->
+                <div class="absolute bottom-4 left-4 right-4 flex justify-center space-x-4">
+                    <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button id="videoButton" onclick="toggleVideo()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                        <i class="fas fa-video"></i>
+                    </button>
+                    <button onclick="shareScreen()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                        <i class="fas fa-share-screen"></i>
+                    </button>
+                    <button onclick="raiseHand()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                        <i class="fas fa-hand-paper"></i>
+                    </button>
+                    <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                        <i class="fas fa-phone-slash"></i>
+                    </button>
                 </div>
             </div>
             
@@ -1046,47 +1081,46 @@
             <div class="w-80 bg-gray-800 border-l border-gray-700 flex flex-col">
                 <!-- Participants List -->
                 <div class="p-4 border-b border-gray-700">
-                    <h4 class="text-white font-semibold mb-3">Participants (12)</h4>
-                    <div class="space-y-2 max-h-48 overflow-y-auto">
-                        <div class="flex items-center space-x-3 p-2 rounded-lg bg-gray-700">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                                <i class="fas fa-user text-white text-sm"></i>
+                    <h4 class="text-white font-semibold mb-3">Session Participants</h4>
+                    <div class="space-y-3">
+                        <!-- Mentor -->
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-chalkboard-teacher text-white"></i>
                             </div>
                             <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Dr. Sarah Ahmed</p>
-                                <p class="text-gray-400 text-xs">Host</p>
+                                <p class="text-white font-medium">Dr. Sarah Ahmed</p>
+                                <p class="text-gray-400 text-sm">Mentor & Host</p>
+                                <p class="text-green-400 text-xs">● Online</p>
                             </div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
                         </div>
-                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-                                <i class="fas fa-user text-white text-sm"></i>
+                        
+                        <!-- Student -->
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                                <i class="fas fa-user-graduate text-white"></i>
                             </div>
                             <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Ahmed Al-Mansouri</p>
-                                <p class="text-gray-400 text-xs">Student</p>
+                                <p class="text-white font-medium">You</p>
+                                <p class="text-gray-400 text-sm">Student</p>
+                                <p class="text-green-400 text-xs">● Online</p>
                             </div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
                         </div>
-                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center">
-                                <i class="fas fa-user text-white text-sm"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Maria Rodriguez</p>
-                                <p class="text-gray-400 text-xs">Student</p>
-                            </div>
-                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                    </div>
+                    
+                    <!-- Session Info -->
+                    <div class="mt-4 p-3 bg-gray-600 rounded-lg">
+                        <div class="flex items-center text-gray-300 text-sm mb-2">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>Session Duration: 2 hours</span>
                         </div>
-                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center">
-                                <i class="fas fa-user text-white text-sm"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-white text-sm font-medium">John Smith</p>
-                                <p class="text-gray-400 text-xs">Student</p>
-                            </div>
-                            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                        <div class="flex items-center text-gray-300 text-sm mb-2">
+                            <i class="fas fa-calendar mr-2"></i>
+                            <span>Started: 30 minutes ago</span>
+                        </div>
+                        <div class="flex items-center text-gray-300 text-sm">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            <span>Mentoring Session</span>
                         </div>
                     </div>
                 </div>
@@ -1094,46 +1128,62 @@
                 <!-- Chat Section -->
                 <div class="flex-1 flex flex-col">
                     <div class="p-4 border-b border-gray-700">
-                        <h4 class="text-white font-semibold">Live Chat</h4>
+                        <h4 class="text-white font-semibold">Direct Message</h4>
+                        <p class="text-gray-400 text-xs">Private conversation with Dr. Sarah Ahmed</p>
                     </div>
-                    <div id="liveChatMessages" class="flex-1 p-4 space-y-3 overflow-y-auto">
-                        <div class="flex items-start space-x-2">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-user text-white text-xs"></i>
+                    <div id="liveChatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto">
+                        <!-- Welcome Message -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
                             </div>
                             <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Dr. Sarah Ahmed</p>
-                                <p class="text-gray-300 text-sm">Welcome everyone! Let's start with React Hooks today.</p>
+                                <div class="bg-gray-700 rounded-lg p-3">
+                                    <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
+                                    <p class="text-gray-300 text-sm">Welcome to our one-on-one session! I'm excited to help you with Advanced Web Development. What would you like to focus on today?</p>
+                                </div>
+                                <p class="text-gray-500 text-xs mt-1">2:30 PM</p>
                             </div>
                         </div>
-                        <div class="flex items-start space-x-2">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-user text-white text-xs"></i>
+                        
+                        <!-- Student Response -->
+                        <div class="flex items-start space-x-3 flex-row-reverse">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user-graduate text-white text-sm"></i>
                             </div>
                             <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Ahmed Al-Mansouri</p>
-                                <p class="text-gray-300 text-sm">Excited to learn! I have some questions about useState.</p>
+                                <div class="bg-blue-600 rounded-lg p-3">
+                                    <p class="text-white text-sm font-medium mb-1">You</p>
+                                    <p class="text-white text-sm">Thank you! I'm particularly interested in learning about React Hooks and state management. I have some specific questions about useState and useEffect.</p>
+                                </div>
+                                <p class="text-gray-500 text-xs mt-1 text-right">2:32 PM</p>
                             </div>
                         </div>
-                        <div class="flex items-start space-x-2">
-                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-user text-white text-xs"></i>
+                        
+                        <!-- Mentor Response -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
                             </div>
                             <div class="flex-1">
-                                <p class="text-white text-sm font-medium">Maria Rodriguez</p>
-                                <p class="text-gray-300 text-sm">Great! I'll share my screen to show the code.</p>
+                                <div class="bg-gray-700 rounded-lg p-3">
+                                    <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
+                                    <p class="text-gray-300 text-sm">Perfect! React Hooks are fundamental to modern React development. Let's start with useState - it's the most commonly used hook. I'll share my screen to show you some practical examples.</p>
+                                </div>
+                                <p class="text-gray-500 text-xs mt-1">2:33 PM</p>
                             </div>
                         </div>
                     </div>
                     <div class="p-4 border-t border-gray-700">
                         <div class="flex space-x-2">
-                            <input type="text" id="liveChatInput" placeholder="Type a message..." 
+                            <input type="text" id="liveChatInput" placeholder="Type your message to Dr. Sarah..." 
                                    class="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                    onkeypress="handleChatKeyPress(event)">
                             <button onclick="sendLiveChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </div>
+                        <p class="text-gray-500 text-xs mt-2">Press Enter to send message</p>
                     </div>
                 </div>
             </div>
@@ -1652,6 +1702,10 @@ console.log(greet("BridgeLearn"));</textarea>
         }
 
         // Video Call Functions
+        let userStream = null;
+        let isVideoOn = false;
+        let isMicOn = false;
+
         function joinVideoCall() {
             const videoCallPage = document.getElementById('videoCallPage');
             videoCallPage.classList.remove('hidden');
@@ -1663,12 +1717,32 @@ console.log(greet("BridgeLearn"));</textarea>
             navigator.mediaDevices.getUserMedia({ video: true, audio: true })
                 .then(stream => {
                     console.log('Camera and microphone access granted');
-                    // In a real implementation, you would set up the video stream here
+                    userStream = stream;
+                    
+                    // Set up user video
+                    const userVideo = document.getElementById('userVideo');
+                    userVideo.srcObject = stream;
+                    userVideo.style.display = 'block';
+                    
+                    // Hide placeholder
+                    document.getElementById('userVideoPlaceholder').style.display = 'none';
+                    
+                    // Update status
+                    document.getElementById('videoStatus').textContent = 'Camera On';
+                    isVideoOn = true;
+                    isMicOn = true;
+                    
+                    // Update button states
+                    updateControlButtons();
                 })
                 .catch(err => {
                     console.log('Camera and microphone access denied:', err);
                     // Show a message to the user about permissions
                     alert('Camera and microphone access is required to join the video call. Please allow access and try again.');
+                    
+                    // Show placeholder
+                    document.getElementById('userVideoPlaceholder').style.display = 'block';
+                    document.getElementById('userVideo').style.display = 'none';
                 });
             
             // Detect session type and show appropriate tools
@@ -1679,8 +1753,123 @@ console.log(greet("BridgeLearn"));</textarea>
             const videoCallPage = document.getElementById('videoCallPage');
             videoCallPage.classList.add('hidden');
             
+            // Stop user stream
+            if (userStream) {
+                userStream.getTracks().forEach(track => track.stop());
+                userStream = null;
+            }
+            
+            // Reset video display
+            document.getElementById('userVideo').style.display = 'none';
+            document.getElementById('userVideoPlaceholder').style.display = 'block';
+            document.getElementById('videoStatus').textContent = 'Camera Off';
+            
             // Show the dashboard again
             document.getElementById('dashboard').classList.remove('hidden');
+        }
+
+        // Video Control Functions
+        function toggleVideo() {
+            if (userStream) {
+                const videoTrack = userStream.getVideoTracks()[0];
+                if (videoTrack) {
+                    videoTrack.enabled = !videoTrack.enabled;
+                    isVideoOn = videoTrack.enabled;
+                    
+                    if (isVideoOn) {
+                        document.getElementById('userVideo').style.display = 'block';
+                        document.getElementById('userVideoPlaceholder').style.display = 'none';
+                        document.getElementById('videoStatus').textContent = 'Camera On';
+                    } else {
+                        document.getElementById('userVideo').style.display = 'none';
+                        document.getElementById('userVideoPlaceholder').style.display = 'block';
+                        document.getElementById('videoStatus').textContent = 'Camera Off';
+                    }
+                }
+            }
+            updateControlButtons();
+        }
+
+        function toggleMicrophone() {
+            if (userStream) {
+                const audioTrack = userStream.getAudioTracks()[0];
+                if (audioTrack) {
+                    audioTrack.enabled = !audioTrack.enabled;
+                    isMicOn = audioTrack.enabled;
+                }
+            }
+            updateControlButtons();
+        }
+
+        function updateControlButtons() {
+            const micButton = document.getElementById('micButton');
+            const videoButton = document.getElementById('videoButton');
+            
+            // Update microphone button
+            if (isMicOn) {
+                micButton.className = 'bg-green-600 hover:bg-green-700 text-white p-3 rounded-full transition-colors';
+                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
+            } else {
+                micButton.className = 'bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors';
+                micButton.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+            }
+            
+            // Update video button
+            if (isVideoOn) {
+                videoButton.className = 'bg-green-600 hover:bg-green-700 text-white p-3 rounded-full transition-colors';
+                videoButton.innerHTML = '<i class="fas fa-video"></i>';
+            } else {
+                videoButton.className = 'bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors';
+                videoButton.innerHTML = '<i class="fas fa-video-slash"></i>';
+            }
+        }
+
+        function shareScreen() {
+            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
+                navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
+                    .then(stream => {
+                        // Replace user video with screen share
+                        const userVideo = document.getElementById('userVideo');
+                        userVideo.srcObject = stream;
+                        userVideo.style.display = 'block';
+                        document.getElementById('userVideoPlaceholder').style.display = 'none';
+                        document.getElementById('videoStatus').textContent = 'Screen Sharing';
+                        
+                        // Stop previous stream
+                        if (userStream) {
+                            userStream.getTracks().forEach(track => track.stop());
+                        }
+                        userStream = stream;
+                        
+                        // Listen for when user stops sharing
+                        stream.getVideoTracks()[0].addEventListener('ended', () => {
+                            // Restart camera
+                            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                                .then(cameraStream => {
+                                    userStream = cameraStream;
+                                    userVideo.srcObject = cameraStream;
+                                    document.getElementById('videoStatus').textContent = 'Camera On';
+                                });
+                        });
+                    })
+                    .catch(err => {
+                        console.log('Screen sharing not supported or denied:', err);
+                        alert('Screen sharing is not supported or was denied. Please try again.');
+                    });
+            } else {
+                alert('Screen sharing is not supported in this browser.');
+            }
+        }
+
+        function raiseHand() {
+            // Add a message to chat about raising hand
+            addLiveChatMessage('You', '✋ Raised hand', true);
+        }
+
+        function endCall() {
+            if (confirm('Are you sure you want to end the call?')) {
+                closeVideoCall();
+            }
         }
 
         // Tools Panel Functions
@@ -1703,20 +1892,23 @@ console.log(greet("BridgeLearn"));</textarea>
                 addLiveChatMessage('You', message, true);
                 input.value = '';
                 
-                // Simulate other participants responding
+                // Simulate mentor responding
                 setTimeout(() => {
-                    const responses = [
-                        'Great question!',
-                        'I agree with that point.',
-                        'Could you explain that further?',
-                        'Thanks for sharing!',
-                        'That makes sense.',
-                        'I have a similar question.',
-                        'Excellent point!'
+                    const mentorResponses = [
+                        'That\'s a great question! Let me explain that concept in detail.',
+                        'I understand your concern. Let\'s work through this step by step.',
+                        'Excellent observation! This is exactly what we need to focus on.',
+                        'I\'m glad you asked that. This is a common challenge many students face.',
+                        'Perfect! You\'re thinking like a developer. Let me show you the best practice.',
+                        'That\'s a very insightful question. Let me share my screen to demonstrate.',
+                        'Great progress! You\'re really grasping the concepts well.',
+                        'I can see you\'re putting a lot of thought into this. Let\'s dive deeper.',
+                        'That\'s exactly right! You\'re understanding the fundamentals perfectly.',
+                        'I love your enthusiasm! This is the kind of thinking that makes great developers.'
                     ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
                     addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
-                }, 1000 + Math.random() * 2000);
+                }, 1500 + Math.random() * 3000);
             }
         }
 
@@ -1729,28 +1921,40 @@ console.log(greet("BridgeLearn"));</textarea>
         function addLiveChatMessage(sender, message, isCurrentUser) {
             const chatContainer = document.getElementById('liveChatMessages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = 'flex items-start space-x-2';
             
-            const colors = [
-                'from-green-400 to-blue-500',
-                'from-purple-400 to-pink-500',
-                'from-yellow-400 to-orange-500',
-                'from-red-400 to-pink-500',
-                'from-blue-400 to-indigo-500',
-                'from-pink-400 to-red-500'
-            ];
+            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             
-            const colorClass = isCurrentUser ? 'from-blue-500 to-purple-600' : colors[Math.floor(Math.random() * colors.length)];
-            
-            messageDiv.innerHTML = `
-                <div class="w-6 h-6 rounded-full bg-gradient-to-r ${colorClass} flex items-center justify-center flex-shrink-0">
-                    <i class="fas fa-user text-white text-xs"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="text-white text-sm font-medium">${sender}</p>
-                    <p class="text-gray-300 text-sm">${message}</p>
-                </div>
-            `;
+            if (isCurrentUser) {
+                // Student message (right-aligned)
+                messageDiv.className = 'flex items-start space-x-3 flex-row-reverse';
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-user-graduate text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-blue-600 rounded-lg p-3">
+                            <p class="text-white text-sm font-medium mb-1">You</p>
+                            <p class="text-white text-sm">${message}</p>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-1 text-right">${currentTime}</p>
+                    </div>
+                `;
+            } else {
+                // Mentor message (left-aligned)
+                messageDiv.className = 'flex items-start space-x-3';
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="bg-gray-700 rounded-lg p-3">
+                            <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
+                            <p class="text-gray-300 text-sm">${message}</p>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-1">${currentTime}</p>
+                    </div>
+                `;
+            }
             
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
