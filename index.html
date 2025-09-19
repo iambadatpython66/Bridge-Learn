@@ -457,6 +457,7 @@
         </div>
     </section>
 
+
     <!-- Featured Sessions -->
     <section id="sessions" class="py-16 lg:py-24 bg-gray-50 section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -784,6 +785,124 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Current Live Session -->
+                <div class="mt-8 bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg shadow-lg text-white">
+                    <div class="p-6 border-b border-white/20">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold" data-i18n="currentSession.title">Current Live Session</h3>
+                            <div class="flex items-center space-x-2 text-green-300">
+                                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                <span class="text-sm font-medium">LIVE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Session Info -->
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                                        <i class="fas fa-video text-xl text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-white" id="currentSessionTitle">Advanced Web Development</h4>
+                                        <p class="text-blue-100 text-sm">Live Interactive Session</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center text-blue-100">
+                                        <i class="fas fa-user-circle text-lg mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">Dr. Sarah Ahmed</p>
+                                            <p class="text-sm">Senior Software Engineer, Microsoft</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center text-blue-100">
+                                        <i class="fas fa-clock text-lg mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">2 hours remaining</p>
+                                            <p class="text-sm">Started 30 minutes ago</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center text-blue-100">
+                                        <i class="fas fa-users text-lg mr-3"></i>
+                                        <div>
+                                            <p class="font-semibold">12 participants online</p>
+                                            <p class="text-sm">Max capacity: 25</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Join Button and Session Tools -->
+                            <div class="space-y-4">
+                                <button onclick="joinVideoCall()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    <i class="fas fa-video mr-2"></i>
+                                    <span data-i18n="currentSession.joinNow">Join Now</span>
+                                </button>
+                                
+                                <!-- Session-Specific Tools -->
+                                <div id="sessionTools" class="space-y-3">
+                                    <!-- Coding Session Tools -->
+                                    <div id="codingTools" class="hidden">
+                                        <h5 class="text-white font-semibold mb-2">Development Tools</h5>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button onclick="openCompiler()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-code mr-1"></i> Code Compiler
+                                            </button>
+                                            <button onclick="openCodeShare()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-share-alt mr-1"></i> Share Code
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Language Learning Tools -->
+                                    <div id="languageTools" class="hidden">
+                                        <h5 class="text-white font-semibold mb-2">Language Tools</h5>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button onclick="openTranslator()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-language mr-1"></i> Translator
+                                            </button>
+                                            <button onclick="openDictionary()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-book mr-1"></i> Dictionary
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Business Session Tools -->
+                                    <div id="businessTools" class="hidden">
+                                        <h5 class="text-white font-semibold mb-2">Business Tools</h5>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button onclick="openWhiteboard()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-chalkboard mr-1"></i> Whiteboard
+                                            </button>
+                                            <button onclick="openNotes()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-sticky-note mr-1"></i> Notes
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Design Session Tools -->
+                                    <div id="designTools" class="hidden">
+                                        <h5 class="text-white font-semibold mb-2">Design Tools</h5>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button onclick="openDesignBoard()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-palette mr-1"></i> Design Board
+                                            </button>
+                                            <button onclick="openColorPicker()" class="bg-white/20 hover:bg-white/30 text-white py-2 px-3 rounded-lg text-sm transition-colors">
+                                                <i class="fas fa-eye-dropper mr-1"></i> Color Picker
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -857,6 +976,390 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Video Call Full Page -->
+    <div id="videoCallPage" class="hidden fixed inset-0 bg-gray-900 z-50 flex flex-col">
+        <!-- Video Call Header -->
+        <div class="bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700">
+            <div class="flex items-center space-x-4">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                    <i class="fas fa-video text-white"></i>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">Advanced Web Development</h3>
+                    <p class="text-gray-300 text-sm">Dr. Sarah Ahmed • 12 participants</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <button onclick="toggleToolsPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-tools mr-2"></i>Tools
+                    </button>
+                    <button onclick="toggleChatPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-comments mr-2"></i>Chat
+                    </button>
+                </div>
+                <div class="flex items-center space-x-2 text-green-400">
+                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium">LIVE</span>
+                </div>
+                <button onclick="closeVideoCall()" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div class="flex-1 flex overflow-hidden">
+            <!-- Main Video Area -->
+            <div class="flex-1 bg-gray-900 relative">
+                <!-- Main Speaker Video -->
+                <div class="w-full h-full bg-gray-800 flex items-center justify-center relative">
+                    <div class="text-center">
+                        <div class="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-4xl text-white"></i>
+                        </div>
+                        <h4 class="text-white text-xl font-semibold">Dr. Sarah Ahmed</h4>
+                        <p class="text-gray-400">Speaking</p>
+                    </div>
+                    <!-- Video Controls Overlay -->
+                    <div class="absolute bottom-4 left-4 right-4 flex justify-center space-x-4">
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-share-screen"></i>
+                        </button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-phone-slash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Sidebar -->
+            <div class="w-80 bg-gray-800 border-l border-gray-700 flex flex-col">
+                <!-- Participants List -->
+                <div class="p-4 border-b border-gray-700">
+                    <h4 class="text-white font-semibold mb-3">Participants (12)</h4>
+                    <div class="space-y-2 max-h-48 overflow-y-auto">
+                        <div class="flex items-center space-x-3 p-2 rounded-lg bg-gray-700">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Dr. Sarah Ahmed</p>
+                                <p class="text-gray-400 text-xs">Host</p>
+                            </div>
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Ahmed Al-Mansouri</p>
+                                <p class="text-gray-400 text-xs">Student</p>
+                            </div>
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Maria Rodriguez</p>
+                                <p class="text-gray-400 text-xs">Student</p>
+                            </div>
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        </div>
+                        <div class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-700 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">John Smith</p>
+                                <p class="text-gray-400 text-xs">Student</p>
+                            </div>
+                            <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Section -->
+                <div class="flex-1 flex flex-col">
+                    <div class="p-4 border-b border-gray-700">
+                        <h4 class="text-white font-semibold">Live Chat</h4>
+                    </div>
+                    <div id="liveChatMessages" class="flex-1 p-4 space-y-3 overflow-y-auto">
+                        <div class="flex items-start space-x-2">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user text-white text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Dr. Sarah Ahmed</p>
+                                <p class="text-gray-300 text-sm">Welcome everyone! Let's start with React Hooks today.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user text-white text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Ahmed Al-Mansouri</p>
+                                <p class="text-gray-300 text-sm">Excited to learn! I have some questions about useState.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-2">
+                            <div class="w-6 h-6 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-user text-white text-xs"></i>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-white text-sm font-medium">Maria Rodriguez</p>
+                                <p class="text-gray-300 text-sm">Great! I'll share my screen to show the code.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4 border-t border-gray-700">
+                        <div class="flex space-x-2">
+                            <input type="text" id="liveChatInput" placeholder="Type a message..." 
+                                   class="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                   onkeypress="handleChatKeyPress(event)">
+                            <button onclick="sendLiveChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tools Panel (Collapsible) -->
+        <div id="toolsPanel" class="hidden absolute right-0 top-0 h-full w-96 bg-gray-800 border-l border-gray-700 z-10">
+            <div class="p-4 border-b border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-white font-semibold">Session Tools</h4>
+                    <button onclick="toggleToolsPanel()" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4 overflow-y-auto h-full">
+                <!-- Session-Specific Tools -->
+                <div id="sessionToolsInCall" class="space-y-4">
+                    <!-- Coding Session Tools -->
+                    <div id="codingToolsInCall" class="hidden">
+                        <h5 class="text-white font-semibold mb-3">Development Tools</h5>
+                        <div class="space-y-2">
+                            <button onclick="openCompilerInCall()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-code mr-2"></i> Code Compiler
+                            </button>
+                            <button onclick="openCodeShareInCall()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-share-alt mr-2"></i> Share Code
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Language Learning Tools -->
+                    <div id="languageToolsInCall" class="hidden">
+                        <h5 class="text-white font-semibold mb-3">Language Tools</h5>
+                        <div class="space-y-2">
+                            <button onclick="openTranslatorInCall()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-language mr-2"></i> Translator
+                            </button>
+                            <button onclick="openDictionaryInCall()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-book mr-2"></i> Dictionary
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Session Tools -->
+                    <div id="businessToolsInCall" class="hidden">
+                        <h5 class="text-white font-semibold mb-3">Business Tools</h5>
+                        <div class="space-y-2">
+                            <button onclick="openWhiteboardInCall()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-chalkboard mr-2"></i> Whiteboard
+                            </button>
+                            <button onclick="openNotesInCall()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-sticky-note mr-2"></i> Notes
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Session Tools -->
+                    <div id="designToolsInCall" class="hidden">
+                        <h5 class="text-white font-semibold mb-3">Design Tools</h5>
+                        <div class="space-y-2">
+                            <button onclick="openDesignBoardInCall()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-palette mr-2"></i> Design Board
+                            </button>
+                            <button onclick="openColorPickerInCall()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
+                                <i class="fas fa-eye-dropper mr-2"></i> Color Picker
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code Compiler Modal -->
+    <div id="compilerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl w-full h-full max-w-6xl max-h-screen overflow-hidden flex flex-col">
+            <div class="bg-gray-800 p-4 flex justify-between items-center">
+                <h3 class="text-white font-semibold text-lg">Code Compiler - Live Session</h3>
+                <button onclick="closeCompiler()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-1 flex">
+                <div class="flex-1 p-4">
+                    <div class="mb-4 flex items-center space-x-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Select Language:</label>
+                            <select id="compilerLanguage" class="border border-gray-300 rounded-lg px-3 py-2">
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                                <option value="html">HTML</option>
+                                <option value="css">CSS</option>
+                            </select>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="shareCodeInSession()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                                <i class="fas fa-share mr-2"></i>Share with Session
+                            </button>
+                            <button onclick="saveCode()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                <i class="fas fa-save mr-2"></i>Save Code
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="compilerCode" class="w-full h-64 p-4 border border-gray-300 rounded-lg font-mono text-sm" placeholder="Enter your code here...">// Welcome to the Code Compiler
+console.log("Hello, World!");
+
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+console.log(greet("BridgeLearn"));</textarea>
+                </div>
+                <div class="w-1/2 p-4 bg-gray-50">
+                    <h4 class="font-semibold mb-2">Output:</h4>
+                    <div id="compilerOutput" class="bg-black text-green-400 p-4 rounded-lg h-64 overflow-y-auto font-mono text-sm">
+                        <div class="text-gray-500">Click "Run Code" to see output...</div>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button onclick="runCode()" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <i class="fas fa-play mr-2"></i>Run Code
+                        </button>
+                        <button onclick="clearCode()" class="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700">
+                            <i class="fas fa-trash mr-2"></i>Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Translator Modal -->
+    <div id="translatorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl w-full max-w-4xl max-h-screen overflow-hidden flex flex-col">
+            <div class="bg-gray-800 p-4 flex justify-between items-center">
+                <h3 class="text-white font-semibold text-lg">Language Translator</h3>
+                <button onclick="closeTranslator()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">From:</label>
+                        <select id="fromLanguage" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                            <option value="en">English</option>
+                            <option value="ar">Arabic</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ml">Malayalam</option>
+                            <option value="ta">Tamil</option>
+                            <option value="te">Telugu</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">To:</label>
+                        <select id="toLanguage" class="w-full border border-gray-300 rounded-lg px-3 py-2">
+                            <option value="ar">Arabic</option>
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ml">Malayalam</option>
+                            <option value="ta">Tamil</option>
+                            <option value="te">Telugu</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Text to translate:</label>
+                        <textarea id="textToTranslate" class="w-full h-32 p-3 border border-gray-300 rounded-lg" placeholder="Enter text to translate...">Welcome to BridgeLearn! We're excited to have you join our learning community.</textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Translation:</label>
+                        <textarea id="translatedText" class="w-full h-32 p-3 border border-gray-300 rounded-lg bg-gray-50" placeholder="Translation will appear here..." readonly></textarea>
+                    </div>
+                </div>
+                <button onclick="translateText()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-language mr-2"></i>Translate
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dictionary Modal -->
+    <div id="dictionaryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl w-full max-w-3xl max-h-screen overflow-hidden flex flex-col">
+            <div class="bg-gray-800 p-4 flex justify-between items-center">
+                <h3 class="text-white font-semibold text-lg">Dictionary</h3>
+                <button onclick="closeDictionary()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="mb-4">
+                    <div class="flex space-x-2">
+                        <input type="text" id="dictionaryWord" class="flex-1 border border-gray-300 rounded-lg px-3 py-2" placeholder="Enter a word to look up...">
+                        <button onclick="lookupWord()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="dictionaryResult" class="bg-gray-50 p-4 rounded-lg min-h-64">
+                    <div class="text-gray-500 text-center">Enter a word above to see its definition...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Whiteboard Modal -->
+    <div id="whiteboardModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl w-full h-full max-w-6xl max-h-screen overflow-hidden flex flex-col">
+            <div class="bg-gray-800 p-4 flex justify-between items-center">
+                <h3 class="text-white font-semibold text-lg">Collaborative Whiteboard</h3>
+                <div class="flex space-x-2">
+                    <button onclick="clearWhiteboard()" class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">
+                        Clear
+                    </button>
+                    <button onclick="closeWhiteboard()" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-1 p-4">
+                <canvas id="whiteboardCanvas" class="border border-gray-300 rounded-lg w-full h-full cursor-crosshair"></canvas>
+            </div>
         </div>
     </div>
 
@@ -1148,6 +1651,437 @@
             document.getElementById('createSessionForm').reset();
         }
 
+        // Video Call Functions
+        function joinVideoCall() {
+            const videoCallPage = document.getElementById('videoCallPage');
+            videoCallPage.classList.remove('hidden');
+            
+            // Hide the dashboard
+            document.getElementById('dashboard').classList.add('hidden');
+            
+            // Request camera and microphone permissions
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    console.log('Camera and microphone access granted');
+                    // In a real implementation, you would set up the video stream here
+                })
+                .catch(err => {
+                    console.log('Camera and microphone access denied:', err);
+                    // Show a message to the user about permissions
+                    alert('Camera and microphone access is required to join the video call. Please allow access and try again.');
+                });
+            
+            // Detect session type and show appropriate tools
+            detectSessionTypeInCall();
+        }
+
+        function closeVideoCall() {
+            const videoCallPage = document.getElementById('videoCallPage');
+            videoCallPage.classList.add('hidden');
+            
+            // Show the dashboard again
+            document.getElementById('dashboard').classList.remove('hidden');
+        }
+
+        // Tools Panel Functions
+        function toggleToolsPanel() {
+            const toolsPanel = document.getElementById('toolsPanel');
+            toolsPanel.classList.toggle('hidden');
+        }
+
+        function toggleChatPanel() {
+            // Chat is always visible in the sidebar, this could be used for additional chat features
+            console.log('Chat panel toggle - chat is always visible in sidebar');
+        }
+
+        // Live Chat Functions
+        function sendLiveChatMessage() {
+            const input = document.getElementById('liveChatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addLiveChatMessage('You', message, true);
+                input.value = '';
+                
+                // Simulate other participants responding
+                setTimeout(() => {
+                    const responses = [
+                        'Great question!',
+                        'I agree with that point.',
+                        'Could you explain that further?',
+                        'Thanks for sharing!',
+                        'That makes sense.',
+                        'I have a similar question.',
+                        'Excellent point!'
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
+                }, 1000 + Math.random() * 2000);
+            }
+        }
+
+        function handleChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendLiveChatMessage();
+            }
+        }
+
+        function addLiveChatMessage(sender, message, isCurrentUser) {
+            const chatContainer = document.getElementById('liveChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-2';
+            
+            const colors = [
+                'from-green-400 to-blue-500',
+                'from-purple-400 to-pink-500',
+                'from-yellow-400 to-orange-500',
+                'from-red-400 to-pink-500',
+                'from-blue-400 to-indigo-500',
+                'from-pink-400 to-red-500'
+            ];
+            
+            const colorClass = isCurrentUser ? 'from-blue-500 to-purple-600' : colors[Math.floor(Math.random() * colors.length)];
+            
+            messageDiv.innerHTML = `
+                <div class="w-6 h-6 rounded-full bg-gradient-to-r ${colorClass} flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-user text-white text-xs"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="text-white text-sm font-medium">${sender}</p>
+                    <p class="text-gray-300 text-sm">${message}</p>
+                </div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Session Type Detection for Video Call
+        function detectSessionTypeInCall() {
+            const sessionTitle = document.getElementById('callSessionTitle').textContent.toLowerCase();
+            
+            // Hide all tool groups first
+            document.querySelectorAll('#sessionToolsInCall > div').forEach(tool => {
+                tool.classList.add('hidden');
+            });
+            
+            // Show appropriate tools based on session title
+            if (sessionTitle.includes('web development') || sessionTitle.includes('programming') || sessionTitle.includes('coding') || sessionTitle.includes('javascript') || sessionTitle.includes('python') || sessionTitle.includes('java')) {
+                document.getElementById('codingToolsInCall').classList.remove('hidden');
+            } else if (sessionTitle.includes('language') || sessionTitle.includes('arabic') || sessionTitle.includes('english') || sessionTitle.includes('translation')) {
+                document.getElementById('languageToolsInCall').classList.remove('hidden');
+            } else if (sessionTitle.includes('business') || sessionTitle.includes('strategy') || sessionTitle.includes('management')) {
+                document.getElementById('businessToolsInCall').classList.remove('hidden');
+            } else if (sessionTitle.includes('design') || sessionTitle.includes('art') || sessionTitle.includes('creative') || sessionTitle.includes('calligraphy')) {
+                document.getElementById('designToolsInCall').classList.remove('hidden');
+            }
+        }
+
+        // In-Call Tool Functions
+        function openCompilerInCall() {
+            openCompiler();
+        }
+
+        function openCodeShareInCall() {
+            openCodeShare();
+        }
+
+        function openTranslatorInCall() {
+            openTranslator();
+        }
+
+        function openDictionaryInCall() {
+            openDictionary();
+        }
+
+        function openWhiteboardInCall() {
+            openWhiteboard();
+        }
+
+        function openNotesInCall() {
+            openNotes();
+        }
+
+        function openDesignBoardInCall() {
+            openDesignBoard();
+        }
+
+        function openColorPickerInCall() {
+            openColorPicker();
+        }
+
+        // Session Type Detection and Tool Display
+        function detectSessionType() {
+            const sessionTitle = document.getElementById('currentSessionTitle').textContent.toLowerCase();
+            const sessionTools = document.getElementById('sessionTools');
+            
+            // Hide all tool groups first
+            document.querySelectorAll('#sessionTools > div').forEach(tool => {
+                tool.classList.add('hidden');
+            });
+            
+            // Show appropriate tools based on session title
+            if (sessionTitle.includes('web development') || sessionTitle.includes('programming') || sessionTitle.includes('coding') || sessionTitle.includes('javascript') || sessionTitle.includes('python') || sessionTitle.includes('java')) {
+                document.getElementById('codingTools').classList.remove('hidden');
+            } else if (sessionTitle.includes('language') || sessionTitle.includes('arabic') || sessionTitle.includes('english') || sessionTitle.includes('translation')) {
+                document.getElementById('languageTools').classList.remove('hidden');
+            } else if (sessionTitle.includes('business') || sessionTitle.includes('strategy') || sessionTitle.includes('management')) {
+                document.getElementById('businessTools').classList.remove('hidden');
+            } else if (sessionTitle.includes('design') || sessionTitle.includes('art') || sessionTitle.includes('creative') || sessionTitle.includes('calligraphy')) {
+                document.getElementById('designTools').classList.remove('hidden');
+            }
+        }
+
+        // Code Compiler Functions
+        function openCompiler() {
+            const modal = document.getElementById('compilerModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCompiler() {
+            const modal = document.getElementById('compilerModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function runCode() {
+            const code = document.getElementById('compilerCode').value;
+            const language = document.getElementById('compilerLanguage').value;
+            const output = document.getElementById('compilerOutput');
+            
+            // Simple JavaScript execution for demo
+            if (language === 'javascript') {
+                try {
+                    // Capture console.log output
+                    const originalLog = console.log;
+                    let logOutput = '';
+                    console.log = function(...args) {
+                        logOutput += args.join(' ') + '\n';
+                        originalLog.apply(console, args);
+                    };
+                    
+                    // Execute the code
+                    eval(code);
+                    
+                    // Restore console.log
+                    console.log = originalLog;
+                    
+                    output.innerHTML = logOutput || 'Code executed successfully (no output)';
+                } catch (error) {
+                    output.innerHTML = `Error: ${error.message}`;
+                }
+            } else {
+                output.innerHTML = `Language ${language} execution not implemented in demo. This would connect to a real compiler API.`;
+            }
+        }
+
+        function clearCode() {
+            document.getElementById('compilerCode').value = '';
+            document.getElementById('compilerOutput').innerHTML = '<div class="text-gray-500">Click "Run Code" to see output...</div>';
+        }
+
+        function shareCodeInSession() {
+            const code = document.getElementById('compilerCode').value;
+            const language = document.getElementById('compilerLanguage').value;
+            
+            if (code.trim()) {
+                // Add a message to the live chat about code sharing
+                addLiveChatMessage('You', `Shared ${language} code: ${code.substring(0, 50)}${code.length > 50 ? '...' : ''}`, true);
+                alert('Code shared with session participants!');
+            } else {
+                alert('Please write some code before sharing.');
+            }
+        }
+
+        function saveCode() {
+            const code = document.getElementById('compilerCode').value;
+            const language = document.getElementById('compilerLanguage').value;
+            
+            if (code.trim()) {
+                // In a real app, this would save to user's code library
+                const codeData = {
+                    code: code,
+                    language: language,
+                    timestamp: new Date().toISOString(),
+                    session: 'Advanced Web Development'
+                };
+                
+                // Store in localStorage for demo
+                const savedCodes = JSON.parse(localStorage.getItem('savedCodes') || '[]');
+                savedCodes.push(codeData);
+                localStorage.setItem('savedCodes', JSON.stringify(savedCodes));
+                
+                alert('Code saved successfully!');
+            } else {
+                alert('Please write some code before saving.');
+            }
+        }
+
+        function openCodeShare() {
+            alert('Code sharing feature would open here. This would allow participants to share code snippets in real-time.');
+        }
+
+        // Translator Functions
+        function openTranslator() {
+            const modal = document.getElementById('translatorModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeTranslator() {
+            const modal = document.getElementById('translatorModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function translateText() {
+            const text = document.getElementById('textToTranslate').value;
+            const fromLang = document.getElementById('fromLanguage').value;
+            const toLang = document.getElementById('toLanguage').value;
+            const output = document.getElementById('translatedText');
+            
+            if (!text.trim()) {
+                alert('Please enter text to translate');
+                return;
+            }
+            
+            // Demo translation (in real app, this would call a translation API)
+            const translations = {
+                'en-ar': 'مرحباً بك في BridgeLearn! نحن متحمسون لانضمامك إلى مجتمع التعلم لدينا.',
+                'ar-en': 'Welcome to BridgeLearn! We are excited to have you join our learning community.',
+                'en-hi': 'BridgeLearn में आपका स्वागत है! हमें आपके सीखने के समुदाय में शामिल होने पर खुशी है।',
+                'hi-en': 'Welcome to BridgeLearn! We are excited to have you join our learning community.'
+            };
+            
+            const key = `${fromLang}-${toLang}`;
+            if (translations[key]) {
+                output.value = translations[key];
+            } else {
+                output.value = `Translation from ${fromLang} to ${toLang} would appear here. This would connect to a real translation API.`;
+            }
+        }
+
+        // Dictionary Functions
+        function openDictionary() {
+            const modal = document.getElementById('dictionaryModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDictionary() {
+            const modal = document.getElementById('dictionaryModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function lookupWord() {
+            const word = document.getElementById('dictionaryWord').value.trim();
+            const result = document.getElementById('dictionaryResult');
+            
+            if (!word) {
+                alert('Please enter a word to look up');
+                return;
+            }
+            
+            // Demo dictionary (in real app, this would call a dictionary API)
+            const definitions = {
+                'learn': 'To gain knowledge or understanding through study, experience, or teaching.',
+                'bridge': 'A structure carrying a road, path, or railway across a river, road, or other obstacle.',
+                'mentor': 'An experienced and trusted adviser who helps guide someone in their personal or professional development.',
+                'community': 'A group of people living in the same place or having a particular characteristic in common.',
+                'knowledge': 'Facts, information, and skills acquired through experience or education.'
+            };
+            
+            const definition = definitions[word.toLowerCase()];
+            if (definition) {
+                result.innerHTML = `
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800">${word}</h3>
+                        <p class="text-gray-600">${definition}</p>
+                    </div>
+                `;
+            } else {
+                result.innerHTML = `
+                    <div class="text-center text-gray-500">
+                        <i class="fas fa-search text-4xl mb-2"></i>
+                        <p>Definition for "${word}" not found in demo dictionary.</p>
+                        <p class="text-sm">This would connect to a real dictionary API.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Whiteboard Functions
+        function openWhiteboard() {
+            const modal = document.getElementById('whiteboardModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            initWhiteboard();
+        }
+
+        function closeWhiteboard() {
+            const modal = document.getElementById('whiteboardModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function initWhiteboard() {
+            const canvas = document.getElementById('whiteboardCanvas');
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Drawing functions
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+            
+            function startDrawing(e) {
+                isDrawing = true;
+                ctx.beginPath();
+                ctx.moveTo(e.offsetX, e.offsetY);
+            }
+            
+            function draw(e) {
+                if (!isDrawing) return;
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.stroke();
+            }
+            
+            function stopDrawing() {
+                isDrawing = false;
+            }
+            
+            // Set drawing style
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+        }
+
+        function clearWhiteboard() {
+            const canvas = document.getElementById('whiteboardCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Other Tool Functions
+        function openNotes() {
+            alert('Notes feature would open here. This would allow participants to take and share notes during the session.');
+        }
+
+        function openDesignBoard() {
+            alert('Design board feature would open here. This would provide collaborative design tools for creative sessions.');
+        }
+
+        function openColorPicker() {
+            alert('Color picker feature would open here. This would provide color selection tools for design sessions.');
+        }
+
         function displayUserSessions() {
             const sessionsContainer = document.getElementById('userSessions');
             
@@ -1258,6 +2192,9 @@
                 // Display user sessions
                 displayUserSessions();
                 
+                // Detect session type and show appropriate tools
+                detectSessionType();
+                
                 closeLoginModal();
                 
                 // Reset form
@@ -1307,6 +2244,7 @@
         const translations = {
             en: {
                 'nav.home': 'Home',
+                'nav.currentSession': 'Live Session',
                 'nav.sessions': 'Sessions',
                 'nav.about': 'About',
                 'nav.login': 'Login',
@@ -1314,6 +2252,9 @@
                 'hero.tagline': 'Connect with experienced Emirati mentors and international professionals in the UAE. Share knowledge, preserve traditions, and build the future together.',
                 'hero.ctaStudent': "I'm a Student",
                 'hero.ctaMentor': "I'm a Mentor",
+                'currentSession.title': 'Current Live Session',
+                'currentSession.subtitle': 'Join our live learning session happening right now',
+                'currentSession.joinNow': 'Join Now',
                 'sessions.title': 'Featured Learning Sessions',
                 'sessions.subtitle': 'Discover amazing learning opportunities from expert mentors around the world',
                 'stats.activeMentors': 'Active Mentors',
@@ -1344,6 +2285,7 @@
             },
             ar: {
                 'nav.home': 'الرئيسية',
+                'nav.currentSession': 'جلسة مباشرة',
                 'nav.sessions': 'الجلسات ',
                 'nav.about': ' من نحن',
                 'nav.login': 'تسجيل الدخول',
@@ -1351,6 +2293,9 @@
                 'hero.tagline': 'تواصل مع مرشدين إماراتيين محترفين وخبرات دولية في الإمارات. شارك المعرفة، واحفظ التقاليد، وابنِ المستقبل معًا.',
                 'hero.ctaStudent': 'أنا طالب',
                 'hero.ctaMentor': 'أنا مُرشد',
+                'currentSession.title': 'الجلسة المباشرة الحالية',
+                'currentSession.subtitle': 'انضم إلى جلسة التعلم المباشرة التي تحدث الآن',
+                'currentSession.joinNow': 'انضم الآن',
                 'sessions.title': 'جلسات تعليمية مميزة',
                 'sessions.subtitle': 'اكتشف فرص تعلم مذهلة من خبراء حول العالم',
                 'stats.activeMentors': 'مرشدون نشطون',
