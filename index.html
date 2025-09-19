@@ -338,6 +338,186 @@
             }
         }
         
+        /* Video Call Safe Areas */
+        #videoCallPage {
+            /* Ensure full viewport coverage */
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
+            /* Add safe area padding for different screen configurations */
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        /* Video controls positioning */
+        .video-controls {
+            /* Position controls higher to avoid taskbar */
+            bottom: 5rem !important;
+            /* Add safe area padding */
+            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        }
+        
+        /* Ensure video call content doesn't get cut off */
+        @media (max-height: 600px) {
+            .video-controls {
+                bottom: 4rem !important;
+            }
+        }
+        
+        @media (max-height: 500px) {
+            .video-controls {
+                bottom: 3rem !important;
+            }
+        }
+        
+        /* Windows taskbar specific fixes */
+        @media (min-height: 700px) {
+            .video-controls {
+                bottom: 6rem !important;
+            }
+        }
+        
+        /* Ensure video call takes full available space */
+        #videoCallPage {
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+        
+        /* Video area adjustments for better visibility */
+        .video-main-area {
+            min-height: calc(100vh - 8rem);
+            min-height: calc(100dvh - 8rem);
+        }
+        
+        /* Mobile Video Call Layout */
+        @media (max-width: 768px) {
+            #videoCallPage {
+                height: 100vh;
+                height: 100dvh;
+                overflow: hidden;
+            }
+            
+            /* Mobile video layout - stack vertically */
+            .mobile-video-layout {
+                flex-direction: column !important;
+                height: 100%;
+            }
+            
+            /* Mentor video on top for mobile */
+            .mobile-mentor-video {
+                flex: 1;
+                min-height: 60vh;
+                position: relative;
+            }
+            
+            /* Student video on bottom for mobile */
+            .mobile-student-video {
+                height: 40vh;
+                min-height: 200px;
+                position: relative;
+            }
+            
+            /* Mobile video controls */
+            .video-controls {
+                bottom: 1rem !important;
+                left: 0.5rem !important;
+                right: 0.5rem !important;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .video-controls button {
+                width: 3rem;
+                height: 3rem;
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
+            
+            /* Mobile sidebar - make it collapsible */
+            .mobile-sidebar {
+                position: absolute;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100%;
+                background: #1f2937;
+                transition: right 0.3s ease;
+                z-index: 20;
+            }
+            
+            .mobile-sidebar.open {
+                right: 0;
+            }
+            
+            /* Hide desktop sidebar on mobile */
+            .desktop-sidebar {
+                display: none;
+            }
+            
+            /* Mobile header adjustments */
+            .mobile-video-header {
+                padding: 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .mobile-video-header h3 {
+                font-size: 1.125rem;
+            }
+            
+            .mobile-video-header p {
+                font-size: 0.875rem;
+            }
+            
+            /* Mobile participant cards */
+            .mobile-participant-card {
+                padding: 0.75rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .mobile-participant-card .w-10 {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            /* Mobile chat adjustments */
+            .mobile-chat-input {
+                padding: 0.75rem;
+            }
+            
+            .mobile-chat-input input {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+            
+            .mobile-chat-input button {
+                padding: 0.75rem;
+                width: 3rem;
+            }
+        }
+        
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .mobile-mentor-video {
+                min-height: 50vh;
+            }
+            
+            .mobile-student-video {
+                height: 50vh;
+                min-height: 180px;
+            }
+            
+            .video-controls {
+                bottom: 0.5rem !important;
+            }
+            
+            .video-controls button {
+                width: 2.5rem;
+                height: 2.5rem;
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50">
@@ -982,7 +1162,7 @@
     <!-- Video Call Full Page -->
     <div id="videoCallPage" class="hidden fixed inset-0 bg-gray-900 z-50 flex flex-col">
         <!-- Video Call Header -->
-        <div class="bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700">
+        <div class="bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700 mobile-video-header">
             <div class="flex items-center space-x-4">
                 <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
                     <i class="fas fa-video text-white"></i>
@@ -994,11 +1174,15 @@
             </div>
             <div class="flex items-center space-x-4">
                 <div class="flex items-center space-x-2">
-                    <button onclick="toggleToolsPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors">
+                    <button onclick="toggleToolsPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors hidden md:flex">
                         <i class="fas fa-tools mr-2"></i>Tools
                     </button>
-                    <button onclick="toggleChatPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors">
+                    <button onclick="toggleChatPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors hidden md:flex">
                         <i class="fas fa-comments mr-2"></i>Chat
+                    </button>
+                    <!-- Mobile menu button -->
+                    <button onclick="toggleMobileSidebar()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors md:hidden">
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
                 <div class="flex items-center space-x-2 text-green-400">
@@ -1014,11 +1198,11 @@
         <!-- Main Content Area -->
         <div class="flex-1 flex overflow-hidden">
             <!-- Main Video Area -->
-            <div class="flex-1 bg-gray-900 relative">
+            <div class="flex-1 bg-gray-900 relative video-main-area">
                 <!-- One-on-One Video Layout -->
-                <div class="w-full h-full flex">
+                <div class="w-full h-full flex mobile-video-layout">
                     <!-- Mentor Video (Main) -->
-                    <div class="flex-1 bg-gray-800 flex items-center justify-center relative">
+                    <div class="flex-1 bg-gray-800 flex items-center justify-center relative mobile-mentor-video">
                         <div class="text-center">
                             <div class="w-40 h-40 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-4">
                                 <i class="fas fa-chalkboard-teacher text-5xl text-white"></i>
@@ -1033,7 +1217,7 @@
                     </div>
                     
                     <!-- Student Video (Side) -->
-                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex items-center justify-center relative">
+                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex items-center justify-center relative mobile-student-video">
                         <!-- User Video Element -->
                         <video id="userVideo" autoplay muted class="w-full h-full object-cover rounded-lg" style="display: none;"></video>
                         
@@ -1058,7 +1242,7 @@
                 </div>
                 
                 <!-- Video Controls Overlay -->
-                <div class="absolute bottom-4 left-4 right-4 flex justify-center space-x-4">
+                <div class="video-controls absolute left-4 right-4 flex justify-center space-x-4">
                     <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
                         <i class="fas fa-microphone"></i>
                     </button>
@@ -1078,7 +1262,7 @@
             </div>
             
             <!-- Right Sidebar -->
-            <div class="w-80 bg-gray-800 border-l border-gray-700 flex flex-col">
+            <div class="w-80 bg-gray-800 border-l border-gray-700 flex flex-col desktop-sidebar">
                 <!-- Participants List -->
                 <div class="p-4 border-b border-gray-700">
                     <h4 class="text-white font-semibold mb-3">Session Participants</h4>
@@ -1184,6 +1368,69 @@
                             </button>
                         </div>
                         <p class="text-gray-500 text-xs mt-2">Press Enter to send message</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="mobile-sidebar">
+            <div class="p-4 border-b border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h4 class="text-white font-semibold">Session Info</h4>
+                    <button onclick="toggleMobileSidebar()" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Participants -->
+            <div class="p-4 border-b border-gray-700">
+                <h4 class="text-white font-semibold mb-3">Participants</h4>
+                <div class="space-y-3">
+                    <!-- Mentor -->
+                    <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700 mobile-participant-card">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                            <i class="fas fa-chalkboard-teacher text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-medium">Dr. Sarah Ahmed</p>
+                            <p class="text-gray-400 text-sm">Mentor & Host</p>
+                            <p class="text-green-400 text-xs">● Online</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Student -->
+                    <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700 mobile-participant-card">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                            <i class="fas fa-user-graduate text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-medium">You</p>
+                            <p class="text-gray-400 text-sm">Student</p>
+                            <p class="text-green-400 text-xs">● Online</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Chat -->
+            <div class="flex-1 flex flex-col">
+                <div class="p-4 border-b border-gray-700">
+                    <h4 class="text-white font-semibold">Direct Message</h4>
+                    <p class="text-gray-400 text-xs">Private conversation with Dr. Sarah Ahmed</p>
+                </div>
+                <div id="mobileChatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto">
+                    <!-- Chat messages will be copied here -->
+                </div>
+                <div class="p-4 border-t border-gray-700 mobile-chat-input">
+                    <div class="flex space-x-2">
+                        <input type="text" id="mobileChatInput" placeholder="Type your message to Dr. Sarah..." 
+                               class="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                               onkeypress="handleMobileChatKeyPress(event)">
+                        <button onclick="sendMobileChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1713,6 +1960,9 @@ console.log(greet("BridgeLearn"));</textarea>
             // Hide the dashboard
             document.getElementById('dashboard').classList.add('hidden');
             
+            // Adjust video controls position based on screen size
+            adjustVideoControlsPosition();
+            
             // Request camera and microphone permissions
             navigator.mediaDevices.getUserMedia({ video: true, audio: true })
                 .then(stream => {
@@ -1747,6 +1997,86 @@ console.log(greet("BridgeLearn"));</textarea>
             
             // Detect session type and show appropriate tools
             detectSessionTypeInCall();
+        }
+
+        function adjustVideoControlsPosition() {
+            const videoControls = document.querySelector('.video-controls');
+            const screenHeight = window.innerHeight;
+            
+            // Adjust position based on screen height to avoid taskbar
+            if (screenHeight < 600) {
+                videoControls.style.bottom = '3rem';
+            } else if (screenHeight < 700) {
+                videoControls.style.bottom = '4rem';
+            } else if (screenHeight < 800) {
+                videoControls.style.bottom = '5rem';
+            } else {
+                videoControls.style.bottom = '6rem';
+            }
+        }
+
+        // Listen for window resize to adjust controls
+        window.addEventListener('resize', adjustVideoControlsPosition);
+
+        // Mobile Sidebar Functions
+        function toggleMobileSidebar() {
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            mobileSidebar.classList.toggle('open');
+            
+            // Copy chat messages to mobile sidebar
+            if (mobileSidebar.classList.contains('open')) {
+                copyChatToMobile();
+            }
+        }
+
+        function copyChatToMobile() {
+            const desktopChat = document.getElementById('liveChatMessages');
+            const mobileChat = document.getElementById('mobileChatMessages');
+            
+            if (desktopChat && mobileChat) {
+                mobileChat.innerHTML = desktopChat.innerHTML;
+            }
+        }
+
+        function sendMobileChatMessage() {
+            const input = document.getElementById('mobileChatInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                // Send to both desktop and mobile chat
+                addLiveChatMessage('You', message, true);
+                input.value = '';
+                
+                // Copy updated chat to mobile
+                copyChatToMobile();
+                
+                // Simulate mentor responding
+                setTimeout(() => {
+                    const mentorResponses = [
+                        'That\'s a great question! Let me explain that concept in detail.',
+                        'I understand your concern. Let\'s work through this step by step.',
+                        'Excellent observation! This is exactly what we need to focus on.',
+                        'I\'m glad you asked that. This is a common challenge many students face.',
+                        'Perfect! You\'re thinking like a developer. Let me show you the best practice.',
+                        'That\'s a very insightful question. Let me share my screen to demonstrate.',
+                        'Great progress! You\'re really grasping the concepts well.',
+                        'I can see you\'re putting a lot of thought into this. Let\'s dive deeper.',
+                        'That\'s exactly right! You\'re understanding the fundamentals perfectly.',
+                        'I love your enthusiasm! This is the kind of thinking that makes great developers.'
+                    ];
+                    const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
+                    addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
+                    
+                    // Copy updated chat to mobile
+                    copyChatToMobile();
+                }, 1500 + Math.random() * 3000);
+            }
+        }
+
+        function handleMobileChatKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMobileChatMessage();
+            }
         }
 
         function closeVideoCall() {
@@ -1892,6 +2222,9 @@ console.log(greet("BridgeLearn"));</textarea>
                 addLiveChatMessage('You', message, true);
                 input.value = '';
                 
+                // Copy to mobile chat if it exists
+                copyChatToMobile();
+                
                 // Simulate mentor responding
                 setTimeout(() => {
                     const mentorResponses = [
@@ -1908,6 +2241,9 @@ console.log(greet("BridgeLearn"));</textarea>
                     ];
                     const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
                     addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
+                    
+                    // Copy to mobile chat after mentor response
+                    copyChatToMobile();
                 }, 1500 + Math.random() * 3000);
             }
         }
