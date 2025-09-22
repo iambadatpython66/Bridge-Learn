@@ -1288,30 +1288,18 @@
 
     <!-- Video Call Full Page -->
     <div id="videoCallPage" class="hidden fixed inset-0 bg-gray-900 z-50 flex flex-col">
-        <!-- Video Call Header -->
-        <div class="bg-gray-800 p-4 flex justify-between items-center border-b border-gray-700 mobile-video-header">
+        <!-- Google Meet Style Header -->
+        <div class="bg-gray-900 p-4 flex justify-between items-center border-b border-gray-700">
             <div class="flex items-center space-x-4">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                    <i class="fas fa-video text-white"></i>
+                <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">A</span>
                 </div>
                 <div>
-                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">Advanced Web Development</h3>
-                    <p class="text-gray-300 text-sm">Dr. Sarah Ahmed • One-on-One Session</p>
+                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">meet.google.com/bax-eony-wap</h3>
+                    <p class="text-gray-300 text-sm">Aliasgar Limadiyawala (Presenting)</p>
                 </div>
             </div>
             <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <button onclick="toggleToolsPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors hidden md:flex">
-                        <i class="fas fa-tools mr-2"></i>Tools
-                    </button>
-                    <button onclick="toggleChatPanel()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors hidden md:flex">
-                        <i class="fas fa-comments mr-2"></i>Chat
-                    </button>
-                    <!-- Mobile menu button -->
-                    <button onclick="toggleMobileSidebar()" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-2 rounded-lg transition-colors md:hidden">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
                 <div class="flex items-center space-x-2 text-green-400">
                     <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                     <span class="text-sm font-medium">LIVE</span>
@@ -1326,310 +1314,137 @@
         <div class="flex-1 flex overflow-hidden">
             <!-- Main Video Area -->
             <div class="flex-1 bg-gray-900 relative video-main-area">
-                <!-- One-on-One Video Layout -->
-                <div class="w-full h-full flex mobile-video-layout">
-                    <!-- Mentor Video (Main) -->
-                    <div class="flex-1 bg-gray-800 flex items-center justify-center relative mobile-mentor-video">
-                        <div class="text-center">
-                            <div class="w-40 h-40 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-chalkboard-teacher text-5xl text-white"></i>
+                <!-- Google Meet Style Layout -->
+                <div class="w-full h-full flex">
+                    <!-- Left Panel - Presenter Screen -->
+                    <div class="flex-1 bg-gray-800 relative">
+                        <!-- Presenter Banner -->
+                        <div class="absolute top-4 left-4 bg-black bg-opacity-60 rounded-lg px-4 py-2 flex items-center space-x-3 z-10">
+                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                                <span class="text-white font-bold text-sm">A</span>
                             </div>
-                            <h4 class="text-white text-2xl font-semibold">Dr. Sarah Ahmed</h4>
-                            <p class="text-gray-400 text-lg">Your Mentor</p>
-                            <div class="flex items-center justify-center mt-2">
-                                <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
-                                <span class="text-green-400 text-sm">Speaking</span>
+                            <div>
+                                <p class="text-white font-medium text-sm">Aliasgar Limadiyawala (Presenting)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Shared Screen/Content Area -->
+                        <div class="w-full h-full flex items-center justify-center bg-gray-900">
+                            <!-- Simulated shared screen content -->
+                            <div class="bg-black rounded-lg p-6 w-4/5 h-4/5 flex flex-col">
+                                <div class="text-green-400 text-sm mb-2">Windows PowerShell</div>
+                                <div class="text-white text-sm space-y-1">
+                                    <div>Copyright (C) Microsoft Corporation. All rights reserved.</div>
+                                    <div>Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows</div>
+                                    <div class="text-green-400">PS C:\Users\dell></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Student Video (Side) -->
-                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex items-center justify-center relative mobile-student-video">
-                        <!-- User Video Element -->
-                        <video id="userVideo" autoplay muted class="w-full h-full object-cover rounded-lg" style="display: none;"></video>
-                        
-                        <!-- Fallback when video is not available -->
-                        <div id="userVideoPlaceholder" class="text-center">
-                            <div class="w-24 h-24 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-user-graduate text-2xl text-white"></i>
+                    <!-- Right Panel - Participant Tiles -->
+                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex flex-col">
+                        <!-- Participants Grid -->
+                        <div class="flex-1 p-4 grid grid-cols-1 gap-4">
+                            <!-- Participant 1 - Presenter -->
+                            <div class="bg-green-500 rounded-lg p-4 flex flex-col items-center justify-center relative">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
+                                    <span class="text-green-500 font-bold text-2xl">A</span>
+                                </div>
+                                <p class="text-white font-medium text-sm">Aliasgar Limadiyawala</p>
+                                <!-- Muted microphone icon -->
+                                <div class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
+                                    <i class="fas fa-microphone-slash text-white text-xs"></i>
+                                </div>
                             </div>
-                            <h4 class="text-white text-lg font-semibold">You</h4>
-                            <p class="text-gray-400 text-sm">Student</p>
-                            <div class="flex items-center justify-center mt-2">
-                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse mr-1"></div>
-                                <span class="text-green-400 text-xs">Online</span>
+                            
+                            <!-- Participant 2 - Student -->
+                            <div class="bg-teal-500 rounded-lg p-4 flex flex-col items-center justify-center relative">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
+                                    <span class="text-teal-500 font-bold text-2xl">H</span>
+                                </div>
+                                <p class="text-white font-medium text-sm">Harry Srinivaasaa</p>
+                                <!-- Muted microphone icon -->
+                                <div class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
+                                    <i class="fas fa-microphone-slash text-white text-xs"></i>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- Video Status Overlay -->
-                        <div class="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
-                            <span id="videoStatus">Camera Off</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Video Controls Overlay -->
-                <div class="video-controls absolute left-4 right-4 flex justify-center space-x-4">
-                    <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                        <i class="fas fa-microphone"></i>
-                    </button>
-                    <button id="videoButton" onclick="toggleVideo()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                        <i class="fas fa-video"></i>
-                    </button>
-                    <button onclick="shareScreen()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                        <i class="fas fa-share-screen"></i>
-                    </button>
-                    <button onclick="raiseHand()" class="bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full transition-colors">
-                        <i class="fas fa-hand-paper"></i>
-                    </button>
-                    <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
-                        <i class="fas fa-phone-slash"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Right Sidebar -->
-            <div class="w-80 bg-gray-800 border-l border-gray-700 flex flex-col desktop-sidebar">
-                <!-- Participants List -->
-                <div class="p-4 border-b border-gray-700">
-                    <h4 class="text-white font-semibold mb-3">Session Participants</h4>
-                    <div class="space-y-3">
-                        <!-- Mentor -->
-                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                                <i class="fas fa-chalkboard-teacher text-white"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-white font-medium">Dr. Sarah Ahmed</p>
-                                <p class="text-gray-400 text-sm">Mentor & Host</p>
-                                <p class="text-green-400 text-xs">● Online</p>
-                            </div>
-                        </div>
+                <!-- Google Meet Style Video Controls -->
+                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                    <div class="bg-gray-800 rounded-full px-6 py-3 flex items-center space-x-4 shadow-lg">
+                        <!-- Mute Microphone -->
+                        <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-microphone-slash text-red-500"></i>
+                        </button>
                         
-                        <!-- Student -->
-                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-                                <i class="fas fa-user-graduate text-white"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-white font-medium">You</p>
-                                <p class="text-gray-400 text-sm">Student</p>
-                                <p class="text-green-400 text-xs">● Online</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Session Info -->
-                    <div class="mt-4 p-3 bg-gray-600 rounded-lg">
-                        <div class="flex items-center text-gray-300 text-sm mb-2">
-                            <i class="fas fa-clock mr-2"></i>
-                            <span>Session Duration: 2 hours</span>
-                        </div>
-                        <div class="flex items-center text-gray-300 text-sm mb-2">
-                            <i class="fas fa-calendar mr-2"></i>
-                            <span>Started: 30 minutes ago</span>
-                        </div>
-                        <div class="flex items-center text-gray-300 text-sm">
-                            <i class="fas fa-graduation-cap mr-2"></i>
-                            <span>Mentoring Session</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Chat Section -->
-                <div class="flex-1 flex flex-col">
-                    <div class="p-4 border-b border-gray-700">
-                        <h4 class="text-white font-semibold">Direct Message</h4>
-                        <p class="text-gray-400 text-xs">Private conversation with Dr. Sarah Ahmed</p>
-                    </div>
-                    <div id="liveChatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto">
-                        <!-- Welcome Message -->
-                        <div class="flex items-start space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="bg-gray-700 rounded-lg p-3">
-                                    <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
-                                    <p class="text-gray-300 text-sm">Welcome to our one-on-one session! I'm excited to help you with Advanced Web Development. What would you like to focus on today?</p>
-                                </div>
-                                <p class="text-gray-500 text-xs mt-1">2:30 PM</p>
-                            </div>
-                        </div>
+                        <!-- Turn off Camera -->
+                        <button id="videoButton" onclick="toggleVideo()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-video-slash text-red-500"></i>
+                        </button>
                         
-                        <!-- Student Response -->
-                        <div class="flex items-start space-x-3 flex-row-reverse">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-user-graduate text-white text-sm"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="bg-blue-600 rounded-lg p-3">
-                                    <p class="text-white text-sm font-medium mb-1">You</p>
-                                    <p class="text-white text-sm">Thank you! I'm particularly interested in learning about React Hooks and state management. I have some specific questions about useState and useEffect.</p>
-                                </div>
-                                <p class="text-gray-500 text-xs mt-1 text-right">2:32 PM</p>
-                            </div>
-                        </div>
+                        <!-- Present Now -->
+                        <button onclick="shareScreen()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-presentation text-green-500"></i>
+                        </button>
                         
-                        <!-- Mentor Response -->
-                        <div class="flex items-start space-x-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
-                            </div>
-                            <div class="flex-1">
-                                <div class="bg-gray-700 rounded-lg p-3">
-                                    <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
-                                    <p class="text-gray-300 text-sm">Perfect! React Hooks are fundamental to modern React development. Let's start with useState - it's the most commonly used hook. I'll share my screen to show you some practical examples.</p>
-                                </div>
-                                <p class="text-gray-500 text-xs mt-1">2:33 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4 border-t border-gray-700">
-                        <div class="flex space-x-2">
-                            <input type="text" id="liveChatInput" placeholder="Type your message to Dr. Sarah..." 
-                                   class="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                   onkeypress="handleChatKeyPress(event)">
-                            <button onclick="sendLiveChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </div>
-                        <p class="text-gray-500 text-xs mt-2">Press Enter to send message</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Sidebar -->
-        <div id="mobileSidebar" class="mobile-sidebar">
-            <div class="p-4 border-b border-gray-700">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-white font-semibold">Session Info</h4>
-                    <button onclick="toggleMobileSidebar()" class="text-gray-400 hover:text-white">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Participants -->
-            <div class="p-4 border-b border-gray-700">
-                <h4 class="text-white font-semibold mb-3">Participants</h4>
-                <div class="space-y-3">
-                    <!-- Mentor -->
-                    <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700 mobile-participant-card">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                            <i class="fas fa-chalkboard-teacher text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-white font-medium">Dr. Sarah Ahmed</p>
-                            <p class="text-gray-400 text-sm">Mentor & Host</p>
-                            <p class="text-green-400 text-xs">● Online</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Student -->
-                    <div class="flex items-center space-x-3 p-3 rounded-lg bg-gray-700 mobile-participant-card">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-                            <i class="fas fa-user-graduate text-white"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-white font-medium">You</p>
-                            <p class="text-gray-400 text-sm">Student</p>
-                            <p class="text-green-400 text-xs">● Online</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mobile Chat -->
-            <div class="flex-1 flex flex-col">
-                <div class="p-4 border-b border-gray-700">
-                    <h4 class="text-white font-semibold">Direct Message</h4>
-                    <p class="text-gray-400 text-xs">Private conversation with Dr. Sarah Ahmed</p>
-                </div>
-                <div id="mobileChatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto">
-                    <!-- Chat messages will be copied here -->
-                </div>
-                <div class="p-4 border-t border-gray-700 mobile-chat-input">
-                    <div class="flex space-x-2">
-                        <input type="text" id="mobileChatInput" placeholder="Type your message to Dr. Sarah..." 
-                               class="flex-1 bg-gray-700 text-white px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                               onkeypress="handleMobileChatKeyPress(event)">
-                        <button onclick="sendMobileChatMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                            <i class="fas fa-paper-plane"></i>
+                        <!-- Raise Hand -->
+                        <button onclick="raiseHand()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-hand-paper text-yellow-500"></i>
+                        </button>
+                        
+                        <!-- Chat -->
+                        <button onclick="toggleChatPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-comments text-blue-500"></i>
+                        </button>
+                        
+                        <!-- Activities -->
+                        <button onclick="toggleToolsPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-shapes text-purple-500"></i>
+                        </button>
+                        
+                        <!-- More Options -->
+                        <button onclick="toggleMoreOptions()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-ellipsis-v text-gray-300"></i>
+                        </button>
+                        
+                        <!-- Leave Call -->
+                        <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                            <i class="fas fa-phone-slash"></i>
                         </button>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Tools Panel (Collapsible) -->
-        <div id="toolsPanel" class="hidden absolute right-0 top-0 h-full w-96 bg-gray-800 border-l border-gray-700 z-10">
-            <div class="p-4 border-b border-gray-700">
-                <div class="flex justify-between items-center">
-                    <h4 class="text-white font-semibold">Session Tools</h4>
-                    <button onclick="toggleToolsPanel()" class="text-gray-400 hover:text-white">
-                        <i class="fas fa-times"></i>
+                
+                <!-- Meeting Info (Bottom Left) -->
+                <div class="absolute bottom-6 left-6 text-white">
+                    <div class="bg-black bg-opacity-60 rounded-lg px-3 py-2">
+                        <p class="text-sm font-medium">7:51 AM | bax-eony-wap</p>
+                    </div>
+                </div>
+                
+                <!-- Meeting Icons (Bottom Right) -->
+                <div class="absolute bottom-6 right-6 flex items-center space-x-3">
+                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                        <i class="fas fa-info-circle"></i>
+                    </button>
+                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors relative">
+                        <i class="fas fa-users"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                    <button onclick="toggleChatPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                        <i class="fas fa-comments"></i>
+                    </button>
+                    <button onclick="toggleToolsPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                        <i class="fas fa-shapes"></i>
+                    </button>
+                    <button onclick="toggleMoreOptions()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                        <i class="fas fa-ellipsis-v"></i>
                     </button>
                 </div>
             </div>
-            <div class="p-4 overflow-y-auto h-full">
-                <!-- Session-Specific Tools -->
-                <div id="sessionToolsInCall" class="space-y-4">
-                    <!-- Coding Session Tools -->
-                    <div id="codingToolsInCall" class="hidden">
-                        <h5 class="text-white font-semibold mb-3">Development Tools</h5>
-                        <div class="space-y-2">
-                            <button onclick="openCompilerInCall()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-code mr-2"></i> Code Compiler
-                            </button>
-                            <button onclick="openCodeShareInCall()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-share-alt mr-2"></i> Share Code
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Language Learning Tools -->
-                    <div id="languageToolsInCall" class="hidden">
-                        <h5 class="text-white font-semibold mb-3">Language Tools</h5>
-                        <div class="space-y-2">
-                            <button onclick="openTranslatorInCall()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-language mr-2"></i> Translator
-                            </button>
-                            <button onclick="openDictionaryInCall()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-book mr-2"></i> Dictionary
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Business Session Tools -->
-                    <div id="businessToolsInCall" class="hidden">
-                        <h5 class="text-white font-semibold mb-3">Business Tools</h5>
-                        <div class="space-y-2">
-                            <button onclick="openWhiteboardInCall()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-chalkboard mr-2"></i> Whiteboard
-                            </button>
-                            <button onclick="openNotesInCall()" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-sticky-note mr-2"></i> Notes
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Design Session Tools -->
-                    <div id="designToolsInCall" class="hidden">
-                        <h5 class="text-white font-semibold mb-3">Design Tools</h5>
-                        <div class="space-y-2">
-                            <button onclick="openDesignBoardInCall()" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-palette mr-2"></i> Design Board
-                            </button>
-                            <button onclick="openColorPickerInCall()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors">
-                                <i class="fas fa-eye-dropper mr-2"></i> Color Picker
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Code Compiler Modal -->
@@ -2338,6 +2153,12 @@ console.log(greet("BridgeLearn"));</textarea>
         function toggleChatPanel() {
             // Chat is always visible in the sidebar, this could be used for additional chat features
             console.log('Chat panel toggle - chat is always visible in sidebar');
+        }
+
+        function toggleMoreOptions() {
+            // Show additional options menu
+            console.log('More options toggle - additional settings menu');
+            // This could open a dropdown with more meeting options
         }
 
         // Live Chat Functions
