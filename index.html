@@ -493,6 +493,117 @@
                 padding: 0.75rem;
                 width: 3rem;
             }
+            
+            /* Google Meet Mobile Layout Improvements */
+            .mobile-google-meet-layout {
+                flex-direction: column !important;
+            }
+            
+            .mobile-presenter-area {
+                flex: 2;
+                min-height: 60vh;
+            }
+            
+            .mobile-participants-area {
+                flex: 1;
+                min-height: 40vh;
+                width: 100% !important;
+            }
+            
+            .mobile-participants-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .mobile-participant-tile {
+                padding: 1rem;
+                min-height: 120px;
+            }
+            
+            .mobile-participant-tile .w-16 {
+                width: 3rem;
+                height: 3rem;
+            }
+            
+            .mobile-participant-tile .text-2xl {
+                font-size: 1.5rem;
+            }
+            
+            /* Mobile controls */
+            .mobile-controls {
+                bottom: 1rem !important;
+                left: 1rem !important;
+                right: 1rem !important;
+                padding: 0.5rem 1rem;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .mobile-controls button {
+                flex: 1;
+                min-width: 2.5rem;
+                padding: 0.75rem;
+                font-size: 0.875rem;
+            }
+            
+            /* Mobile meeting info */
+            .mobile-meeting-info {
+                bottom: 1rem !important;
+                left: 1rem !important;
+                font-size: 0.75rem;
+                padding: 0.5rem 0.75rem;
+            }
+            
+            /* Mobile meeting icons */
+            .mobile-meeting-icons {
+                bottom: 1rem !important;
+                right: 1rem !important;
+                gap: 0.5rem;
+            }
+            
+            .mobile-meeting-icons button {
+                padding: 0.5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            /* Touch-friendly interactions */
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Improved text readability on mobile */
+            .mobile-text {
+                font-size: 0.875rem;
+                line-height: 1.4;
+            }
+            
+            /* Better spacing for mobile */
+            .mobile-spacing {
+                padding: 1rem;
+                margin: 0.5rem;
+            }
+        }
+        
+        /* Tablet Layout */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .tablet-participants-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 1.5rem;
+            }
+            
+            .tablet-controls {
+                bottom: 2rem !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .tablet-controls button {
+                padding: 1rem;
+            }
         }
         
         /* Extra small mobile devices */
@@ -1295,7 +1406,7 @@
                     <span class="text-white font-bold text-sm">A</span>
                 </div>
                 <div>
-                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">meet.google.com/bax-eony-wap</h3>
+                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">BridgeLearn Session</h3>
                     <p class="text-gray-300 text-sm">Aliasgar Limadiyawala (Presenting)</p>
                 </div>
             </div>
@@ -1315,43 +1426,88 @@
             <!-- Main Video Area -->
             <div class="flex-1 bg-gray-900 relative video-main-area">
                 <!-- Google Meet Style Layout -->
-                <div class="w-full h-full flex">
+                <div class="w-full h-full flex mobile-google-meet-layout">
                     <!-- Left Panel - Presenter Screen -->
-                    <div class="flex-1 bg-gray-800 relative">
+                    <div class="flex-1 bg-gray-800 relative mobile-presenter-area">
                         <!-- Presenter Banner -->
                         <div class="absolute top-4 left-4 bg-black bg-opacity-60 rounded-lg px-4 py-2 flex items-center space-x-3 z-10">
                             <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
                                 <span class="text-white font-bold text-sm">A</span>
                             </div>
                             <div>
-                                <p class="text-white font-medium text-sm">Aliasgar Limadiyawala (Presenting)</p>
+                                <p class="text-white font-medium text-sm mobile-text">Aliasgar Limadiyawala (Presenting)</p>
                             </div>
                         </div>
                         
                         <!-- Shared Screen/Content Area -->
                         <div class="w-full h-full flex items-center justify-center bg-gray-900">
-                            <!-- Simulated shared screen content -->
-                            <div class="bg-black rounded-lg p-6 w-4/5 h-4/5 flex flex-col">
-                                <div class="text-green-400 text-sm mb-2">Windows PowerShell</div>
-                                <div class="text-white text-sm space-y-1">
-                                    <div>Copyright (C) Microsoft Corporation. All rights reserved.</div>
-                                    <div>Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows</div>
-                                    <div class="text-green-400">PS C:\Users\dell></div>
+                            <!-- Working Code Compiler -->
+                            <div class="bg-gray-800 rounded-lg w-4/5 h-4/5 flex flex-col shadow-xl">
+                                <!-- Compiler Header -->
+                                <div class="bg-gray-700 px-4 py-3 rounded-t-lg flex items-center justify-between">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span class="text-white font-medium ml-4">BridgeLearn Code Compiler</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button onclick="runCode()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                                            <i class="fas fa-play mr-2"></i>Run
+                                        </button>
+                                        <button onclick="clearCode()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                                            <i class="fas fa-trash mr-2"></i>Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Code Editor -->
+                                <div class="flex-1 flex">
+                                    <div class="flex-1 flex flex-col">
+                                        <div class="bg-gray-600 px-4 py-2 text-white text-sm font-medium">
+                                            <i class="fas fa-code mr-2"></i>Code Editor (JavaScript)
+                                        </div>
+                                        <textarea id="sharedCodeEditor" class="flex-1 bg-gray-900 text-green-400 p-4 font-mono text-sm resize-none focus:outline-none" placeholder="// Write your JavaScript code here...
+console.log('Hello, BridgeLearn!');
+
+function greet(name) {
+    return `Hello, ${name}! Welcome to BridgeLearn.`;
+}
+
+console.log(greet('Student'));">// Write your JavaScript code here...
+console.log('Hello, BridgeLearn!');
+
+function greet(name) {
+    return `Hello, ${name}! Welcome to BridgeLearn.`;
+}
+
+console.log(greet('Student'));</textarea>
+                                    </div>
+                                    
+                                    <!-- Output Panel -->
+                                    <div class="w-1/2 flex flex-col border-l border-gray-600">
+                                        <div class="bg-gray-600 px-4 py-2 text-white text-sm font-medium">
+                                            <i class="fas fa-terminal mr-2"></i>Output
+                                        </div>
+                                        <div id="sharedOutput" class="flex-1 bg-black text-green-400 p-4 font-mono text-sm overflow-y-auto">
+                                            <div class="text-gray-500">// Click "Run" to execute your code</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Right Panel - Participant Tiles -->
-                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex flex-col">
+                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex flex-col mobile-participants-area">
                         <!-- Participants Grid -->
-                        <div class="flex-1 p-4 grid grid-cols-1 gap-4">
+                        <div class="flex-1 p-4 grid grid-cols-1 gap-4 mobile-participants-grid">
                             <!-- Participant 1 - Presenter -->
-                            <div class="bg-green-500 rounded-lg p-4 flex flex-col items-center justify-center relative">
+                            <div class="bg-green-500 rounded-lg p-4 flex flex-col items-center justify-center relative mobile-participant-tile touch-target">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
                                     <span class="text-green-500 font-bold text-2xl">A</span>
                                 </div>
-                                <p class="text-white font-medium text-sm">Aliasgar Limadiyawala</p>
+                                <p class="text-white font-medium text-sm mobile-text">Aliasgar Limadiyawala</p>
                                 <!-- Muted microphone icon -->
                                 <div class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
                                     <i class="fas fa-microphone-slash text-white text-xs"></i>
@@ -1359,14 +1515,22 @@
                             </div>
                             
                             <!-- Participant 2 - Student -->
-                            <div class="bg-teal-500 rounded-lg p-4 flex flex-col items-center justify-center relative">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
+                            <div class="bg-teal-500 rounded-lg p-4 flex flex-col items-center justify-center relative mobile-participant-tile touch-target">
+                                <!-- User Video Element -->
+                                <video id="userVideo" autoplay muted class="w-full h-full object-cover rounded-lg absolute inset-0" style="display: none;"></video>
+                                
+                                <!-- Fallback Avatar -->
+                                <div id="userVideoPlaceholder" class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
                                     <span class="text-teal-500 font-bold text-2xl">H</span>
                                 </div>
-                                <p class="text-white font-medium text-sm">Harry Srinivaasaa</p>
+                                <p class="text-white font-medium text-sm mobile-text">Harry Srinivaasaa</p>
                                 <!-- Muted microphone icon -->
-                                <div class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
+                                <div id="micStatus" class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
                                     <i class="fas fa-microphone-slash text-white text-xs"></i>
+                                </div>
+                                <!-- Video status overlay -->
+                                <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                                    <span id="videoStatus">Camera Off</span>
                                 </div>
                             </div>
                         </div>
@@ -1374,73 +1538,73 @@
                 </div>
                 
                 <!-- Google Meet Style Video Controls -->
-                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
+                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 mobile-controls tablet-controls">
                     <div class="bg-gray-800 rounded-full px-6 py-3 flex items-center space-x-4 shadow-lg">
                         <!-- Mute Microphone -->
-                        <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-microphone-slash text-red-500"></i>
                         </button>
                         
                         <!-- Turn off Camera -->
-                        <button id="videoButton" onclick="toggleVideo()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button id="videoButton" onclick="toggleVideo()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-video-slash text-red-500"></i>
                         </button>
                         
                         <!-- Present Now -->
-                        <button onclick="shareScreen()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button onclick="shareScreen()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-presentation text-green-500"></i>
                         </button>
                         
                         <!-- Raise Hand -->
-                        <button onclick="raiseHand()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button onclick="raiseHand()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-hand-paper text-yellow-500"></i>
                         </button>
                         
                         <!-- Chat -->
-                        <button onclick="toggleChatPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button onclick="toggleChatPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-comments text-blue-500"></i>
                         </button>
                         
                         <!-- Activities -->
-                        <button onclick="toggleToolsPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button onclick="toggleToolsPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-shapes text-purple-500"></i>
                         </button>
                         
                         <!-- More Options -->
-                        <button onclick="toggleMoreOptions()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors">
+                        <button onclick="toggleMoreOptions()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-ellipsis-v text-gray-300"></i>
                         </button>
                         
                         <!-- Leave Call -->
-                        <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors">
+                        <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors touch-target">
                             <i class="fas fa-phone-slash"></i>
                         </button>
                     </div>
                 </div>
                 
                 <!-- Meeting Info (Bottom Left) -->
-                <div class="absolute bottom-6 left-6 text-white">
+                <div class="absolute bottom-6 left-6 text-white mobile-meeting-info">
                     <div class="bg-black bg-opacity-60 rounded-lg px-3 py-2">
-                        <p class="text-sm font-medium">7:51 AM | bax-eony-wap</p>
+                        <p class="text-sm font-medium mobile-text">7:51 AM | BridgeLearn</p>
                     </div>
                 </div>
                 
                 <!-- Meeting Icons (Bottom Right) -->
-                <div class="absolute bottom-6 right-6 flex items-center space-x-3">
-                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                <div class="absolute bottom-6 right-6 flex items-center space-x-3 mobile-meeting-icons">
+                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
                         <i class="fas fa-info-circle"></i>
                     </button>
-                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors relative">
+                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors relative touch-target">
                         <i class="fas fa-users"></i>
                         <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
                     </button>
-                    <button onclick="toggleChatPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                    <button onclick="toggleChatPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
                         <i class="fas fa-comments"></i>
                     </button>
-                    <button onclick="toggleToolsPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                    <button onclick="toggleToolsPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
                         <i class="fas fa-shapes"></i>
                     </button>
-                    <button onclick="toggleMoreOptions()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors">
+                    <button onclick="toggleMoreOptions()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
                         <i class="fas fa-ellipsis-v"></i>
                     </button>
                 </div>
@@ -2054,10 +2218,27 @@ console.log(greet("BridgeLearn"));</textarea>
                         document.getElementById('videoStatus').textContent = 'Camera On';
                     } else {
                         document.getElementById('userVideo').style.display = 'none';
-                        document.getElementById('userVideoPlaceholder').style.display = 'block';
+                        document.getElementById('userVideoPlaceholder').style.display = 'flex';
                         document.getElementById('videoStatus').textContent = 'Camera Off';
                     }
                 }
+            } else {
+                // If no stream, try to get camera access
+                navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                    .then(stream => {
+                        userStream = stream;
+                        const userVideo = document.getElementById('userVideo');
+                        userVideo.srcObject = stream;
+                        userVideo.style.display = 'block';
+                        document.getElementById('userVideoPlaceholder').style.display = 'none';
+                        document.getElementById('videoStatus').textContent = 'Camera On';
+                        isVideoOn = true;
+                        isMicOn = true;
+                    })
+                    .catch(err => {
+                        console.error('Error accessing camera:', err);
+                        alert('Unable to access camera. Please check permissions.');
+                    });
             }
             updateControlButtons();
         }
@@ -2068,7 +2249,43 @@ console.log(greet("BridgeLearn"));</textarea>
                 if (audioTrack) {
                     audioTrack.enabled = !audioTrack.enabled;
                     isMicOn = audioTrack.enabled;
+                    
+                    // Update microphone status indicator
+                    const micStatus = document.getElementById('micStatus');
+                    if (micStatus) {
+                        if (isMicOn) {
+                            micStatus.innerHTML = '<i class="fas fa-microphone text-white text-xs"></i>';
+                            micStatus.className = 'absolute top-2 right-2 bg-green-500 rounded-full p-1';
+                        } else {
+                            micStatus.innerHTML = '<i class="fas fa-microphone-slash text-white text-xs"></i>';
+                            micStatus.className = 'absolute top-2 right-2 bg-red-500 rounded-full p-1';
+                        }
+                    }
                 }
+            } else {
+                // If no stream, try to get microphone access
+                navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                    .then(stream => {
+                        userStream = stream;
+                        const userVideo = document.getElementById('userVideo');
+                        userVideo.srcObject = stream;
+                        userVideo.style.display = 'block';
+                        document.getElementById('userVideoPlaceholder').style.display = 'none';
+                        document.getElementById('videoStatus').textContent = 'Camera On';
+                        isVideoOn = true;
+                        isMicOn = true;
+                        
+                        // Update microphone status
+                        const micStatus = document.getElementById('micStatus');
+                        if (micStatus) {
+                            micStatus.innerHTML = '<i class="fas fa-microphone text-white text-xs"></i>';
+                            micStatus.className = 'absolute top-2 right-2 bg-green-500 rounded-full p-1';
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error accessing microphone:', err);
+                        alert('Unable to access microphone. Please check permissions.');
+                    });
             }
             updateControlButtons();
         }
@@ -2159,6 +2376,85 @@ console.log(greet("BridgeLearn"));</textarea>
             // Show additional options menu
             console.log('More options toggle - additional settings menu');
             // This could open a dropdown with more meeting options
+        }
+
+        // Code Compiler Functions
+        function runCode() {
+            const codeEditor = document.getElementById('sharedCodeEditor');
+            const output = document.getElementById('sharedOutput');
+            
+            if (!codeEditor || !output) return;
+            
+            const code = codeEditor.value;
+            
+            // Clear previous output
+            output.innerHTML = '';
+            
+            // Capture console.log output
+            const originalLog = console.log;
+            const logs = [];
+            
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                // Execute the code
+                const result = eval(code);
+                
+                // Display console.log output
+                if (logs.length > 0) {
+                    logs.forEach(log => {
+                        const logDiv = document.createElement('div');
+                        logDiv.textContent = log;
+                        logDiv.className = 'text-green-400 mb-1';
+                        output.appendChild(logDiv);
+                    });
+                }
+                
+                // Display return value if any
+                if (result !== undefined) {
+                    const resultDiv = document.createElement('div');
+                    resultDiv.textContent = `Return: ${typeof result === 'object' ? JSON.stringify(result, null, 2) : result}`;
+                    resultDiv.className = 'text-blue-400 mt-2 font-bold';
+                    output.appendChild(resultDiv);
+                }
+                
+                // Show success message
+                const successDiv = document.createElement('div');
+                successDiv.textContent = '✓ Code executed successfully!';
+                successDiv.className = 'text-green-500 mt-2 font-bold';
+                output.appendChild(successDiv);
+                
+            } catch (error) {
+                // Display error
+                const errorDiv = document.createElement('div');
+                errorDiv.textContent = `Error: ${error.message}`;
+                errorDiv.className = 'text-red-400 mt-2 font-bold';
+                output.appendChild(errorDiv);
+            } finally {
+                // Restore original console.log
+                console.log = originalLog;
+            }
+            
+            // Scroll to bottom
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearCode() {
+            const codeEditor = document.getElementById('sharedCodeEditor');
+            const output = document.getElementById('sharedOutput');
+            
+            if (codeEditor) {
+                codeEditor.value = '';
+            }
+            
+            if (output) {
+                output.innerHTML = '<div class="text-gray-500">// Click "Run" to execute your code</div>';
+            }
         }
 
         // Live Chat Functions
