@@ -1398,217 +1398,49 @@
     </div>
 
     <!-- Video Call Full Page -->
-    <div id="videoCallPage" class="hidden fixed inset-0 bg-gray-900 z-50 flex flex-col">
-        <!-- Google Meet Style Header -->
-        <div class="bg-gray-900 p-4 flex justify-between items-center border-b border-gray-700">
-            <div class="flex items-center space-x-4">
-                <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">A</span>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold text-lg" id="callSessionTitle">BridgeLearn Session</h3>
-                    <p class="text-gray-300 text-sm">Aliasgar Limadiyawala (Presenting)</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2 text-green-400">
-                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                    <span class="text-sm font-medium">LIVE</span>
-                </div>
-                <button onclick="closeVideoCall()" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
+    <div id="videoCallPage" class="fixed inset-0 bg-black z-50 flex flex-col md:hidden hidden">
+      <!-- Top Bar -->
+      <div class="flex items-center justify-between px-4 py-2 bg-black/80">
+        <button onclick="closeVideoCall()" class="text-white text-xl"><i class="fas fa-arrow-left"></i></button>
+        <div class="bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-mono">qym-dhfz-qdx</div>
+        <button class="text-white text-xl"><i class="fas fa-volume-up"></i></button>
+      </div>
+      <!-- Presenting Banner -->
+      <div class="text-white text-sm px-4 py-2">Aliasgar is presenting</div>
+      <!-- Main Video Area -->
+      <div class="flex-1 flex flex-col justify-center items-center bg-black relative">
+        <!-- Centered spinner (Google Meet style) -->
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-blue-400"></div>
         </div>
-        
-        <!-- Main Content Area -->
-        <div class="flex-1 flex overflow-hidden">
-            <!-- Main Video Area -->
-            <div class="flex-1 bg-gray-900 relative video-main-area">
-                <!-- Google Meet Style Layout -->
-                <div class="w-full h-full flex mobile-google-meet-layout">
-                    <!-- Left Panel - Presenter Screen -->
-                    <div class="flex-1 bg-gray-800 relative mobile-presenter-area">
-                        <!-- Presenter Banner -->
-                        <div class="absolute top-4 left-4 bg-black bg-opacity-60 rounded-lg px-4 py-2 flex items-center space-x-3 z-10">
-                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                                <span class="text-white font-bold text-sm">A</span>
-                            </div>
-                            <div>
-                                <p class="text-white font-medium text-sm mobile-text">Aliasgar Limadiyawala (Presenting)</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Shared Screen/Content Area -->
-                        <div class="w-full h-full flex items-center justify-center bg-gray-900">
-                            <!-- Working Code Compiler -->
-                            <div class="bg-gray-800 rounded-lg w-4/5 h-4/5 flex flex-col shadow-xl">
-                                <!-- Compiler Header -->
-                                <div class="bg-gray-700 px-4 py-3 rounded-t-lg flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
-                                        <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                        <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                                        <span class="text-white font-medium ml-4">BridgeLearn Code Compiler</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <button onclick="runCode()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
-                                            <i class="fas fa-play mr-2"></i>Run
-                                        </button>
-                                        <button onclick="clearCode()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
-                                            <i class="fas fa-trash mr-2"></i>Clear
-                                        </button>
-                                    </div>
-                                </div>
-                                
-                                <!-- Code Editor -->
-                                <div class="flex-1 flex">
-                                    <div class="flex-1 flex flex-col">
-                                        <div class="bg-gray-600 px-4 py-2 text-white text-sm font-medium">
-                                            <i class="fas fa-code mr-2"></i>Code Editor (JavaScript)
-                                        </div>
-                                        <textarea id="sharedCodeEditor" class="flex-1 bg-gray-900 text-green-400 p-4 font-mono text-sm resize-none focus:outline-none" placeholder="// Write your JavaScript code here...
-console.log('Hello, BridgeLearn!');
-
-function greet(name) {
-    return `Hello, ${name}! Welcome to BridgeLearn.`;
-}
-
-console.log(greet('Student'));">// Write your JavaScript code here...
-console.log('Hello, BridgeLearn!');
-
-function greet(name) {
-    return `Hello, ${name}! Welcome to BridgeLearn.`;
-}
-
-console.log(greet('Student'));</textarea>
-                                    </div>
-                                    
-                                    <!-- Output Panel -->
-                                    <div class="w-1/2 flex flex-col border-l border-gray-600">
-                                        <div class="bg-gray-600 px-4 py-2 text-white text-sm font-medium">
-                                            <i class="fas fa-terminal mr-2"></i>Output
-                                        </div>
-                                        <div id="sharedOutput" class="flex-1 bg-black text-green-400 p-4 font-mono text-sm overflow-y-auto">
-                                            <div class="text-gray-500">// Click "Run" to execute your code</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Panel - Participant Tiles -->
-                    <div class="w-80 bg-gray-700 border-l border-gray-600 flex flex-col mobile-participants-area">
-                        <!-- Participants Grid -->
-                        <div class="flex-1 p-4 grid grid-cols-1 gap-4 mobile-participants-grid">
-                            <!-- Participant 1 - Presenter -->
-                            <div class="bg-green-500 rounded-lg p-4 flex flex-col items-center justify-center relative mobile-participant-tile touch-target">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
-                                    <span class="text-green-500 font-bold text-2xl">A</span>
-                                </div>
-                                <p class="text-white font-medium text-sm mobile-text">Aliasgar Limadiyawala</p>
-                                <!-- Muted microphone icon -->
-                                <div class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
-                                    <i class="fas fa-microphone-slash text-white text-xs"></i>
-                                </div>
-                            </div>
-                            
-                            <!-- Participant 2 - Student -->
-                            <div class="bg-teal-500 rounded-lg p-4 flex flex-col items-center justify-center relative mobile-participant-tile touch-target">
-                                <!-- User Video Element -->
-                                <video id="userVideo" autoplay muted class="w-full h-full object-cover rounded-lg absolute inset-0" style="display: none;"></video>
-                                
-                                <!-- Fallback Avatar -->
-                                <div id="userVideoPlaceholder" class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-2">
-                                    <span class="text-teal-500 font-bold text-2xl">H</span>
-                                </div>
-                                <p class="text-white font-medium text-sm mobile-text">Harry Srinivaasaa</p>
-                                <!-- Muted microphone icon -->
-                                <div id="micStatus" class="absolute top-2 right-2 bg-red-500 rounded-full p-1">
-                                    <i class="fas fa-microphone-slash text-white text-xs"></i>
-                                </div>
-                                <!-- Video status overlay -->
-                                <div class="absolute bottom-2 left-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
-                                    <span id="videoStatus">Camera Off</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Google Meet Style Video Controls -->
-                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 mobile-controls tablet-controls">
-                    <div class="bg-gray-800 rounded-full px-6 py-3 flex items-center space-x-4 shadow-lg">
-                        <!-- Mute Microphone -->
-                        <button id="micButton" onclick="toggleMicrophone()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-microphone-slash text-red-500"></i>
-                        </button>
-                        
-                        <!-- Turn off Camera -->
-                        <button id="videoButton" onclick="toggleVideo()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-video-slash text-red-500"></i>
-                        </button>
-                        
-                        <!-- Present Now -->
-                        <button onclick="shareScreen()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-presentation text-green-500"></i>
-                        </button>
-                        
-                        <!-- Raise Hand -->
-                        <button onclick="raiseHand()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-hand-paper text-yellow-500"></i>
-                        </button>
-                        
-                        <!-- Chat -->
-                        <button onclick="toggleChatPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-comments text-blue-500"></i>
-                        </button>
-                        
-                        <!-- Activities -->
-                        <button onclick="toggleToolsPanel()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-shapes text-purple-500"></i>
-                        </button>
-                        
-                        <!-- More Options -->
-                        <button onclick="toggleMoreOptions()" class="bg-gray-600 hover:bg-gray-500 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-ellipsis-v text-gray-300"></i>
-                        </button>
-                        
-                        <!-- Leave Call -->
-                        <button onclick="endCall()" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors touch-target">
-                            <i class="fas fa-phone-slash"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Meeting Info (Bottom Left) -->
-                <div class="absolute bottom-6 left-6 text-white mobile-meeting-info">
-                    <div class="bg-black bg-opacity-60 rounded-lg px-3 py-2">
-                        <p class="text-sm font-medium mobile-text">7:51 AM | BridgeLearn</p>
-                    </div>
-                </div>
-                
-                <!-- Meeting Icons (Bottom Right) -->
-                <div class="absolute bottom-6 right-6 flex items-center space-x-3 mobile-meeting-icons">
-                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
-                        <i class="fas fa-info-circle"></i>
-                    </button>
-                    <button class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors relative touch-target">
-                        <i class="fas fa-users"></i>
-                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
-                    </button>
-                    <button onclick="toggleChatPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
-                        <i class="fas fa-comments"></i>
-                    </button>
-                    <button onclick="toggleToolsPanel()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
-                        <i class="fas fa-shapes"></i>
-                    </button>
-                    <button onclick="toggleMoreOptions()" class="bg-black bg-opacity-60 hover:bg-opacity-80 text-white p-2 rounded-full transition-colors touch-target">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
+        <!-- Participants Row at the bottom center -->
+        <div class="absolute bottom-24 left-0 right-0 flex justify-center items-center gap-6">
+          <!-- You -->
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700">
+              <i class="fas fa-user text-gray-400 text-2xl"></i>
             </div>
+            <span class="text-white text-xs mt-1">You</span>
+            <i class="fas fa-microphone-slash text-red-400 text-xs mt-1"></i>
+          </div>
+          <!-- Aliasgar -->
+          <div class="flex flex-col items-center">
+            <div class="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center border-2 border-gray-700">
+              <span class="text-white text-xl font-bold">A</span>
+            </div>
+            <span class="text-white text-xs mt-1">Aliasgar</span>
+            <i class="fas fa-microphone-slash text-red-400 text-xs mt-1"></i>
+          </div>
+        </div>
+      </div>
+      <!-- Bottom Controls -->
+      <div class="flex justify-center items-center gap-6 px-4 py-3 bg-black/90 rounded-t-2xl">
+        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-microphone-slash"></i></button>
+        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-video-slash"></i></button>
+        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-ellipsis-h"></i></button>
+        <button onclick="endCall()" class="bg-red-600 text-white p-4 rounded-full"><i class="fas fa-phone-slash"></i></button>
+        <button class="bg-indigo-600 text-white p-4 rounded-full"><i class="fas fa-robot"></i></button>
+      </div>
     </div>
 
     <!-- Code Compiler Modal -->
@@ -2173,7 +2005,7 @@ console.log(greet("BridgeLearn"));</textarea>
                     const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
                     addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
                     
-                    // Copy updated chat to mobile
+                    // Copy to mobile chat after mentor response
                     copyChatToMobile();
                 }, 1500 + Math.random() * 3000);
             }
@@ -2379,256 +2211,6 @@ console.log(greet("BridgeLearn"));</textarea>
         }
 
         // Code Compiler Functions
-        function runCode() {
-            const codeEditor = document.getElementById('sharedCodeEditor');
-            const output = document.getElementById('sharedOutput');
-            
-            if (!codeEditor || !output) return;
-            
-            const code = codeEditor.value;
-            
-            // Clear previous output
-            output.innerHTML = '';
-            
-            // Capture console.log output
-            const originalLog = console.log;
-            const logs = [];
-            
-            console.log = function(...args) {
-                logs.push(args.map(arg => 
-                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-                ).join(' '));
-                originalLog.apply(console, args);
-            };
-            
-            try {
-                // Execute the code
-                const result = eval(code);
-                
-                // Display console.log output
-                if (logs.length > 0) {
-                    logs.forEach(log => {
-                        const logDiv = document.createElement('div');
-                        logDiv.textContent = log;
-                        logDiv.className = 'text-green-400 mb-1';
-                        output.appendChild(logDiv);
-                    });
-                }
-                
-                // Display return value if any
-                if (result !== undefined) {
-                    const resultDiv = document.createElement('div');
-                    resultDiv.textContent = `Return: ${typeof result === 'object' ? JSON.stringify(result, null, 2) : result}`;
-                    resultDiv.className = 'text-blue-400 mt-2 font-bold';
-                    output.appendChild(resultDiv);
-                }
-                
-                // Show success message
-                const successDiv = document.createElement('div');
-                successDiv.textContent = '✓ Code executed successfully!';
-                successDiv.className = 'text-green-500 mt-2 font-bold';
-                output.appendChild(successDiv);
-                
-            } catch (error) {
-                // Display error
-                const errorDiv = document.createElement('div');
-                errorDiv.textContent = `Error: ${error.message}`;
-                errorDiv.className = 'text-red-400 mt-2 font-bold';
-                output.appendChild(errorDiv);
-            } finally {
-                // Restore original console.log
-                console.log = originalLog;
-            }
-            
-            // Scroll to bottom
-            output.scrollTop = output.scrollHeight;
-        }
-
-        function clearCode() {
-            const codeEditor = document.getElementById('sharedCodeEditor');
-            const output = document.getElementById('sharedOutput');
-            
-            if (codeEditor) {
-                codeEditor.value = '';
-            }
-            
-            if (output) {
-                output.innerHTML = '<div class="text-gray-500">// Click "Run" to execute your code</div>';
-            }
-        }
-
-        // Live Chat Functions
-        function sendLiveChatMessage() {
-            const input = document.getElementById('liveChatInput');
-            const message = input.value.trim();
-            
-            if (message) {
-                addLiveChatMessage('You', message, true);
-                input.value = '';
-                
-                // Copy to mobile chat if it exists
-                copyChatToMobile();
-                
-                // Simulate mentor responding
-                setTimeout(() => {
-                    const mentorResponses = [
-                        'That\'s a great question! Let me explain that concept in detail.',
-                        'I understand your concern. Let\'s work through this step by step.',
-                        'Excellent observation! This is exactly what we need to focus on.',
-                        'I\'m glad you asked that. This is a common challenge many students face.',
-                        'Perfect! You\'re thinking like a developer. Let me show you the best practice.',
-                        'That\'s a very insightful question. Let me share my screen to demonstrate.',
-                        'Great progress! You\'re really grasping the concepts well.',
-                        'I can see you\'re putting a lot of thought into this. Let\'s dive deeper.',
-                        'That\'s exactly right! You\'re understanding the fundamentals perfectly.',
-                        'I love your enthusiasm! This is the kind of thinking that makes great developers.'
-                    ];
-                    const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
-                    addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
-                    
-                    // Copy to mobile chat after mentor response
-                    copyChatToMobile();
-                }, 1500 + Math.random() * 3000);
-            }
-        }
-
-        function handleChatKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendLiveChatMessage();
-            }
-        }
-
-        function addLiveChatMessage(sender, message, isCurrentUser) {
-            const chatContainer = document.getElementById('liveChatMessages');
-            const messageDiv = document.createElement('div');
-            
-            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            if (isCurrentUser) {
-                // Student message (right-aligned)
-                messageDiv.className = 'flex items-start space-x-3 flex-row-reverse';
-                messageDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-user-graduate text-white text-sm"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-blue-600 rounded-lg p-3">
-                            <p class="text-white text-sm font-medium mb-1">You</p>
-                            <p class="text-white text-sm">${message}</p>
-                        </div>
-                        <p class="text-gray-500 text-xs mt-1 text-right">${currentTime}</p>
-                    </div>
-                `;
-            } else {
-                // Mentor message (left-aligned)
-                messageDiv.className = 'flex items-start space-x-3';
-                messageDiv.innerHTML = `
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-chalkboard-teacher text-white text-sm"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="bg-gray-700 rounded-lg p-3">
-                            <p class="text-white text-sm font-medium mb-1">Dr. Sarah Ahmed</p>
-                            <p class="text-gray-300 text-sm">${message}</p>
-                        </div>
-                        <p class="text-gray-500 text-xs mt-1">${currentTime}</p>
-                    </div>
-                `;
-            }
-            
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
-
-        // Session Type Detection for Video Call
-        function detectSessionTypeInCall() {
-            const sessionTitle = document.getElementById('callSessionTitle').textContent.toLowerCase();
-            
-            // Hide all tool groups first
-            document.querySelectorAll('#sessionToolsInCall > div').forEach(tool => {
-                tool.classList.add('hidden');
-            });
-            
-            // Show appropriate tools based on session title
-            if (sessionTitle.includes('web development') || sessionTitle.includes('programming') || sessionTitle.includes('coding') || sessionTitle.includes('javascript') || sessionTitle.includes('python') || sessionTitle.includes('java')) {
-                document.getElementById('codingToolsInCall').classList.remove('hidden');
-            } else if (sessionTitle.includes('language') || sessionTitle.includes('arabic') || sessionTitle.includes('english') || sessionTitle.includes('translation')) {
-                document.getElementById('languageToolsInCall').classList.remove('hidden');
-            } else if (sessionTitle.includes('business') || sessionTitle.includes('strategy') || sessionTitle.includes('management')) {
-                document.getElementById('businessToolsInCall').classList.remove('hidden');
-            } else if (sessionTitle.includes('design') || sessionTitle.includes('art') || sessionTitle.includes('creative') || sessionTitle.includes('calligraphy')) {
-                document.getElementById('designToolsInCall').classList.remove('hidden');
-            }
-        }
-
-        // In-Call Tool Functions
-        function openCompilerInCall() {
-            openCompiler();
-        }
-
-        function openCodeShareInCall() {
-            openCodeShare();
-        }
-
-        function openTranslatorInCall() {
-            openTranslator();
-        }
-
-        function openDictionaryInCall() {
-            openDictionary();
-        }
-
-        function openWhiteboardInCall() {
-            openWhiteboard();
-        }
-
-        function openNotesInCall() {
-            openNotes();
-        }
-
-        function openDesignBoardInCall() {
-            openDesignBoard();
-        }
-
-        function openColorPickerInCall() {
-            openColorPicker();
-        }
-
-        // Session Type Detection and Tool Display
-        function detectSessionType() {
-            const sessionTitle = document.getElementById('currentSessionTitle').textContent.toLowerCase();
-            const sessionTools = document.getElementById('sessionTools');
-            
-            // Hide all tool groups first
-            document.querySelectorAll('#sessionTools > div').forEach(tool => {
-                tool.classList.add('hidden');
-            });
-            
-            // Show appropriate tools based on session title
-            if (sessionTitle.includes('web development') || sessionTitle.includes('programming') || sessionTitle.includes('coding') || sessionTitle.includes('javascript') || sessionTitle.includes('python') || sessionTitle.includes('java')) {
-                document.getElementById('codingTools').classList.remove('hidden');
-            } else if (sessionTitle.includes('language') || sessionTitle.includes('arabic') || sessionTitle.includes('english') || sessionTitle.includes('translation')) {
-                document.getElementById('languageTools').classList.remove('hidden');
-            } else if (sessionTitle.includes('business') || sessionTitle.includes('strategy') || sessionTitle.includes('management')) {
-                document.getElementById('businessTools').classList.remove('hidden');
-            } else if (sessionTitle.includes('design') || sessionTitle.includes('art') || sessionTitle.includes('creative') || sessionTitle.includes('calligraphy')) {
-                document.getElementById('designTools').classList.remove('hidden');
-            }
-        }
-
-        // Code Compiler Functions
-        function openCompiler() {
-            const modal = document.getElementById('compilerModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeCompiler() {
-            const modal = document.getElementById('compilerModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
         function runCode() {
             const code = document.getElementById('compilerCode').value;
             const language = document.getElementById('compilerLanguage').value;
@@ -2871,7 +2453,7 @@ console.log(greet("BridgeLearn"));</textarea>
             
             if (userSessions.length === 0) {
                 sessionsContainer.innerHTML = `
-                    <div class=\"col-span-full text-center py-8 text-gray-500\">\n                        <i class=\"fas fa-calendar-plus text-4xl mb-4\"></i>\n                        <p data-i18n=\"dashboard.noSessions\">No sessions created yet. Click \"Add New Session\" to get started!</p>\n                    </div>
+                    <div class=\"col-span-full text-center py-8 text-gray-500\">\n                        <i class=\"fas fa-calendar-plus text-4xl mb-4\"></i>\n                        <p data-i18n=\"dashboard.noSessions\">No sessions created yet. Click "Add New Session" to get started!</p>\n                    </div>
                 `;
                 // Re-apply translations for dynamic content
                 applyTranslations(currentLang || (localStorage.getItem('lang') || 'en'));
@@ -3158,7 +2740,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'sessions.subtitle': 'ലോകമെമ്പാടുമുള്ള വിദഗ്ധ മെന്റർമാരിൽ നിന്ന് അതുല്യമായ പഠന അവസരങ്ങൾ കണ്ടെത്തുക',
                 'stats.activeMentors': 'സജീവ മെന്റർമാർ',
                 'stats.studentsLearning': 'പഠിക്കുന്ന വിദ്യാർത്ഥികൾ',
-                'stats.countries': 'പ്രതിനിധീകരിക്കുന്ന രാജ്യങ്ങൾ',
+                'stats.countries': 'പ്രതിനിധ്യം ചെയ്യുന്ന രാജ്യങ്ങൾ',
                 'actions.bookSession': 'സെഷൻ ബുക്ക് ചെയ്യുക',
                 'why.title': 'എന്തുകൊണ്ട് BridgeLearn?',
                 'actions.createSession': 'പുതിയ സെഷൻ സൃഷ്‌ടിക്കുക',
@@ -3175,7 +2757,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'login.title': 'BridgeLearn-ലേക്ക് സ്വാഗതം',
                 'login.subtitle': 'ലേണിംഗ് കമ്മ്യൂണിറ്റിയിൽ ചേരാൻ നിങ്ങളുടെ വിവരങ്ങൾ നൽകുക',
                 'login.fullName': 'പൂർണ്ണ പേര്',
-                'login.email': 'ഇമെയിൽ',
+                'login.email': 'ബെരുദ് ഇമെയിൽ',
                 'login.iam': 'ഞാൻ:',
                 'login.roleStudent': 'വിദ്യാർത്ഥി',
                 'login.roleMentor': 'വിശ്രമജീവിതത്തിലുള്ള പ്രൊഫഷണൽ / മെന്റർ',
@@ -3195,7 +2777,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'sessions.subtitle': 'உலகம் முழுவதும் உள்ள நிபுணர்களிடமிருந்து அற்புதமான கற்றல் வாய்ப்புகளை கண்டறியவும்',
                 'stats.activeMentors': 'செயலில் உள்ள வழிகாட்டிகள்',
                 'stats.studentsLearning': 'கற்றுக் கொண்டிருக்கும் மாணவர்கள்',
-                'stats.countries': 'பிரதிநிதித்துவம் செய்கின்ற நாடுகள்',
+                'stats.countries': 'பிரதிநிதியம் செய்கின்ற நாடுகள்',
                 'actions.bookSession': 'அமர்வு பதிவு',
                 'why.title': 'ஏன் BridgeLearn?',
                 'actions.createSession': 'புதிய அமர்வு உருவாக்கவும்',
@@ -3215,7 +2797,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'login.email': 'மின்னஞ்சல்',
                 'login.iam': 'நான்:',
                 'login.roleStudent': 'மாணவர்',
-                'login.roleMentor': 'ஓய்வு பெற்ற நிபுணர் / வழிகாட்டி',
+                'login.roleMentor': 'விரமித்த நிபுணர் / வழிகாட்டி',
                 'login.submit': 'தொடங்கவும்',
                 'common.cancel': 'ரத்து'
             },
