@@ -1,18 +1,13 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BridgeLearn - Modern Learning Platform</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>BridgeLearn Session</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-<style>
+    <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -32,23 +27,16 @@
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
         
-* {
+        * {
             font-family: 'Poppins', 'Inter', sans-serif;
-            font-family: 'Inter', sans-serif;
-}
-
+        }
+        
         .hero-gradient {
             background: var(--primary-gradient);
             position: relative;
-        body {
-            background: #1a1a1a;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-overflow: hidden;
-}
-
+            overflow: hidden;
+        }
+        
         .hero-gradient::before {
             content: '';
             position: absolute;
@@ -95,22 +83,13 @@ overflow: hidden;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
-        .session-header {
-            background: #2d3748;
-            border-bottom: 1px solid #4a5568;
-            padding: 12px 20px;
-}
-
+        }
+        
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
-        .participant-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-}
-
+        }
+        
         .btn-secondary {
             background: var(--secondary-gradient);
             color: white;
@@ -120,63 +99,33 @@ overflow: hidden;
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
-        .live-indicator {
-            width: 8px;
-            height: 8px;
-            background: #48bb78;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-}
-
+        }
+        
         .btn-secondary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-}
-
+        }
+        
         .arabic-text {
             font-family: 'Amiri', serif;
             direction: rtl;
-        .main-content {
-            display: flex;
-            height: calc(100vh - 200px);
-            background: #1a1a1a;
-}
-
+        }
+        
         .modern-accent {
             border-left: 4px solid;
             border-image: var(--primary-gradient) 1;
-        .left-panel {
-            flex: 1;
-            background: #2d3748;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #4a5568;
-}
-
+        }
+        
         /* Mobile Navigation */
         .mobile-menu {
             display: none;
-        .right-panel {
-            flex: 1;
-            background: #1a1a1a;
-            display: flex;
-            flex-direction: column;
-}
-
-        /* Mobile Responsive Styles */
-@media (max-width: 768px) {
+        }
+        
+        @media (max-width: 768px) {
             .mobile-menu {
                 display: block;
-            body {
-                overflow-y: auto;
-                height: 100vh;
-                height: 100dvh;
-}
-
+            }
+            
             .desktop-menu {
                 display: none;
             }
@@ -207,42 +156,26 @@ overflow: hidden;
             .hero-title {
                 font-size: 2.5rem;
                 line-height: 1.2;
-            .session-header {
-                padding: 8px 16px;
-                position: sticky;
-                top: 0;
-                z-index: 10;
-}
-
+            }
+            
             .hero-subtitle {
                 font-size: 1.125rem;
                 line-height: 1.5;
-            .session-header h1 {
-                font-size: 1rem;
-}
-
+            }
+            
             .mobile-stack {
                 flex-direction: column;
                 gap: 1rem;
-            .session-header .participant-status {
-                flex-wrap: wrap;
-                gap: 4px;
-                margin-top: 4px;
-}
-
+            }
+            
             .mobile-full {
                 width: 100%;
-            .session-header .participant-status span {
-                font-size: 0.75rem;
-}
-
+            }
+            
             .mobile-padding {
                 padding: 1rem;
-            /* Hide duplicate participant info on mobile */
-            .session-header .flex.items-center.gap-4 {
-                display: none;
-}
-
+            }
+            
             .mobile-text-center {
                 text-align: center;
             }
@@ -253,231 +186,125 @@ overflow: hidden;
             /* Navigation */
             .nav-brand h1 {
                 font-size: 1.5rem;
-            .main-content {
-                flex-direction: column;
-                height: auto;
-                min-height: calc(100vh - 160px);
-                min-height: calc(100dvh - 160px);
-}
-
+            }
+            
             .nav-brand p {
                 font-size: 0.75rem;
-            .left-panel {
-                border-right: none;
-                border-bottom: 1px solid #4a5568;
-                height: 55vh;
-                min-height: 55vh;
-                max-height: 55vh;
-}
-
+            }
+            
             /* Hero Section */
             .hero-title {
                 font-size: 2.2rem;
                 line-height: 1.1;
                 margin-bottom: 1rem;
-            .right-panel {
-                height: 25vh;
-                min-height: 25vh;
-                max-height: 25vh;
-}
-
+            }
+            
             .hero-subtitle {
                 font-size: 1.1rem;
                 line-height: 1.4;
                 margin-bottom: 2rem;
-            .panel-header {
-                padding: 6px 12px;
-                flex-wrap: wrap;
-                gap: 8px;
-                min-height: 40px;
-}
-
+            }
+            
             /* Buttons */
             .btn-primary, .btn-secondary {
                 padding: 14px 20px;
                 font-size: 1rem;
                 min-height: 48px;
-            .panel-header .text-sm {
-                font-size: 0.875rem;
-}
-
+            }
+            
             /* Cards */
             .modern-card {
                 padding: 1.5rem;
                 margin-bottom: 1rem;
-            .action-buttons {
-                flex-wrap: nowrap;
-                gap: 4px;
-}
-
+            }
+            
             .modern-card h4 {
                 font-size: 1.25rem;
                 margin-bottom: 0.75rem;
-            .btn {
-                padding: 12px 16px;
-                font-size: 14px;
-                min-height: 44px;
-                touch-action: manipulation;
-                border-radius: 4px;
-}
-
+            }
+            
             .modern-card p {
                 font-size: 0.95rem;
                 line-height: 1.5;
-            .code-editor {
-                font-size: 13px;
-                padding: 8px;
-                line-height: 1.3;
-                height: calc(55vh - 40px);
-                resize: none;
-}
-
+            }
+            
             /* Session Cards */
             .session-card-icon {
                 width: 3rem;
                 height: 3rem;
                 margin-bottom: 1rem;
-            .output-panel {
-                font-size: 13px;
-                padding: 8px;
-                line-height: 1.3;
-                height: calc(25vh - 40px);
-                overflow-y: auto;
-}
-
+            }
+            
             .session-card-icon i {
                 font-size: 1.5rem;
-            .video-section {
-                height: 20vh;
-                min-height: 120px;
-                padding: 8px;
-                gap: 8px;
-                position: sticky;
-                bottom: 0;
-                background: #2d3748;
-                border-top: 2px solid #4a5568;
-}
-
+            }
+            
             /* About Section */
             .about-feature-icon {
                 width: 4rem;
                 height: 4rem;
                 margin-bottom: 1.5rem;
-            .video-feed {
-                min-width: calc(50% - 4px);
-                flex: 1 1 calc(50% - 4px);
-                min-height: 80px;
-}
-
+            }
+            
             .about-feature-icon i {
                 font-size: 2rem;
-            .video-feed .text-center .w-16 {
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-                margin: 0 auto 4px;
-}
-
+            }
+            
             .about-feature h4 {
                 font-size: 1.5rem;
                 margin-bottom: 1rem;
-            .video-feed .text-sm {
-                font-size: 0.75rem;
-}
-
+            }
+            
             .about-feature p {
                 font-size: 1rem;
                 line-height: 1.6;
-            .video-control-btn {
-                width: 44px;
-                height: 44px;
-                font-size: 12px;
-                touch-action: manipulation;
-}
-
+            }
+            
             /* Modal */
             .modal-content {
                 margin: 1rem;
                 padding: 1.5rem;
-            .video-controls {
-                gap: 2px;
-                bottom: 4px;
             }
-        }
-        
-        /* Extra Mobile Optimizations */
-        @media (max-width: 480px) {
-            .session-header {
-                padding: 4px 8px;
-}
-
+            
             .modal-content h3 {
                 font-size: 1.5rem;
-            .session-header .flex {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 4px;
-}
-
+            }
+            
             .modal-content input,
             .modal-content select {
                 padding: 12px 16px;
                 font-size: 1rem;
                 min-height: 48px;
-            .main-content {
-                min-height: calc(100vh - 140px);
-                min-height: calc(100dvh - 140px);
-}
-
+            }
+            
             /* Chatbot */
             .chatbot-button {
                 width: 3.5rem;
                 height: 3.5rem;
-            .left-panel {
-                height: 60vh;
-                min-height: 60vh;
-                max-height: 60vh;
-}
-
+            }
+            
             .chatbot-window {
                 width: calc(100vw - 2rem);
                 height: 70vh;
                 max-height: 500px;
-            .right-panel {
-                height: 20vh;
-                min-height: 20vh;
-                max-height: 20vh;
-}
-
+            }
+            
             /* Text Sizes */
             h1 { font-size: 2rem; }
             h2 { font-size: 1.75rem; }
             h3 { font-size: 1.5rem; }
             h4 { font-size: 1.25rem; }
-            .code-editor {
-                font-size: 12px;
-                padding: 6px;
-                height: calc(60vh - 36px);
-            }
-
+            
             /* Spacing */
             .section-padding {
                 padding: 3rem 1rem;
-            .output-panel {
-                font-size: 12px;
-                padding: 6px;
-                height: calc(20vh - 36px);
-}
-
+            }
+            
             /* Grid adjustments */
             .mobile-grid-1 {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-            .video-section {
-                height: 20vh;
-                min-height: 100px;
-                padding: 6px;
-                gap: 6px;
-}
+            }
         }
         
         /* Extra small devices */
@@ -485,49 +312,32 @@ overflow: hidden;
             .hero-title {
                 font-size: 1.8rem;
                 line-height: 1.1;
+            }
             
-            .video-feed {
-                min-height: 70px;
-}
-
             .hero-subtitle {
                 font-size: 1rem;
                 line-height: 1.4;
-            .video-feed .text-center .w-16 {
-                width: 2rem !important;
-                height: 2rem !important;
-}
-
+            }
+            
             .btn-primary, .btn-secondary {
                 padding: 16px 24px;
                 font-size: 1.1rem;
                 min-height: 52px;
-            .video-feed .text-center .text-2xl {
-                font-size: 0.875rem;
-}
-
+            }
+            
             .modern-card {
                 padding: 1.25rem;
-            .video-feed .text-sm {
-                font-size: 0.7rem;
-}
-
+            }
+            
             .modern-card h4 {
                 font-size: 1.1rem;
-            .panel-header {
-                padding: 4px 8px;
-                min-height: 36px;
-}
-
+            }
+            
             .modern-card p {
                 font-size: 0.9rem;
-            .btn {
-                padding: 12px 16px;
-                font-size: 13px;
-                min-height: 44px;
-}
-}
-
+            }
+        }
+        
         /* Video Call Safe Areas */
         #videoCallPage {
             /* Ensure full viewport coverage */
@@ -535,90 +345,48 @@ overflow: hidden;
             height: 100dvh; /* Dynamic viewport height for mobile */
             /* Add safe area padding for different screen configurations */
             padding-bottom: env(safe-area-inset-bottom, 0px);
-        /* Force mobile layout for testing */
-        .mobile-test .main-content {
-            flex-direction: column !important;
-            min-height: calc(100vh - 160px) !important;
-}
-
+        }
+        
         /* Video controls positioning */
         .video-controls {
             /* Position controls higher to avoid taskbar */
             bottom: 5rem !important;
             /* Add safe area padding */
             padding-bottom: env(safe-area-inset-bottom, 1rem);
-        .mobile-test .left-panel {
-            border-right: none !important;
-            border-bottom: 1px solid #4a5568 !important;
-            height: 55vh !important;
-            min-height: 55vh !important;
-            max-height: 55vh !important;
-}
-
+        }
+        
         /* Ensure video call content doesn't get cut off */
         @media (max-height: 600px) {
             .video-controls {
                 bottom: 4rem !important;
             }
-        .mobile-test .right-panel {
-            height: 25vh !important;
-            min-height: 25vh !important;
-            max-height: 25vh !important;
-}
-
+        }
+        
         @media (max-height: 500px) {
             .video-controls {
                 bottom: 3rem !important;
             }
-        .mobile-test .session-header {
-            position: sticky !important;
-            top: 0 !important;
-            z-index: 10 !important;
-}
-
+        }
+        
         /* Windows taskbar specific fixes */
         @media (min-height: 700px) {
             .video-controls {
                 bottom: 6rem !important;
             }
-        .mobile-test .video-section {
-            position: sticky !important;
-            bottom: 0 !important;
-            height: 20vh !important;
-            min-height: 120px !important;
-}
-
+        }
+        
         /* Ensure video call takes full available space */
         #videoCallPage {
             min-height: 100vh;
             min-height: 100dvh;
-        .panel-header {
-            background: #4a5568;
-            padding: 12px 16px;
-            border-bottom: 1px solid #718096;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-}
-
+        }
+        
         /* Video area adjustments for better visibility */
         .video-main-area {
             min-height: calc(100vh - 8rem);
             min-height: calc(100dvh - 8rem);
-        .code-editor {
-            flex: 1;
-            padding: 16px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            background: #2d3748;
-            color: #e2e8f0;
-            border: none;
-            outline: none;
-            resize: none;
-            overflow-y: auto;
-}
-
+        }
+        
         /* Mobile Video Call Layout */
         @media (max-width: 768px) {
             #videoCallPage {
@@ -647,33 +415,21 @@ overflow: hidden;
                 position: relative;
             }
             
-            /* Enhanced Mobile video controls - larger touch targets */
+            /* Mobile video controls */
             .video-controls {
-                bottom: 1.5rem !important;
-                left: 1rem !important;
-                right: 1rem !important;
+                bottom: 1rem !important;
+                left: 0.5rem !important;
+                right: 0.5rem !important;
                 flex-wrap: wrap;
-                gap: 0.75rem;
+                gap: 0.5rem;
                 justify-content: center;
-                padding: 1rem;
-                border-radius: 2rem;
-                background: rgba(31, 41, 55, 0.95);
-                backdrop-filter: blur(10px);
             }
             
             .video-controls button {
-                width: 3.5rem;
-                height: 3.5rem;
-                padding: 1rem;
-                font-size: 1.1rem;
-                border-radius: 50%;
-                transition: all 0.2s ease;
-                min-height: 56px;
-                min-width: 56px;
-            }
-            
-            .video-controls button:active {
-                transform: scale(0.95);
+                width: 3rem;
+                height: 3rem;
+                padding: 0.75rem;
+                font-size: 1rem;
             }
             
             /* Mobile sidebar - make it collapsible */
@@ -726,88 +482,52 @@ overflow: hidden;
             /* Mobile chat adjustments */
             .mobile-chat-input {
                 padding: 0.75rem;
-                background: rgba(31, 41, 55, 0.95);
-                backdrop-filter: blur(10px);
-                border-radius: 1rem;
-                margin: 0.5rem;
             }
             
             .mobile-chat-input input {
                 font-size: 1rem;
-                padding: 0.875rem;
-                border-radius: 0.75rem;
-                border: 2px solid rgba(255, 255, 255, 0.1);
-                background: rgba(255, 255, 255, 0.05);
-                color: white;
-                min-height: 48px;
-            }
-            
-            .mobile-chat-input input::placeholder {
-                color: rgba(255, 255, 255, 0.6);
+                padding: 0.75rem;
             }
             
             .mobile-chat-input button {
-                padding: 0.875rem;
-                width: 3.5rem;
-                min-height: 48px;
-                border-radius: 0.75rem;
-                background: #3B82F6;
-                transition: all 0.2s ease;
+                padding: 0.75rem;
+                width: 3rem;
             }
             
-            .mobile-chat-input button:active {
-                transform: scale(0.95);
-            }
-            
-            /* Enhanced Google Meet Mobile Layout */
+            /* Google Meet Mobile Layout Improvements */
             .mobile-google-meet-layout {
                 flex-direction: column !important;
-                gap: 0.5rem;
             }
             
             .mobile-presenter-area {
-                flex: 3;
-                min-height: 65vh;
-                border-radius: 1rem;
-                overflow: hidden;
-                position: relative;
+                flex: 2;
+                min-height: 60vh;
             }
             
             .mobile-participants-area {
                 flex: 1;
-                min-height: 35vh;
+                min-height: 40vh;
                 width: 100% !important;
-                background: rgba(31, 41, 55, 0.8);
-                border-radius: 1rem;
-                backdrop-filter: blur(10px);
             }
             
             .mobile-participants-grid {
                 grid-template-columns: 1fr 1fr !important;
-                gap: 0.75rem;
-                padding: 0.75rem;
+                gap: 1rem;
+                padding: 1rem;
             }
             
             .mobile-participant-tile {
-                padding: 0.75rem;
-                min-height: 100px;
-                border-radius: 0.75rem;
-                transition: all 0.2s ease;
-                cursor: pointer;
-                min-width: 120px;
-            }
-            
-            .mobile-participant-tile:active {
-                transform: scale(0.95);
+                padding: 1rem;
+                min-height: 120px;
             }
             
             .mobile-participant-tile .w-16 {
-                width: 2.5rem;
-                height: 2.5rem;
+                width: 3rem;
+                height: 3rem;
             }
             
             .mobile-participant-tile .text-2xl {
-                font-size: 1.25rem;
+                font-size: 1.5rem;
             }
             
             /* Mobile controls */
@@ -865,18 +585,8 @@ overflow: hidden;
                 padding: 1rem;
                 margin: 0.5rem;
             }
-        .output-panel {
-            flex: 1;
-            padding: 16px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            background: #1a1a1a;
-            color: #a0aec0;
-            overflow-y: auto;
-            white-space: pre-wrap;
-}
-
+        }
+        
         /* Tablet Layout */
         @media (min-width: 769px) and (max-width: 1024px) {
             .tablet-participants-grid {
@@ -894,60 +604,31 @@ overflow: hidden;
             .tablet-controls button {
                 padding: 1rem;
             }
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-}
-
-        /* Extra small mobile devices - improved touch targets */
+        }
+        
+        /* Extra small mobile devices */
         @media (max-width: 480px) {
             .mobile-mentor-video {
-                min-height: 45vh;
+                min-height: 50vh;
             }
             
             .mobile-student-video {
-                height: 45vh;
+                height: 50vh;
                 min-height: 180px;
             }
             
             .video-controls {
-                bottom: 1rem !important;
-                left: 0.5rem !important;
-                right: 0.5rem !important;
-                padding: 0.75rem;
-                gap: 0.5rem;
-                border-radius: 1.5rem;
+                bottom: 0.5rem !important;
             }
             
-            /* Still maintain adequate touch targets */
             .video-controls button {
-                width: 3rem;
-                height: 3rem;
-                padding: 0.75rem;
-                font-size: 1rem;
-                min-height: 48px;
-                min-width: 48px;
+                width: 2.5rem;
+                height: 2.5rem;
+                padding: 0.5rem;
+                font-size: 0.875rem;
             }
-            
-            /* Reduce number of visible controls for small screens */
-            .video-controls button:nth-child(n+6) {
-                display: none;
-            }
-            
-            /* Keep essential controls visible */
-            .video-controls button:last-child {
-                display: flex !important;
-            }
-        .btn {
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: none;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-}
-
+        }
+        
         /* Dashboard Mobile Styles */
         @media (max-width: 768px) {
             /* Dashboard Header */
@@ -1033,11 +714,8 @@ overflow: hidden;
                 padding: 1rem;
                 font-size: 1rem;
             }
-        .btn-run {
-            background: #48bb78;
-            color: white;
-}
-
+        }
+        
         /* Dashboard Extra Small Mobile */
         @media (max-width: 480px) {
             #dashboard .max-w-6xl {
@@ -1076,10 +754,8 @@ overflow: hidden;
                 padding: 0.5rem;
                 font-size: 0.75rem;
             }
-        .btn-run:hover {
-            background: #38a169;
-}
-
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50">
@@ -1386,89 +1062,10 @@ overflow: hidden;
             <div class="text-center mb-8">
                 <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
                     <i class="fas fa-graduation-cap text-2xl text-white"></i>
-        .btn-clear {
-            background: #e53e3e;
-            color: white;
-        }
-        
-        .btn-clear:hover {
-            background: #c53030;
-        }
-        
-        .video-section {
-            height: 160px;
-            background: #2d3748;
-            border-top: 1px solid #4a5568;
-            display: flex;
-            padding: 16px;
-            gap: 16px;
-        }
-        
-        .video-feed {
-            flex: 1;
-            background: #4a5568;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #a0aec0;
-        }
-        
-        .video-controls {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            right: 8px;
-            display: flex;
-            gap: 4px;
-            justify-content: center;
-        }
-        
-        .video-control-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.2s;
-        }
-        
-        .video-control-btn.mute {
-            background: #e53e3e;
-            color: white;
-        }
-        
-        .video-control-btn.active {
-            background: #48bb78;
-            color: white;
-        }
-        
-        .video-control-btn.inactive {
-            background: #718096;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <!-- Session Header -->
-    <div class="session-header">
-        <div class="flex items-center justify-between">
-            <div>
-                <h1 class="text-lg font-semibold text-white">BridgeLearn Session</h1>
-                <div class="participant-status">
-                    <div class="live-indicator"></div>
-                    <span class="text-sm text-gray-300">Alexander Lmpodywala (Presenting)</span>
-                    <span class="text-xs bg-green-500 text-white px-2 py-1 rounded ml-2">LIVE</span>
-</div>
+                </div>
                 <h3 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800" data-i18n="login.title">Welcome to BridgeLearn</h3>
                 <p class="text-gray-600" data-i18n="login.subtitle">Enter your details to join the learning community</p>
-</div>
+            </div>
             
             <form id="loginForm" class="space-y-6">
                 <div>
@@ -1498,22 +1095,12 @@ overflow: hidden;
                     <button type="button" onclick="closeLoginModal()" 
                             class="flex-1 border-2 border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all font-semibold" data-i18n="common.cancel">
                         Cancel
-            <div class="flex items-center gap-4">
-                <div class="participant-status">
-                    <div class="live-indicator"></div>
-                    <span class="text-sm text-gray-300">Alexander Lmpodywala (Presenting)</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button id="mobileToggle" class="text-xs bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-500" onclick="toggleMobileView()">
-                        Toggle Mobile
-</button>
+                    </button>
                     <button type="submit" 
                             class="flex-1 btn-primary py-3 text-center" data-i18n="login.submit">
                         <i class="fas fa-rocket mr-2"></i>Get Started
-                    <button class="text-gray-400 hover:text-white">
-                        <i class="fas fa-times"></i>
-</button>
-</div>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -1734,9 +1321,9 @@ overflow: hidden;
                         </div>
                     </div>
                 </div>
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Create Session Modal -->
     <div id="createSessionModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
@@ -1801,25 +1388,11 @@ overflow: hidden;
                 <div class="flex space-x-4">
                     <button type="button" onclick="closeCreateSessionModal()" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition">
                         Cancel
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Left Panel - Code Editor -->
-        <div class="left-panel">
-            <div class="panel-header">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-code text-blue-400"></i>
-                    <span class="text-sm font-medium">Code Editor (JavaScript)</span>
-                </div>
-                <div class="action-buttons">
-                    <button class="btn btn-run" onclick="runCode()">
-                        <i class="fas fa-play mr-1"></i> Run
-</button>
+                    </button>
                     <button type="submit" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
                         Create Session
-                    <button class="btn btn-clear" onclick="clearCode()">
-                        <i class="fas fa-trash mr-1"></i> Clear
-</button>
-</div>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -1845,7 +1418,7 @@ overflow: hidden;
                 <button onclick="closeVideoCall()" class="text-gray-400 hover:text-white transition-colors">
                     <i class="fas fa-times text-xl"></i>
                 </button>
-</div>
+            </div>
         </div>
         
         <!-- Main Content Area -->
@@ -1900,15 +1473,12 @@ console.log('Hello, BridgeLearn!');
 function greet(name) {
     return `Hello, ${name}! Welcome to BridgeLearn.`;
 }
-            <textarea class="code-editor" id="codeEditor" placeholder="// Write your JavaScript code here...">// Write your JavaScript code
 
 console.log(greet('Student'));">// Write your JavaScript code here...
 console.log('Hello, BridgeLearn!');
-console.log("Hello, Bridgelearn!");
 
 function greet(name) {
     return `Hello, ${name}! Welcome to BridgeLearn.`;
-    return "Hello, " + name + "! Welcome to Bridgelearn.";
 }
 
 console.log(greet('Student'));</textarea>
@@ -2097,8 +1667,7 @@ console.log(greet("BridgeLearn"));</textarea>
                     </div>
                 </div>
             </div>
-console.log(greet("Student"));</textarea>
-</div>
+        </div>
     </div>
 
     <!-- Translator Modal -->
@@ -2134,13 +1703,7 @@ console.log(greet("Student"));</textarea>
                             <option value="te">Telugu</option>
                         </select>
                     </div>
-        <!-- Right Panel - Output -->
-        <div class="right-panel">
-            <div class="panel-header">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-terminal text-green-400"></i>
-                    <span class="text-sm font-medium">Output</span>
-</div>
+                </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Text to translate:</label>
@@ -2154,11 +1717,9 @@ console.log(greet("Student"));</textarea>
                 <button onclick="translateText()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
                     <i class="fas fa-language mr-2"></i>Translate
                 </button>
-                <span class="text-xs text-gray-400">// Click run to execute your code</span>
-</div>
-            <div class="output-panel" id="output">// Click run to execute your code</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Dictionary Modal -->
     <div id="dictionaryModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
@@ -2180,15 +1741,8 @@ console.log(greet("Student"));</textarea>
                 </div>
                 <div id="dictionaryResult" class="bg-gray-50 p-4 rounded-lg min-h-64">
                     <div class="text-gray-500 text-center">Enter a word above to see its definition...</div>
-    <!-- Video Section -->
-    <div class="video-section">
-        <div class="video-feed">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <i class="fas fa-user text-white text-2xl"></i>
-</div>
-                <div class="text-sm font-medium">Alexander</div>
-</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -2208,18 +1762,8 @@ console.log(greet("Student"));</textarea>
             </div>
             <div class="flex-1 p-4">
                 <canvas id="whiteboardCanvas" class="border border-gray-300 rounded-lg w-full h-full cursor-crosshair"></canvas>
-            <div class="video-controls">
-                <button class="video-control-btn mute">
-                    <i class="fas fa-microphone-slash"></i>
-                </button>
-                <button class="video-control-btn inactive">
-                    <i class="fas fa-video-slash"></i>
-                </button>
-                <button class="video-control-btn active">
-                    <i class="fas fa-phone"></i>
-                </button>
-</div>
-</div>
+            </div>
+        </div>
     </div>
 
     <!-- AI Chatbot -->
@@ -2228,7 +1772,7 @@ console.log(greet("Student"));</textarea>
         <button id="chatbotToggle" class="text-white rounded-full w-14 h-14 sm:w-16 sm:h-16 shadow-xl transition-all duration-300 flex items-center justify-center chatbot-pulse bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:scale-110 chatbot-button">
             <i class="fas fa-robot text-xl sm:text-2xl"></i>
         </button>
-
+        
         <!-- Chat Window -->
         <div id="chatbotWindow" class="hidden absolute bottom-16 sm:bottom-20 right-0 w-80 sm:w-96 h-80 sm:h-96 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden chatbot-window">
             <!-- Chat Header -->
@@ -2256,13 +1800,8 @@ console.log(greet("Student"));</textarea>
                     <div class="bg-white rounded-2xl rounded-tl-sm p-3 max-w-xs shadow-sm">
                         <p class="text-sm text-gray-700">Hello! I'm your AI assistant for BridgeLearn. I can help you with questions about learning sessions, mentorship opportunities, and navigating our platform. How can I assist you today?</p>
                     </div>
-        <div class="video-feed">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <i class="fas fa-user text-white text-2xl"></i>
-</div>
-                <div class="text-sm font-medium">Student</div>
-</div>
+                </div>
+            </div>
             
             <!-- Chat Input -->
             <div class="p-4 bg-white border-t border-gray-200">
@@ -2273,21 +1812,11 @@ console.log(greet("Student"));</textarea>
                         <i class="fas fa-paper-plane text-sm"></i>
                     </button>
                 </div>
-            <div class="video-controls">
-                <button class="video-control-btn active">
-                    <i class="fas fa-microphone"></i>
-                </button>
-                <button class="video-control-btn active">
-                    <i class="fas fa-video"></i>
-                </button>
-                <button class="video-control-btn active">
-                    <i class="fas fa-phone"></i>
-                </button>
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 
-<script>
+    <script>
         let currentUser = null;
         let userSessions = [];
         
@@ -2578,8 +2107,6 @@ console.log(greet("Student"));</textarea>
 
         function adjustVideoControlsPosition() {
             const videoControls = document.querySelector('.video-controls');
-            if (!videoControls) return; // Safe check to prevent errors
-            
             const screenHeight = window.innerHeight;
             
             // Adjust position based on screen height to avoid taskbar
@@ -2852,50 +2379,41 @@ console.log(greet("Student"));</textarea>
         }
 
         // Code Compiler Functions
-        // JavaScript execution functionality
-function runCode() {
+        function runCode() {
             const codeEditor = document.getElementById('sharedCodeEditor');
             const output = document.getElementById('sharedOutput');
             
             if (!codeEditor || !output) return;
             
             const code = codeEditor.value;
-            const code = document.getElementById('codeEditor').value;
-            const output = document.getElementById('output');
-
-// Clear previous output
+            
+            // Clear previous output
             output.innerHTML = '';
-            output.textContent = '';
-
+            
             // Capture console.log output
             const originalLog = console.log;
-            // Create a console.log capture
-const logs = [];
+            const logs = [];
             
-            const originalLog = console.log;
-console.log = function(...args) {
-logs.push(args.map(arg => 
-typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
-@@ -2471,902 +580,62 @@ <h3 class="font-semibold text-sm sm:text-base">BridgeLearn AI</h3>
-
-try {
-// Execute the code
+            console.log = function(...args) {
+                logs.push(args.map(arg => 
+                    typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+                ).join(' '));
+                originalLog.apply(console, args);
+            };
+            
+            try {
+                // Execute the code
                 const result = eval(code);
-                eval(code);
-
+                
                 // Display console.log output
-                // Display output
-if (logs.length > 0) {
+                if (logs.length > 0) {
                     logs.forEach(log => {
                         const logDiv = document.createElement('div');
                         logDiv.textContent = log;
                         logDiv.className = 'text-green-400 mb-1';
                         output.appendChild(logDiv);
                     });
-                    output.textContent = logs.join('\n');
-                } else {
-                    output.textContent = '// Code executed successfully (no output)';
-}
+                }
                 
                 // Display return value if any
                 if (result !== undefined) {
@@ -2911,17 +2429,15 @@ if (logs.length > 0) {
                 successDiv.className = 'text-green-500 mt-2 font-bold';
                 output.appendChild(successDiv);
                 
-} catch (error) {
+            } catch (error) {
                 // Display error
                 const errorDiv = document.createElement('div');
                 errorDiv.textContent = `Error: ${error.message}`;
                 errorDiv.className = 'text-red-400 mt-2 font-bold';
                 output.appendChild(errorDiv);
-                output.textContent = `Error: ${error.message}`;
-                output.style.color = '#e53e3e';
-} finally {
-// Restore original console.log
-console.log = originalLog;
+            } finally {
+                // Restore original console.log
+                console.log = originalLog;
             }
             
             // Scroll to bottom
@@ -2954,8 +2470,7 @@ console.log = originalLog;
                 copyChatToMobile();
                 
                 // Simulate mentor responding
-                // Reset output color
-setTimeout(() => {
+                setTimeout(() => {
                     const mentorResponses = [
                         'That\'s a great question! Let me explain that concept in detail.',
                         'I understand your concern. Let\'s work through this step by step.',
@@ -3142,13 +2657,10 @@ setTimeout(() => {
                 }
             } else {
                 output.innerHTML = `Language ${language} execution not implemented in demo. This would connect to a real compiler API.`;
-                    output.style.color = '#a0aec0';
-                }, 100);
-}
-}
+            }
+        }
 
-        
-function clearCode() {
+        function clearCode() {
             document.getElementById('compilerCode').value = '';
             document.getElementById('compilerOutput').innerHTML = '<div class="text-gray-500">Click "Run Code" to see output...</div>';
         }
@@ -3352,9 +2864,7 @@ function clearCode() {
 
         function openColorPicker() {
             alert('Color picker feature would open here. This would provide color selection tools for design sessions.');
-            document.getElementById('codeEditor').value = '';
-            document.getElementById('output').textContent = '// Click run to execute your code';
-}
+        }
 
         function displayUserSessions() {
             const sessionsContainer = document.getElementById('userSessions');
@@ -3498,20 +3008,12 @@ function clearCode() {
             
             // Show success message
             alert('Session created successfully!');
-        
-        // Auto-run on page load to show initial output
-        window.addEventListener('load', function() {
-            runCode();
-});
+        });
 
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-        
-        // Add keyboard shortcuts
-        document.getElementById('codeEditor').addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-e.preventDefault();
+                e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
@@ -3519,9 +3021,7 @@ e.preventDefault();
                     });
                 }
             });
-                runCode();
-            }
-});
+        });
 
         // --- Simple i18n ---
         let currentLang = 'en';
@@ -3755,23 +3255,7 @@ e.preventDefault();
                 'login.roleMentor': 'విరమించిన నిపుణుడు / మార్గదర్శి',
                 'login.submit': 'ప్రారంభించండి',
                 'common.cancel': 'రద్దు'
-        
-        // Mobile view toggle for testing
-        let isMobileView = false;
-        function toggleMobileView() {
-            isMobileView = !isMobileView;
-            const body = document.body;
-            const toggleButton = document.getElementById('mobileToggle');
-            
-            if (isMobileView) {
-                // Apply mobile test class for full mobile experience
-                body.classList.add('mobile-test');
-                toggleButton.textContent = 'Desktop View';
-            } else {
-                // Remove mobile test class to return to responsive/desktop
-                body.classList.remove('mobile-test');
-                toggleButton.textContent = 'Mobile View';
-}
+            }
         };
 
         function applyTranslations(lang) {
@@ -3793,7 +3277,7 @@ e.preventDefault();
             const rtl = lang === 'ar';
             document.documentElement.dir = rtl ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-}
+        }
 
         function setLanguage(lang) {
             localStorage.setItem('lang', lang);
@@ -3815,6 +3299,6 @@ e.preventDefault();
         const langSelectMobile = document.getElementById('langSelectMobile');
         if (langSelect) langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
         if (langSelectMobile) langSelectMobile.addEventListener('change', (e) => setLanguage(e.target.value));
-</script>
+    </script>
 </body>
 </html>
