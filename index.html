@@ -2190,6 +2190,9 @@ console.log(greet("BridgeLearn"));</textarea>
         function endCall() {
             if (confirm('Are you sure you want to end the call?')) {
                 closeVideoCall();
+                setTimeout(function() {
+                    document.getElementById('dashboard').classList.remove('hidden');
+                }, 300); // slight delay to ensure videoCallPage is hidden first
             }
         }
 
@@ -2530,39 +2533,40 @@ console.log(greet("BridgeLearn"));</textarea>
             }
         }
 
+        // Fix: Always close login modal after login (works for mobile and desktop)
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('email').value;
             const userType = document.getElementById('userType').value;
 
             if (fullName && email) {
                 currentUser = { fullName, email, userType };
-                
+
                 // Hide main sections and show dashboard
                 document.querySelector('nav').classList.add('hidden');
                 document.querySelector('section[id="home"]').classList.add('hidden');
                 document.querySelector('section[id="sessions"]').classList.add('hidden');
                 const aboutToHide = document.querySelector('section[id="about"]');
-                if (aboutToHide) {
-                    aboutToHide.classList.add('hidden');
-                    aboutToHide.remove();
-                }
+                if (aboutToHide) aboutToHide.classList.add('hidden');
                 document.getElementById('dashboard').classList.remove('hidden');
-                
+
                 // Update greeting
-                document.getElementById('userGreeting').textContent = 
+                document.getElementById('userGreeting').textContent =
                     `Welcome, ${fullName} (${userType === 'student' ? 'Student' : 'Mentor'})`;
-                
+
                 // Display user sessions
                 displayUserSessions();
-                
+
                 // Detect session type and show appropriate tools
-                detectSessionType();
-                
-                closeLoginModal();
-                
+                if (typeof detectSessionType === 'function') detectSessionType();
+
+                // Always close login modal (fix for mobile)
+                const loginModal = document.getElementById('loginModal');
+                loginModal.classList.add('hidden');
+                loginModal.classList.remove('flex');
+
                 // Reset form
                 document.getElementById('loginForm').reset();
             }
@@ -2786,7 +2790,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'actions.delete': 'அழி',
                 'dashboard.mySessions': 'என் அமர்வுகள்',
                 'dashboard.recentActivity': 'சமீபத்திய செயல்பாடு',
-                'dashboard.activityBooked': 'புதிய அமர்வு பதிவு செய்யப்பட்டது',
+                'dashboard.activityBooked': 'கிருௌப்பில் புதிய அமர்வு பதிவு செய்யப்பட்டது',
                 'dashboard.activityCompleted': 'அமர்வு முடிந்தது',
                 'dashboard.noSessions': 'இன்னும் எந்த அமர்வும் உருவாக்கப்படவில்லை. தொடங்க "புதிய அமர்வைச் சேர்க்கவும்" கிளிக் செய்யவும்!',
                 'about.title': 'BridgeLearn பற்றி',
