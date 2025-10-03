@@ -1,8 +1,0 @@
-{
-  "name": "BridgeLearn - Modern Learning Platform",
-  "description": "A modern, scalable, mobile-friendly learning platform.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
