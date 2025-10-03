@@ -15,18 +15,44 @@
             --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
             --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
             --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-            --light-bg: #f8fafc;
+            
+            /* Light Theme */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
             --card-bg: #ffffff;
             --text-primary: #1a202c;
             --text-secondary: #4a5568;
             --text-muted: #718096;
             --border-color: #e2e8f0;
+
             --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        html.dark {
+             /* Dark Theme */
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --card-bg: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #a0aec0;
+            --text-muted: #718096;
+            --border-color: #4a5568;
+
+            --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.3), 0 1px 2px 0 rgba(0,0,0,0.25);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.25);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.25);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.25);
+        }
         
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
         * {
             font-family: 'Poppins', 'Inter', sans-serif;
         }
@@ -36,7 +62,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-gradient::before {
             content: '';
             position: absolute;
@@ -47,6 +73,13 @@
             background: url('https://t4.ftcdn.net/jpg/01/19/26/15/360_F_119261573_PBw1J9gmrAWGwCuclNU1KmzpnPcC4vYJ.jpg') center/cover;
             opacity: 0.2;
             z-index: 1;
+            animation: backgroundZoom 30s ease-in-out infinite;
+        }
+
+        @keyframes backgroundZoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         .hero-content {
@@ -65,6 +98,14 @@
         .modern-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
+        }
+
+        .modern-card .session-card-icon i, .about-feature-icon i {
+            transition: transform 0.3s ease;
+        }
+
+        .modern-card:hover .session-card-icon i, .modern-card:hover .about-feature-icon i {
+             transform: scale(1.1) rotate(-10deg);
         }
         
         .gradient-text {
@@ -338,297 +379,48 @@
             }
         }
         
-        /* Video Call Safe Areas */
+        /* Video Call Page Styles */
         #videoCallPage {
-            /* Ensure full viewport coverage */
-            height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile */
-            /* Add safe area padding for different screen configurations */
-            padding-bottom: env(safe-area-inset-bottom, 0px);
+          height: 100vh;
+          height: 100dvh; /* Dynamic viewport height for mobile */
         }
-        
-        /* Video controls positioning */
-        .video-controls {
-            /* Position controls higher to avoid taskbar */
-            bottom: 5rem !important;
-            /* Add safe area padding */
-            padding-bottom: env(safe-area-inset-bottom, 1rem);
+        #videoGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            width: 100%;
+            height: 100%;
         }
-        
-        /* Ensure video call content doesn't get cut off */
-        @media (max-height: 600px) {
-            .video-controls {
-                bottom: 4rem !important;
-            }
+        .video-container {
+            position: relative;
+            background-color: #2d3748; /* gray-800 */
+            border-radius: 0.75rem; /* rounded-xl */
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
         }
-        
-        @media (max-height: 500px) {
-            .video-controls {
-                bottom: 3rem !important;
-            }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        
-        /* Windows taskbar specific fixes */
-        @media (min-height: 700px) {
-            .video-controls {
-                bottom: 6rem !important;
-            }
+        .video-container .participant-name {
+            position: absolute;
+            bottom: 0.5rem;
+            left: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
         }
-        
-        /* Ensure video call takes full available space */
-        #videoCallPage {
-            min-height: 100vh;
-            min-height: 100dvh;
+        .video-container .placeholder-icon {
+            font-size: 4rem;
+            color: #718096; /* gray-500 */
         }
-        
-        /* Video area adjustments for better visibility */
-        .video-main-area {
-            min-height: calc(100vh - 8rem);
-            min-height: calc(100dvh - 8rem);
-        }
-        
-        /* Mobile Video Call Layout */
-        @media (max-width: 768px) {
-            #videoCallPage {
-                height: 100vh;
-                height: 100dvh;
-                overflow: hidden;
-            }
-            
-            /* Mobile video layout - stack vertically */
-            .mobile-video-layout {
-                flex-direction: column !important;
-                height: 100%;
-            }
-            
-            /* Mentor video on top for mobile */
-            .mobile-mentor-video {
-                flex: 1;
-                min-height: 60vh;
-                position: relative;
-            }
-            
-            /* Student video on bottom for mobile */
-            .mobile-student-video {
-                height: 40vh;
-                min-height: 200px;
-                position: relative;
-            }
-            
-            /* Mobile video controls */
-            .video-controls {
-                bottom: 1rem !important;
-                left: 0.5rem !important;
-                right: 0.5rem !important;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-                justify-content: center;
-            }
-            
-            .video-controls button {
-                width: 3rem;
-                height: 3rem;
-                padding: 0.75rem;
-                font-size: 1rem;
-            }
-            
-            /* Mobile sidebar - make it collapsible */
-            .mobile-sidebar {
-                position: absolute;
-                top: 0;
-                right: -100%;
-                width: 100%;
-                height: 100%;
-                background: #1f2937;
-                transition: right 0.3s ease;
-                z-index: 20;
-            }
-            
-            .mobile-sidebar.open {
-                right: 0;
-            }
-            
-            /* Hide desktop sidebar on mobile */
-            .desktop-sidebar {
-                display: none;
-            }
-            
-            /* Mobile header adjustments */
-            .mobile-video-header {
-                padding: 1rem;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .mobile-video-header h3 {
-                font-size: 1.125rem;
-            }
-            
-            .mobile-video-header p {
-                font-size: 0.875rem;
-            }
-            
-            /* Mobile participant cards */
-            .mobile-participant-card {
-                padding: 0.75rem;
-                margin-bottom: 0.5rem;
-            }
-            
-            .mobile-participant-card .w-10 {
-                width: 2.5rem;
-                height: 2.5rem;
-            }
-            
-            /* Mobile chat adjustments */
-            .mobile-chat-input {
-                padding: 0.75rem;
-            }
-            
-            .mobile-chat-input input {
-                font-size: 1rem;
-                padding: 0.75rem;
-            }
-            
-            .mobile-chat-input button {
-                padding: 0.75rem;
-                width: 3rem;
-            }
-            
-            /* Google Meet Mobile Layout Improvements */
-            .mobile-google-meet-layout {
-                flex-direction: column !important;
-            }
-            
-            .mobile-presenter-area {
-                flex: 2;
-                min-height: 60vh;
-            }
-            
-            .mobile-participants-area {
-                flex: 1;
-                min-height: 40vh;
-                width: 100% !important;
-            }
-            
-            .mobile-participants-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .mobile-participant-tile {
-                padding: 1rem;
-                min-height: 120px;
-            }
-            
-            .mobile-participant-tile .w-16 {
-                width: 3rem;
-                height: 3rem;
-            }
-            
-            .mobile-participant-tile .text-2xl {
-                font-size: 1.5rem;
-            }
-            
-            /* Mobile controls */
-            .mobile-controls {
-                bottom: 1rem !important;
-                left: 1rem !important;
-                right: 1rem !important;
-                padding: 0.5rem 1rem;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .mobile-controls button {
-                flex: 1;
-                min-width: 2.5rem;
-                padding: 0.75rem;
-                font-size: 0.875rem;
-            }
-            
-            /* Mobile meeting info */
-            .mobile-meeting-info {
-                bottom: 1rem !important;
-                left: 1rem !important;
-                font-size: 0.75rem;
-                padding: 0.5rem 0.75rem;
-            }
-            
-            /* Mobile meeting icons */
-            .mobile-meeting-icons {
-                bottom: 1rem !important;
-                right: 1rem !important;
-                gap: 0.5rem;
-            }
-            
-            .mobile-meeting-icons button {
-                padding: 0.5rem;
-                width: 2.5rem;
-                height: 2.5rem;
-            }
-            
-            /* Touch-friendly interactions */
-            .touch-target {
-                min-height: 44px;
-                min-width: 44px;
-            }
-            
-            /* Improved text readability on mobile */
-            .mobile-text {
-                font-size: 0.875rem;
-                line-height: 1.4;
-            }
-            
-            /* Better spacing for mobile */
-            .mobile-spacing {
-                padding: 1rem;
-                margin: 0.5rem;
-            }
-        }
-        
-        /* Tablet Layout */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .tablet-participants-grid {
-                grid-template-columns: 1fr 1fr !important;
-                gap: 1.5rem;
-            }
-            
-            .tablet-controls {
-                bottom: 2rem !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                padding: 0.75rem 1.5rem;
-            }
-            
-            .tablet-controls button {
-                padding: 1rem;
-            }
-        }
-        
-        /* Extra small mobile devices */
-        @media (max-width: 480px) {
-            .mobile-mentor-video {
-                min-height: 50vh;
-            }
-            
-            .mobile-student-video {
-                height: 50vh;
-                min-height: 180px;
-            }
-            
-            .video-controls {
-                bottom: 0.5rem !important;
-            }
-            
-            .video-controls button {
-                width: 2.5rem;
-                height: 2.5rem;
-                padding: 0.5rem;
-                font-size: 0.875rem;
-            }
-        }
-        
+                
         /* Dashboard Mobile Styles */
         @media (max-width: 768px) {
             /* Dashboard Header */
@@ -755,8 +547,289 @@
                 font-size: 0.75rem;
             }
         }
+
+        /* Language selector styling */
+        #langSelect, #langSelectMobile {
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 10px 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem center;
+            background-size: 1em;
+            padding-right: 2.5rem;
+        }
+
+        .dark #langSelect, .dark #langSelectMobile {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        }
+
+        #langSelect option, #langSelectMobile option {
+            color: var(--text-primary);
+            background-color: var(--card-bg);
+        }
         
+        #langSelect:hover, #langSelectMobile:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: #667eea;
+        }
+        
+        /* Mode Selection */
+        .mode-card {
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+        .mode-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--shadow-xl);
+        }
+        .mode-card i {
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        .mode-card:hover i {
+            transform: scale(1.1);
+        }
+        .teen-mode-card {
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        }
+        .mentor-mode-card {
+            background: var(--primary-gradient);
+        }
+
+        /* Teen Mode Styles */
+        #teenModeHeader {
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+        }
+        .dark #teenDashboard {
+            background-color: #111827; /* A darker blue-gray for teen mode */
+        }
+        #teenDashboard {
+            background-color: #eef2f9; /* A cool, light blue-gray */
+        }
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        .game-card i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .game-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* Teen Zone Module Styles */
+        .code-editor {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #2d3748;
+            color: #e2e8f0;
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 250px;
+            resize: vertical;
+        }
+        .dark .code-output {
+            background-color: #1a202c;
+            color: #a0aec0;
+        }
+        .code-output {
+            background-color: #f3f4f6;
+            color: #374151;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 1.5rem;
+            border-radius: 8px;
+            min-height: 150px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .dark .topic-btn {
+            background: var(--card-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+        .topic-btn {
+            background: white;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+        .topic-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        #aiCreativeLabOutput {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-height: 200px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+        }
+
+        /* --- Animation Styles --- */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-animate.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered animation for children */
+        .stagger-children > * {
+            transition-delay: var(--stagger-delay, 0s);
+        }
+        
+        /* Modal Animation */
+        #loginModal, #createSessionModal, #compilerModal, #translatorModal, #dictionaryModal, #whiteboardModal, #profileModal {
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #loginModal .modal-content, #createSessionModal > div, #compilerModal > div, #translatorModal > div, #dictionaryModal > div, #whiteboardModal > div, #profileModal .modal-content {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        
+        #loginModal.flex .modal-content, 
+        #createSessionModal.flex > div, 
+        #compilerModal.flex > div,
+        #translatorModal.flex > div,
+        #dictionaryModal.flex > div,
+        #whiteboardModal.flex > div,
+        #profileModal.flex .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Chatbot Window Animation */
+        #chatbotWindow {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        #chatbotWindow:not(.hidden) {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Profile Customization */
+        .interest-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            display: inline-flex;
+            align-items: center;
+            margin: 2px;
+            animation: pop-in 0.2s ease-out forwards;
+        }
+        .interest-tag-remove {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            margin-left: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .interest-tag-remove:hover {
+            opacity: 1;
+        }
+
+        @keyframes pop-in {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* --- Dark Mode Specific Styles --- */
+        .dark body { background-color: var(--bg-primary); color: var(--text-primary); }
+        .dark .bg-gray-50 { background-color: var(--bg-primary) !important; }
+        .dark #sessions { background-color: var(--bg-primary) !important; }
+        .dark .bg-white { background-color: var(--card-bg) !important; }
+        .dark #dashboard .bg-gray-100 { background-color: var(--bg-primary) !important; }
+
+        .dark nav {
+            background-color: color-mix(in srgb, var(--card-bg) 95%, transparent) !important;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .dark .text-gray-800, .dark .text-gray-700, .dark h4, .dark h3, .dark h2, .dark h1 { color: var(--text-primary); }
+        .dark .text-gray-600, .dark .text-gray-500, .dark p, .dark label, .dark span, .dark a:not(.btn-primary):not(.btn-secondary) { color: var(--text-secondary); }
+        .dark .border, .dark .border-b, .dark .border-t { border-color: var(--border-color); }
+        .dark .modern-card { border-color: var(--border-color); }
+        .dark input, .dark select, .dark textarea {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+        .dark input::placeholder, .dark textarea::placeholder { color: var(--text-muted); }
+        .dark #chatbotWindow, .dark #userMenuDropdown { border-color: var(--border-color); }
+        .dark #chatbotMessages { background-color: var(--bg-primary) !important; }
+
     </style>
+    <script>
+        // Immediately apply theme to prevent FOUC (Flash of Unstyled Content)
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -791,7 +864,7 @@
                 
                 <!-- Desktop Login Button -->
                 <div class="hidden md:flex items-center space-x-3">
-                    <select id="langSelect" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <select id="langSelect">
                         <option value="en">English</option>
                         <option value="ar">العربية</option>
                         <option value="hi">हिन्दी</option>
@@ -799,6 +872,9 @@
                         <option value="ta">தமிழ்</option>
                         <option value="te">తెలుగు</option>
                     </select>
+                    <button id="theme-toggle-btn" aria-label="Toggle theme" class="text-gray-600 hover:text-blue-600 w-10 h-10 flex items-center justify-center rounded-lg transition-colors">
+                        <i class="fas fa-sun text-lg"></i>
+                    </button>
                     <button id="loginBtn" class="btn-primary">
                         <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
                     </button>
@@ -811,14 +887,19 @@
                     <a href="#home" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.home">Home</a>
                     <a href="#sessions" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.sessions">Sessions</a>
                     <a href="#about" class="text-gray-600 font-medium hover:text-blue-600 transition-colors duration-200" data-i18n="nav.about">About</a>
-                    <select id="langSelectMobile" class="border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                        <option value="en">English</option>
-                        <option value="ar">العربية</option>
-                        <option value="hi">हिन्दी</option>
-                        <option value="ml">മലയാളം</option>
-                        <option value="ta">தமிழ்</option>
-                        <option value="te">తెలుగు</option>
-                    </select>
+                    <div class="flex items-center gap-4">
+                        <select id="langSelectMobile" class="flex-grow">
+                            <option value="en">English</option>
+                            <option value="ar">العربية</option>
+                            <option value="hi">हिन्दी</option>
+                            <option value="ml">മലയാളം</option>
+                            <option value="ta">தமிழ்</option>
+                            <option value="te">తెలుగు</option>
+                        </select>
+                        <button id="theme-toggle-btn-mobile" aria-label="Toggle theme" class="text-gray-600 hover:text-blue-600 w-12 h-12 flex items-center justify-center rounded-lg transition-colors border border-gray-300">
+                             <i class="fas fa-sun text-lg"></i>
+                        </button>
+                    </div>
                     <button id="mobileLoginBtn" class="btn-primary w-full text-center">
                         <i class="fas fa-sign-in-alt mr-2"></i><span data-i18n="nav.login">Login</span>
                     </button>
@@ -832,7 +913,7 @@
         <div class="hero-content">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <div class="mb-8">
-                    <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-i18n="hero.title">
+                    <h2 class="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight scroll-animate" data-i18n="hero.title">
                         Bridge Generations Through 
                         <span class="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
                             Learning
@@ -840,12 +921,12 @@
                     </h2> 
                 </div>
                 
-                <p class="hero-subtitle text-lg sm:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-white/90" data-i18n="hero.tagline">
+                <p class="hero-subtitle text-lg sm:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed text-white/90 scroll-animate" data-i18n="hero.tagline">
                     Connect with experienced Emirati mentors and international professionals in the UAE. 
                     Share knowledge, preserve traditions, and build the future together.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mobile-stack">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mobile-stack scroll-animate">
                     <button onclick="showLoginModal('student')" class="btn-primary w-full sm:w-auto px-8 py-4 text-lg mobile-full">
                         <i class="fas fa-user-graduate mr-2"></i>
                         <span data-i18n="hero.ctaStudent">I'm a Student</span>
@@ -857,16 +938,16 @@
                 </div>
                 
                 <!-- Stats Section -->
-                <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                    <div class="text-center">
+                <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto stagger-children">
+                    <div class="text-center scroll-animate">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">500+</div>
                         <div class="text-white/80" data-i18n="stats.activeMentors">Active Mentors</div>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center scroll-animate">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">2,000+</div>
                         <div class="text-white/80" data-i18n="stats.studentsLearning">Students Learning</div>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center scroll-animate">
                         <div class="text-3xl sm:text-4xl font-bold text-white mb-2">50+</div>
                         <div class="text-white/80" data-i18n="stats.countries">Countries Represented</div>
                     </div>
@@ -875,11 +956,41 @@
         </div>
     </section>
 
+    <!-- Choose Your Path -->
+    <section id="modeSelection" class="py-16 lg:py-24 bg-white section-padding overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800">
+                    Choose Your Path
+                </h3>
+                <div class="w-24 h-1 mx-auto bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"></div>
+                <p class="text-lg text-gray-600 mt-6 max-w-2xl mx-auto">
+                    Are you here to explore and learn, or to mentor and guide?
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Teen Zone Card -->
+                <div id="teenModeBtn" class="mode-card teen-mode-card group scroll-animate">
+                    <i class="fas fa-laptop-code text-5xl mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-3">Teen Zone</h4>
+                    <p class="mb-6">Explore coding, game design, and more!</p>
+                    <button class="bg-white/30 text-white font-bold py-2 px-6 rounded-full hover:bg-white/50 transition">Enter Zone</button>
+                </div>
+                <!-- Mentor Mode Card -->
+                <div id="mentorModeBtn" class="mode-card mentor-mode-card group scroll-animate">
+                    <i class="fas fa-user-tie text-5xl mb-4"></i>
+                    <h4 class="text-3xl font-bold mb-3">Mentor Mode</h4>
+                    <p class="mb-6">Connect, teach, and inspire the next generation.</p>
+                    <button class="btn-primary">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Featured Sessions -->
     <section id="sessions" class="py-16 lg:py-24 bg-gray-50 section-padding">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 scroll-animate">
                 <h3 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-gray-800" data-i18n="sessions.title">
                     Featured Learning Sessions
                 </h3>
@@ -889,9 +1000,9 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mobile-grid-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mobile-grid-1 stagger-children">
                 <!-- Session Card 1 -->
-                <div class="modern-card p-6 modern-accent group">
+                <div class="modern-card p-6 modern-accent group scroll-animate">
                     <div class="text-center mb-6">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center session-card-icon">
                             <i class="fas fa-code text-2xl text-white"></i>
@@ -930,7 +1041,7 @@
                 </div>
 
                 <!-- Session Card 2 -->
-                <div class="modern-card p-6 modern-accent group">
+                <div class="modern-card p-6 modern-accent group scroll-animate">
                     <div class="text-center mb-6">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center session-card-icon">
                             <i class="fas fa-chart-line text-2xl text-white"></i>
@@ -969,7 +1080,7 @@
                 </div>
 
                 <!-- Session Card 3 -->
-                <div class="modern-card p-6 modern-accent group">
+                <div class="modern-card p-6 modern-accent group scroll-animate">
                     <div class="text-center mb-6">
                         <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r from-pink-400 to-red-500 flex items-center justify-center session-card-icon">
                             <i class="fas fa-paint-brush text-2xl text-white"></i>
@@ -1017,9 +1128,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mobile-grid-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mobile-grid-1 stagger-children">
                 <!-- Feature 1 -->
-                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature">
+                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature scroll-animate">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform about-feature-icon">
                         <i class="fas fa-hands-helping text-3xl text-white"></i>
                     </div>
@@ -1030,7 +1141,7 @@
                 </div>
                 
                 <!-- Feature 2 -->
-                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature">
+                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature scroll-animate">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center group-hover:scale-110 transition-transform about-feature-icon">
                         <i class="fas fa-graduation-cap text-3xl text-white"></i>
                     </div>
@@ -1041,7 +1152,7 @@
                 </div>
                 
                 <!-- Feature 3 -->
-                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature">
+                <div class="modern-card p-8 text-center group hover:shadow-2xl transition-all duration-300 about-feature scroll-animate">
                     <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center group-hover:scale-110 transition-transform about-feature-icon">
                         <i class="fas fa-star text-3xl text-white"></i>
                     </div>
@@ -1055,6 +1166,90 @@
             
         </div>
     </section>
+
+    <!-- Teen Mode Header (hidden by default) -->
+    <header id="teenModeHeader" class="hidden sticky top-0 z-40 p-4 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-laptop-code text-3xl text-white"></i>
+                <h1 class="text-2xl font-bold text-white">BridgeLearn Teen Zone</h1>
+            </div>
+            <button onclick="goBackToHome()" class="bg-white/30 text-white font-bold py-2 px-4 rounded-full hover:bg-white/50 transition">
+                <i class="fas fa-arrow-left mr-2"></i> Go Back
+            </button>
+        </div>
+    </header>
+
+    <!-- Teen Dashboard (hidden by default) -->
+    <main id="teenDashboard" class="hidden min-h-screen">
+        <!-- Main Dashboard -->
+        <div id="teenDashboardMain" class="p-8">
+            <h2 class="text-4xl font-bold text-center text-gray-700 mb-12">Teen Learning Zone</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="game-card" onclick="showTeenDashboardScreen('coding')">
+                    <i class="fas fa-code"></i>
+                    <h3>Coding Challenge</h3>
+                </div>
+                <div class="game-card" onclick="showTeenDashboardScreen('gamedesign')">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Game Design Intro</h3>
+                </div>
+                <div class="game-card" onclick="showTeenDashboardScreen('creative')">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>AI Creative Lab</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coding Challenge Game -->
+        <div id="codingChallengeGame" class="hidden p-8">
+            <button onclick="showTeenDashboardScreen('main')" class="mb-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition"><i class="fas fa-arrow-left mr-2"></i>Back to Zone</button>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-700 text-center mb-2">Python Coding Challenge</h2>
+                <p class="text-center text-gray-600 mb-6">Write a Python function to check if a word is a palindrome (reads the same forwards and backward).</p>
+                <textarea id="codeChallengeInput" class="w-full code-editor" placeholder="def is_palindrome(word):&#10;    # Your code here"></textarea>
+                <button id="submitCodeBtn" class="mt-4 w-full btn-primary text-lg"><i class="fas fa-play mr-2"></i>Run & Check Code</button>
+                <h3 class="font-bold text-xl mt-6 mb-2">AI Feedback:</h3>
+                <div id="codeChallengeOutput" class="code-output">Your feedback will appear here...</div>
+            </div>
+        </div>
+
+        <!-- Game Design Intro Game -->
+        <div id="gameDesignIntroGame" class="hidden p-8">
+             <button onclick="showTeenDashboardScreen('main')" class="mb-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition"><i class="fas fa-arrow-left mr-2"></i>Back to Zone</button>
+             <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-700 text-center mb-2">Game Design Concepts</h2>
+                <p class="text-center text-gray-600 mb-6">Select a topic to learn more from our AI Tutor!</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <button class="topic-btn" onclick="fetchGameDesignConcept('Game Loop')">Game Loop</button>
+                    <button class="topic-btn" onclick="fetchGameDesignConcept('Character Archetypes')">Archetypes</button>
+                    <button class="topic-btn" onclick="fetchGameDesignConcept('Level Design')">Level Design</button>
+                    <button class="topic-btn" onclick="fetchGameDesignConcept('Game Mechanics')">Mechanics</button>
+                </div>
+                <div id="gameDesignOutput" class="code-output bg-gray-100 text-gray-700">Select a topic to begin!</div>
+             </div>
+        </div>
+        
+        <!-- AI Creative Lab -->
+        <div id="aiCreativeLabGame" class="hidden p-8">
+            <button onclick="showTeenDashboardScreen('main')" class="mb-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition"><i class="fas fa-arrow-left mr-2"></i>Back to Zone</button>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-700 text-center mb-2">AI Creative Lab</h2>
+                <p class="text-center text-gray-600 mb-6">Let's create something awesome! What do you want to generate?</p>
+                
+                <div class="flex flex-col sm:flex-row gap-2 mb-4">
+                    <select id="aiCreativeType" class="w-full sm:w-1/3 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="game_concept">Game Concept</option>
+                        <option value="character_backstory">Character Backstory</option>
+                        <option value="python_script">Simple Python Script</option>
+                    </select>
+                    <input type="text" id="aiCreativePrompt" placeholder="e.g., a sci-fi stealth game" class="flex-1 w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="generateAiContentBtn" class="btn-secondary px-6 py-3"><i class="fas fa-magic mr-2"></i>Generate</button>
+                </div>
+                <div id="aiCreativeLabOutput" class="text-lg">Your creation will appear here!</div>
+            </div>
+        </div>
+    </main>
 
     <!-- Login Modal -->
     <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
@@ -1116,14 +1311,26 @@
                             <i class="fas fa-graduation-cap text-xl sm:text-2xl text-blue-600"></i>
                             <h1 class="text-xl sm:text-2xl font-bold text-gray-800">BridgeLearn Dashboard</h1>
                         </div>
-                        <div class="flex flex-wrap items-center gap-2 sm:space-x-4 w-full sm:w-auto justify-between sm:justify-end">
+                        <div class="flex flex-wrap items-center gap-2 sm:space-x-4 w-full sm:w-auto justify-end">
                             <button onclick="showCreateSessionModal()" class="bg-blue-600 text-white px-3 py-2 text-sm sm:px-4 sm:text-base rounded-lg hover:bg-blue-700 transition">
                                 <i class="fas fa-plus mr-1 sm:mr-2"></i><span data-i18n="actions.createSession">Create Session</span>
                             </button>
-                            <span id="userGreeting" class="text-gray-600 text-sm sm:text-base"></span>
-                            <button onclick="logout()" class="text-red-600 hover:text-red-800 text-sm sm:text-base">
-                                <i class="fas fa-sign-out-alt mr-1"></i> Logout
-                            </button>
+                            <!-- User Profile Dropdown -->
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center space-x-2">
+                                    <img id="userMenuAvatar" src="" alt="User Avatar" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover bg-gray-200">
+                                    <span id="userMenuName" class="font-semibold text-gray-700 text-sm sm:text-base"></span>
+                                    <i class="fas fa-chevron-down text-xs text-gray-500"></i>
+                                </button>
+                                <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-20 py-1">
+                                    <a href="#" onclick="openProfileModal()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-user-edit w-5 mr-2"></i>My Profile
+                                    </a>
+                                    <a href="#" onclick="logout()" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                        <i class="fas fa-sign-out-alt w-5 mr-2"></i>Logout
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1385,7 +1592,7 @@
                         <option value="requesting">I'm requesting mentoring/help</option>
                     </select>
                 </div>
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 mb-4">
                     <button type="button" onclick="closeCreateSessionModal()" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-50 transition">
                         Cancel
                     </button>
@@ -1397,51 +1604,114 @@
         </div>
     </div>
 
-    <!-- Video Call Full Page -->
-    <div id="videoCallPage" class="fixed inset-0 bg-black z-50 flex flex-col md:hidden hidden">
-      <!-- Top Bar -->
-      <div class="flex items-center justify-between px-4 py-2 bg-black/80">
-        <button onclick="closeVideoCall()" class="text-white text-xl"><i class="fas fa-arrow-left"></i></button>
-        <div class="bg-gray-800 text-white px-3 py-1 rounded-full text-xs font-mono">qym-dhfz-qdx</div>
-        <button class="text-white text-xl"><i class="fas fa-volume-up"></i></button>
-      </div>
-      <!-- Presenting Banner -->
-      <div class="text-white text-sm px-4 py-2">Aliasgar is presenting</div>
-      <!-- Main Video Area -->
-      <div class="flex-1 flex flex-col justify-center items-center bg-black relative">
-        <!-- Centered spinner (Google Meet style) -->
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-blue-400"></div>
-        </div>
-        <!-- Participants Row at the bottom center -->
-        <div class="absolute bottom-24 left-0 right-0 flex justify-center items-center gap-6">
-          <!-- You -->
-          <div class="flex flex-col items-center">
-            <div class="w-14 h-14 rounded-full bg-gray-800 flex items-center justify-center border-2 border-gray-700">
-              <i class="fas fa-user text-gray-400 text-2xl"></i>
+    <!-- Profile Modal -->
+    <div id="profileModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl modal-content max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">Edit Your Profile</h3>
+                <p class="text-gray-600">Personalize your BridgeLearn experience</p>
             </div>
-            <span class="text-white text-xs mt-1">You</span>
-            <i class="fas fa-microphone-slash text-red-400 text-xs mt-1"></i>
-          </div>
-          <!-- Aliasgar -->
-          <div class="flex flex-col items-center">
-            <div class="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center border-2 border-gray-700">
-              <span class="text-white text-xl font-bold">A</span>
-            </div>
-            <span class="text-white text-xs mt-1">Aliasgar</span>
-            <i class="fas fa-microphone-slash text-red-400 text-xs mt-1"></i>
-          </div>
+            
+            <form id="profileForm" class="space-y-6">
+                <!-- Profile Picture -->
+                <div class="flex flex-col items-center space-y-4">
+                    <img id="profilePicPreview" src="" alt="Profile Preview" class="w-32 h-32 rounded-full object-cover bg-gray-200 border-4 border-white shadow-md">
+                    <input type="file" id="profilePicInput" class="hidden" accept="image/*">
+                    <button type="button" onclick="document.getElementById('profilePicInput').click()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition text-sm font-semibold">
+                        <i class="fas fa-camera mr-2"></i>Change Picture
+                    </button>
+                </div>
+
+                <!-- Full Name -->
+                <div>
+                    <label for="profileFullName" class="block text-gray-700 text-sm font-semibold mb-2">Full Name</label>
+                    <input type="text" id="profileFullName" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                </div>
+
+                <!-- Bio -->
+                <div>
+                    <label for="profileBio" class="block text-gray-700 text-sm font-semibold mb-2">Short Bio</label>
+                    <textarea id="profileBio" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tell us a little about yourself..."></textarea>
+                </div>
+
+                <!-- Interests -->
+                <div>
+                    <label for="profileInterestsInput" class="block text-gray-700 text-sm font-semibold mb-2">Interests</label>
+                    <div class="flex items-center border border-gray-300 rounded-xl p-1">
+                        <input type="text" id="profileInterestsInput" class="flex-1 px-3 py-2 border-0 focus:outline-none focus:ring-0" placeholder="Add an interest and press Enter">
+                    </div>
+                    <div id="profileInterestsContainer" class="mt-2 flex flex-wrap gap-2">
+                        <!-- Interest tags will be added here -->
+                    </div>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button type="button" onclick="closeProfileModal()" class="flex-1 border-2 border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 font-semibold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 btn-primary py-3">
+                        <i class="fas fa-save mr-2"></i>Save Changes
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
-      <!-- Bottom Controls -->
-      <div class="flex justify-center items-center gap-6 px-4 py-3 bg-black/90 rounded-t-2xl">
-        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-microphone-slash"></i></button>
-        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-video-slash"></i></button>
-        <button class="bg-gray-800 text-white p-4 rounded-full"><i class="fas fa-ellipsis-h"></i></button>
-        <button onclick="endCall()" class="bg-red-600 text-white p-4 rounded-full"><i class="fas fa-phone-slash"></i></button>
-        <button class="bg-indigo-600 text-white p-4 rounded-full"><i class="fas fa-robot"></i></button>
-      </div>
     </div>
+
+    <!-- Video Call Page -->
+    <div id="videoCallPage" class="fixed inset-0 bg-gray-900 text-white z-50 hidden flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-4 bg-gray-900/80 backdrop-blur-sm">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-graduation-cap text-lg text-blue-400"></i>
+                <h2 class="text-lg font-bold">BridgeLearn Session</h2>
+            </div>
+            <div class="flex items-center space-x-2 text-sm bg-gray-800 px-3 py-1 rounded-full">
+                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span>LIVE</span>
+            </div>
+        </div>
+
+        <!-- Main Video Area -->
+        <div class="flex-1 p-4 overflow-auto">
+            <div id="videoGrid" class="h-full w-full">
+                <!-- User's video will be injected here -->
+                <div id="userVideoContainer" class="video-container hidden">
+                    <video id="userVideo" autoplay playsinline muted class="transform -scale-x-100"></video>
+                    <div id="userVideoPlaceholder" class="w-full h-full flex flex-col items-center justify-center">
+                        <i class="fas fa-user-circle placeholder-icon"></i>
+                        <p class="mt-2 text-gray-400">Camera is off</p>
+                    </div>
+                    <div class="participant-name">You</div>
+                </div>
+
+                <!-- Mentor's video placeholder -->
+                <div class="video-container">
+                    <div class="w-full h-full flex flex-col items-center justify-center">
+                        <i class="fas fa-chalkboard-teacher placeholder-icon"></i>
+                        <p class="mt-2 text-gray-400">Waiting for mentor...</p>
+                    </div>
+                    <div class="participant-name">Dr. Sarah Ahmed</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="flex justify-center p-4 bg-gray-900/80 backdrop-blur-sm">
+            <div class="flex items-center space-x-3 sm:space-x-5 bg-gray-800 p-3 rounded-full">
+                <button id="micBtn" onclick="toggleMicrophone()" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 transition-colors" aria-label="Toggle Microphone">
+                    <i class="fas fa-microphone text-xl"></i>
+                </button>
+                <button id="camBtn" onclick="toggleCamera()" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 transition-colors" aria-label="Toggle Camera">
+                    <i class="fas fa-video text-xl"></i>
+                </button>
+                <button onclick="endCall()" class="w-16 h-12 sm:w-20 sm:h-14 rounded-full flex items-center justify-center bg-red-600 hover:bg-red-700 transition-colors" aria-label="End Call">
+                    <i class="fas fa-phone-slash text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Code Compiler Modal -->
     <div id="compilerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
@@ -1648,7 +1918,14 @@ console.log(greet("BridgeLearn"));</textarea>
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { GoogleGenAI } from "https://esm.run/@google/genai";
+
+        // --- IMPORTANT ---
+        // PASTE YOUR GOOGLE GEMINI API KEY HERE
+        const API_KEY = "AIzaSyCi2CDpLxCRQiCTFPFYLfafhMjncIXRucc";
+        // -----------------
+
         let currentUser = null;
         let userSessions = [];
         
@@ -1659,20 +1936,52 @@ console.log(greet("BridgeLearn"));</textarea>
         let isChatbotOpen = false;
         let conversationHistory = [];
 
+        // Initialize the Google AI client
+        let ai;
+        if (API_KEY === "YOUR_API_KEY_HERE" || !API_KEY) {
+            console.warn("API Key not found. AI features will be disabled.");
+        } else {
+             ai = new GoogleGenAI({apiKey: API_KEY});
+        }
+        
+        function initializeAiFeatures() {
+            if (!ai) {
+                // Alert the user once when they first try to use an AI feature
+                const aiFeaturesUsed = sessionStorage.getItem('aiFeaturesUsed');
+                if (!aiFeaturesUsed) {
+                    alert("Please paste your Google Gemini API Key in the index.html file to enable AI features.");
+                    sessionStorage.setItem('aiFeaturesUsed', 'true');
+                }
+
+                // Disable AI-related buttons to prevent errors
+                document.querySelectorAll('#submitCodeBtn, #generateAiContentBtn, .topic-btn, #chatbotSend').forEach(btn => {
+                    btn.disabled = true;
+                    if(btn.tagName === 'BUTTON') {
+                       btn.style.opacity = 0.6;
+                       btn.style.cursor = 'not-allowed';
+                    }
+                });
+                return false;
+            }
+            return true;
+        }
+
+
         // Chatbot Functions
         function toggleChatbot() {
             const chatbotWindow = document.getElementById('chatbotWindow');
             const chatbotToggle = document.getElementById('chatbotToggle');
             
+            isChatbotOpen = !isChatbotOpen;
+            
             if (isChatbotOpen) {
-                chatbotWindow.classList.add('hidden');
-                chatbotToggle.innerHTML = '<i class="fas fa-robot text-2xl"></i>';
-                isChatbotOpen = false;
-            } else {
                 chatbotWindow.classList.remove('hidden');
                 chatbotToggle.innerHTML = '<i class="fas fa-times text-2xl"></i>';
-                isChatbotOpen = true;
                 document.getElementById('chatbotInput').focus();
+            } else {
+                // The hidden class will be added after the animation
+                chatbotWindow.classList.add('hidden');
+                chatbotToggle.innerHTML = '<i class="fas fa-robot text-2xl"></i>';
             }
         }
 
@@ -1683,26 +1992,16 @@ console.log(greet("BridgeLearn"));</textarea>
             
             const iconDiv = document.createElement('div');
             if (isUser) {
-                iconDiv.className = 'rounded-full p-2';
-                iconDiv.style.background = 'var(--uae-red)';
-                iconDiv.style.opacity = '0.1';
-                iconDiv.innerHTML = `<i class="fas fa-user" style="color: var(--uae-red);"></i>`;
+                iconDiv.className = 'w-8 h-8 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center flex-shrink-0';
+                iconDiv.innerHTML = `<i class="fas fa-user text-white text-sm"></i>`;
             } else {
-                iconDiv.className = 'rounded-full p-2';
-                iconDiv.style.background = 'var(--uae-green)';
-                iconDiv.style.opacity = '0.1';
-                iconDiv.innerHTML = `<i class="fas fa-robot" style="color: var(--uae-green);"></i>`;
+                iconDiv.className = 'w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0';
+                iconDiv.innerHTML = `<i class="fas fa-robot text-white text-sm"></i>`;
             }
             
             const contentDiv = document.createElement('div');
-            contentDiv.className = 'rounded-lg p-3 max-w-xs';
-            if (isUser) {
-                contentDiv.style.background = 'var(--uae-red)';
-                contentDiv.style.opacity = '0.1';
-            } else {
-                contentDiv.style.background = 'var(--sand-light)';
-            }
-            contentDiv.innerHTML = `<p class="text-sm">${content}</p>`;
+            contentDiv.className = `rounded-2xl p-3 max-w-xs shadow-sm text-sm ${isUser ? 'bg-blue-500 text-white rounded-br-sm' : 'bg-white text-gray-700 rounded-bl-sm'}`;
+            contentDiv.innerHTML = `<p>${content}</p>`;
             
             messageDiv.appendChild(iconDiv);
             messageDiv.appendChild(contentDiv);
@@ -1712,21 +2011,22 @@ console.log(greet("BridgeLearn"));</textarea>
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+
         function addTypingIndicator() {
             const messagesContainer = document.getElementById('chatbotMessages');
             const typingDiv = document.createElement('div');
             typingDiv.id = 'typingIndicator';
-            typingDiv.className = 'flex items-start space-x-2 chatbot-message';
+            typingDiv.className = 'flex items-start space-x-3 chatbot-message';
             
             typingDiv.innerHTML = `
-                <div class="rounded-full p-2" style="background: var(--uae-green); opacity: 0.1;">
-                    <i class="fas fa-robot" style="color: var(--uae-green);"></i>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-robot text-white text-sm"></i>
                 </div>
-                <div class="rounded-lg p-3 max-w-xs" style="background: var(--sand-light);">
+                <div class="bg-white rounded-2xl rounded-tl-sm p-3 max-w-xs shadow-sm">
                     <div class="flex space-x-1">
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background: var(--desert-gold);"></div>
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background: var(--desert-gold); animation-delay: 0.1s"></div>
-                        <div class="w-2 h-2 rounded-full animate-bounce" style="background: var(--desert-gold); animation-delay: 0.2s"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.1s"></div>
+                        <div class="w-2 h-2 rounded-full bg-gray-400 animate-bounce" style="animation-delay: 0.2s"></div>
                     </div>
                 </div>
             `;
@@ -1787,6 +2087,7 @@ console.log(greet("BridgeLearn"));</textarea>
         }
 
         function handleChatbotSend() {
+            if (!initializeAiFeatures()) return;
             const input = document.getElementById('chatbotInput');
             const message = input.value.trim();
             
@@ -1798,7 +2099,12 @@ console.log(greet("BridgeLearn"));</textarea>
                 input.value = '';
                 
                 // Send to ChatGPT
-                sendMessageToChatGPT(message);
+                // sendMessageToChatGPT(message); // Disabled for demo
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    addMessage("This is a simulated response. The AI chatbot would be connected to a backend service in a real application.", false);
+                }, 1000);
+                addTypingIndicator();
             }
         }
 
@@ -1822,8 +2128,223 @@ console.log(greet("BridgeLearn"));</textarea>
             }
         }
 
+        // --- Mode Selection & Teen Mode ---
+        function handleTeenModeClick() {
+            document.querySelector('nav').classList.add('hidden');
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('sessions').classList.add('hidden');
+            document.getElementById('about').classList.add('hidden');
+            document.getElementById('modeSelection').classList.add('hidden');
+            document.getElementById('chatbotContainer').classList.add('hidden');
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+            document.getElementById('teenModeHeader').classList.remove('hidden');
+            document.getElementById('teenDashboard').classList.remove('hidden');
+            showTeenDashboardScreen('main');
+        }
+
+        function handleMentorModeClick() {
+            document.getElementById('sessions').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        window.goBackToHome = function() {
+            document.getElementById('teenModeHeader').classList.add('hidden');
+            document.getElementById('teenDashboard').classList.add('hidden');
+            
+            document.querySelector('nav').classList.remove('hidden');
+            document.getElementById('home').classList.remove('hidden');
+            document.getElementById('sessions').classList.remove('hidden');
+            document.getElementById('about').classList.remove('hidden');
+            document.getElementById('modeSelection').classList.remove('hidden');
+            document.getElementById('chatbotContainer').classList.remove('hidden');
+        }
+
+        window.showTeenDashboardScreen = function(screen) {
+            document.getElementById('teenDashboardMain').classList.add('hidden');
+            document.getElementById('codingChallengeGame').classList.add('hidden');
+            document.getElementById('gameDesignIntroGame').classList.add('hidden');
+            document.getElementById('aiCreativeLabGame').classList.add('hidden');
+
+            if(screen === 'main') {
+                document.getElementById('teenDashboardMain').classList.remove('hidden');
+            } else if (screen === 'coding') {
+                document.getElementById('codingChallengeGame').classList.remove('hidden');
+            } else if (screen === 'gamedesign') {
+                document.getElementById('gameDesignIntroGame').classList.remove('hidden');
+            } else if (screen === 'creative') {
+                document.getElementById('aiCreativeLabGame').classList.remove('hidden');
+            }
+        }
+
+        // --- Teen Mode Modules ---
+
+        async function showLoading(element, message) {
+            element.innerHTML = `<div class="flex items-center justify-center"><i class="fas fa-spinner fa-spin text-2xl text-blue-500"></i><p class="ml-3">${message}</p></div>`;
+        }
+
+        // Coding Challenge
+        window.submitCodeChallenge = async function() {
+            if (!initializeAiFeatures()) return;
+            const codeInput = document.getElementById('codeChallengeInput');
+            const outputDiv = document.getElementById('codeChallengeOutput');
+            const submitBtn = document.getElementById('submitCodeBtn');
+
+            const userCode = codeInput.value.trim();
+            if (!userCode) {
+                outputDiv.textContent = 'Please enter your code before checking.';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            await showLoading(outputDiv, "AI Tutor is reviewing your code...");
+
+            const problem = "Write a Python function to check if a word is a palindrome."
+            const prompt = `You are a friendly coding tutor for a 15-year-old. The user has submitted the following Python code for the problem: "${problem}". Their code is:\n\n\`\`\`python\n${userCode}\n\`\`\`\n\nPlease evaluate their code. If it's correct, congratulate them and explain why it works. If it's incorrect, provide a single, gentle hint on how to fix it, but do not give them the full answer. Keep your feedback concise and encouraging.`;
+
+            try {
+                const response = await ai.models.generateContent({
+                    model: "gemini-2.5-flash",
+                    contents: prompt,
+                });
+                outputDiv.textContent = response.text;
+            } catch (error) {
+                console.error("Error with code challenge:", error);
+                outputDiv.textContent = "Sorry, the AI Tutor is busy right now. Please try again in a moment.";
+            } finally {
+                submitBtn.disabled = false;
+            }
+        }
+        
+        // Game Design Intro
+        window.fetchGameDesignConcept = async function(topic) {
+            if (!initializeAiFeatures()) return;
+            const outputDiv = document.getElementById('gameDesignOutput');
+            await showLoading(outputDiv, `Explaining ${topic}...`);
+            
+            const prompt = `Explain the game design concept of "${topic}" to a 15-year-old in a fun and simple way. Use analogies related to popular video games. Keep it under 200 words and use markdown for formatting.`;
+
+            try {
+                const response = await ai.models.generateContent({
+                    model: "gemini-2.5-flash",
+                    contents: prompt,
+                });
+                outputDiv.textContent = response.text;
+            } catch (error) {
+                console.error("Error fetching game design concept:", error);
+                outputDiv.textContent = `Could not fetch info for ${topic}. Please try again.`;
+            }
+        }
+
+        // AI Creative Lab
+        window.generateAiContent = async function() {
+            if (!initializeAiFeatures()) return;
+            const type = document.getElementById('aiCreativeType').value;
+            const promptInput = document.getElementById('aiCreativePrompt');
+            const outputDiv = document.getElementById('aiCreativeLabOutput');
+            const generateBtn = document.getElementById('generateAiContentBtn');
+
+            const userPrompt = promptInput.value.trim();
+            if (!userPrompt) {
+                outputDiv.textContent = 'Please enter a prompt for your creation!';
+                return;
+            }
+
+            generateBtn.disabled = true;
+            await showLoading(outputDiv, 'Generating your masterpiece...');
+
+            let systemInstruction = '';
+            let finalPrompt = userPrompt;
+
+            switch(type) {
+                case 'game_concept':
+                    systemInstruction = `Generate a unique video game concept based on the user's idea. Include a title, genre, a short summary of the gameplay, and a unique mechanic. Format the response clearly with headings.`;
+                    break;
+                case 'character_backstory':
+                    systemInstruction = `Create a compelling character backstory for a video game character. Include their motivations, a key event in their past, and a personal flaw. Make it engaging for a teen audience.`;
+                    break;
+                case 'python_script':
+                    systemInstruction = `You are a helpful coding assistant. Generate a simple, well-commented Python script for a beginner based on the user's request. The script should be easy to understand, accomplish a single task, and be enclosed in a markdown code block.`;
+                    break;
+            }
+
+            try {
+                 const response = await ai.models.generateContent({
+                    model: "gemini-2.5-flash",
+                    contents: finalPrompt,
+                    config: { systemInstruction: systemInstruction },
+                });
+                outputDiv.textContent = response.text;
+            } catch (error) {
+                console.error("Error generating AI content:", error);
+                outputDiv.textContent = 'Oops! My creative circuits are fizzling. Please try again.';
+            } finally {
+                generateBtn.disabled = false;
+            }
+        }
+
+
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            initializeAiFeatures(); // Initial check on load
+            // --- Theme Toggling ---
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+
+            function updateThemeIcons() {
+                const isDarkMode = document.documentElement.classList.contains('dark');
+                const iconClass = isDarkMode ? 'fa-moon' : 'fa-sun';
+                document.querySelectorAll('#theme-toggle-btn i, #theme-toggle-btn-mobile i').forEach(icon => {
+                    icon.classList.remove('fa-sun', 'fa-moon');
+                    icon.classList.add(iconClass);
+                });
+            }
+
+            function handleThemeToggle() {
+                const isDarkMode = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+                updateThemeIcons();
+            }
+
+            themeToggleBtn.addEventListener('click', handleThemeToggle);
+            themeToggleBtnMobile.addEventListener('click', handleThemeToggle);
+            updateThemeIcons(); // Set initial icon state on load
+            // --- End Theme Toggling ---
+
+            // --- Animations ---
+            const animationObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: unobserve after animation to save resources
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Animate hero section on load
+            const heroElements = document.querySelectorAll('#home .scroll-animate');
+            heroElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('in-view');
+                }, index * 150);
+            });
+            
+            // Observe all other animated elements
+            const animatedElements = document.querySelectorAll('section:not(#home) .scroll-animate');
+            animatedElements.forEach(el => animationObserver.observe(el));
+
+            // Stagger animations
+            const staggeredContainers = document.querySelectorAll('.stagger-children');
+            staggeredContainers.forEach(container => {
+                const children = container.querySelectorAll('.scroll-animate');
+                children.forEach((child, index) => {
+                    child.style.setProperty('--stagger-delay', `${index * 120}ms`);
+                });
+            });
+
+            // --- End Animations ---
+
             // Chatbot event listeners
             document.getElementById('chatbotToggle').addEventListener('click', toggleChatbot);
             document.getElementById('chatbotClose').addEventListener('click', toggleChatbot);
@@ -1834,6 +2355,14 @@ console.log(greet("BridgeLearn"));</textarea>
             document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
             document.getElementById('mobileLoginBtn').addEventListener('click', () => showLoginModal());
             
+            // Mode Selection
+            document.getElementById('teenModeBtn').addEventListener('click', handleTeenModeClick);
+            document.getElementById('mentorModeBtn').addEventListener('click', handleMentorModeClick);
+
+            // Teen Mode Modules
+            document.getElementById('submitCodeBtn').addEventListener('click', submitCodeChallenge);
+            document.getElementById('generateAiContentBtn').addEventListener('click', generateAiContent);
+            
             // Close mobile menu when clicking on links
             document.querySelectorAll('#mobileMenu a').forEach(link => {
                 link.addEventListener('click', () => {
@@ -1841,9 +2370,22 @@ console.log(greet("BridgeLearn"));</textarea>
                     document.getElementById('mobileMenuBtn').innerHTML = '<i class="fas fa-bars text-xl"></i>';
                 });
             });
+
+             // User Profile Dropdown
+            const userMenuButton = document.getElementById('userMenuButton');
+            const userMenuDropdown = document.getElementById('userMenuDropdown');
+            userMenuButton.addEventListener('click', () => {
+                userMenuDropdown.classList.toggle('hidden');
+            });
+            // Close dropdown if clicked outside
+            document.addEventListener('click', (event) => {
+                if (!userMenuButton.contains(event.target) && !userMenuDropdown.classList.contains('hidden')) {
+                     userMenuDropdown.classList.add('hidden');
+                }
+            });
         });
 
-        function showLoginModal(userType = 'student') {
+        window.showLoginModal = function(userType = 'student') {
             const modal = document.getElementById('loginModal');
             const userTypeSelect = document.getElementById('userType');
             userTypeSelect.value = userType;
@@ -1851,25 +2393,48 @@ console.log(greet("BridgeLearn"));</textarea>
             modal.classList.add('flex');
         }
 
-        function closeLoginModal() {
+        window.closeLoginModal = function() {
             const modal = document.getElementById('loginModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
+        
+        function updateDashboardHeader() {
+            if (!currentUser) return;
 
-        function logout() {
+            const userMenuAvatar = document.getElementById('userMenuAvatar');
+            const userMenuName = document.getElementById('userMenuName');
+            
+            userMenuName.textContent = currentUser.fullName;
+
+            if (currentUser.profilePic) {
+                userMenuAvatar.src = currentUser.profilePic;
+            } else {
+                // simple svg placeholder
+                userMenuAvatar.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23e2e8f0"/><text x="50" y="55" font-family="Arial" font-size="40" fill="%23718096" text-anchor="middle">${currentUser.fullName.charAt(0).toUpperCase()}</text></svg>`;
+            }
+        }
+
+
+        window.logout = function() {
             currentUser = null;
+            // Hide all dashboards
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('teenDashboard').classList.add('hidden');
+            document.getElementById('teenModeHeader').classList.add('hidden');
+            
+            // Show main page
             document.querySelector('nav').classList.remove('hidden');
             document.querySelector('section[id="home"]').classList.remove('hidden');
             document.querySelector('section[id="sessions"]').classList.remove('hidden');
-            const aboutSection = document.querySelector('section[id="about"]');
-            if (aboutSection) aboutSection.classList.remove('hidden');
-            document.getElementById('dashboard').classList.add('hidden');
+            document.querySelector('section[id="modeSelection"]').classList.remove('hidden');
+            const aboutToHide = document.querySelector('section[id="about"]');
+            if (aboutToHide) aboutToHide.classList.remove('hidden');
         }
 
         document.getElementById('loginBtn').addEventListener('click', () => showLoginModal());
 
-        function showCreateSessionModal() {
+        window.showCreateSessionModal = function() {
             const modal = document.getElementById('createSessionModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -1879,342 +2444,198 @@ console.log(greet("BridgeLearn"));</textarea>
             document.getElementById('sessionDate').setAttribute('min', today);
         }
 
-        function closeCreateSessionModal() {
+        window.closeCreateSessionModal = function() {
             const modal = document.getElementById('createSessionModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             document.getElementById('createSessionForm').reset();
         }
+        
+        // --- Profile Modal Logic ---
+        window.openProfileModal = function() {
+            if (!currentUser) return;
+            
+            // Populate the modal with current user data
+            document.getElementById('profilePicPreview').src = document.getElementById('userMenuAvatar').src;
+            document.getElementById('profileFullName').value = currentUser.fullName;
+            document.getElementById('profileBio').value = currentUser.bio || '';
+            
+            // Populate interests
+            renderInterests(currentUser.interests || []);
 
-        // Video Call Functions
-        let userStream = null;
-        let isVideoOn = false;
-        let isMicOn = false;
+            const modal = document.getElementById('profileModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
 
-        function joinVideoCall() {
+        window.closeProfileModal = function() {
+            const modal = document.getElementById('profileModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        
+        document.getElementById('profilePicInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicPreview').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        function renderInterests(interests) {
+            const container = document.getElementById('profileInterestsContainer');
+            container.innerHTML = '';
+            interests.forEach(interest => {
+                const tag = document.createElement('span');
+                tag.className = 'interest-tag';
+                tag.dataset.interestValue = interest;
+
+                const textNode = document.createTextNode(interest);
+                tag.appendChild(textNode);
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'interest-tag-remove';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.setAttribute('aria-label', `Remove ${interest}`);
+                removeBtn.onclick = () => {
+                    const currentInterests = Array.from(container.querySelectorAll('.interest-tag')).map(t => t.dataset.interestValue);
+                    const newInterests = currentInterests.filter(i => i !== interest);
+                    renderInterests(newInterests);
+                };
+                
+                tag.appendChild(removeBtn);
+                container.appendChild(tag);
+            });
+        }
+
+        document.getElementById('profileInterestsInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const input = event.target;
+                const newInterest = input.value.trim();
+                if (newInterest) {
+                    const container = document.getElementById('profileInterestsContainer');
+                    const currentInterests = Array.from(container.querySelectorAll('.interest-tag')).map(t => t.dataset.interestValue);
+                    if (!currentInterests.includes(newInterest)) {
+                        renderInterests([...currentInterests, newInterest]);
+                    }
+                    input.value = '';
+                }
+            }
+        });
+        
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Gather data from the form
+            currentUser.fullName = document.getElementById('profileFullName').value;
+            currentUser.bio = document.getElementById('profileBio').value;
+            currentUser.profilePic = document.getElementById('profilePicPreview').src;
+            
+            const interestsContainer = document.getElementById('profileInterestsContainer');
+            currentUser.interests = Array.from(interestsContainer.querySelectorAll('.interest-tag')).map(tag => tag.dataset.interestValue);
+
+            // Save to localStorage
+            localStorage.setItem(`userProfile_${currentUser.email}`, JSON.stringify(currentUser));
+            
+            // Update UI
+            updateDashboardHeader();
+            closeProfileModal();
+            
+            alert('Profile updated successfully!');
+        });
+
+
+        // --- Video Call Logic ---
+        let localStream = null;
+        let isMicOn = true;
+        let isCamOn = true;
+
+        window.joinVideoCall = async function() {
             const videoCallPage = document.getElementById('videoCallPage');
             videoCallPage.classList.remove('hidden');
-            
-            // Hide the dashboard
-            document.getElementById('dashboard').classList.add('hidden');
-            
-            // Adjust video controls position based on screen size
-            adjustVideoControlsPosition();
-            
-            // Request camera and microphone permissions
-            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-                .then(stream => {
-                    console.log('Camera and microphone access granted');
-                    userStream = stream;
-                    
-                    // Set up user video
-                    const userVideo = document.getElementById('userVideo');
-                    userVideo.srcObject = stream;
-                    userVideo.style.display = 'block';
-                    
-                    // Hide placeholder
-                    document.getElementById('userVideoPlaceholder').style.display = 'none';
-                    
-                    // Update status
-                    document.getElementById('videoStatus').textContent = 'Camera On';
-                    isVideoOn = true;
-                    isMicOn = true;
-                    
-                    // Update button states
-                    updateControlButtons();
-                })
-                .catch(err => {
-                    console.log('Camera and microphone access denied:', err);
-                    // Show a message to the user about permissions
-                    alert('Camera and microphone access is required to join the video call. Please allow access and try again.');
-                    
-                    // Show placeholder
-                    document.getElementById('userVideoPlaceholder').style.display = 'block';
-                    document.getElementById('userVideo').style.display = 'none';
-                });
-            
-            // Detect session type and show appropriate tools
-            detectSessionTypeInCall();
-        }
+            videoCallPage.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling while in call
 
-        function adjustVideoControlsPosition() {
-            const videoControls = document.querySelector('.video-controls');
-            const screenHeight = window.innerHeight;
-            
-            // Adjust position based on screen height to avoid taskbar
-            if (screenHeight < 600) {
-                videoControls.style.bottom = '3rem';
-            } else if (screenHeight < 700) {
-                videoControls.style.bottom = '4rem';
-            } else if (screenHeight < 800) {
-                videoControls.style.bottom = '5rem';
-            } else {
-                videoControls.style.bottom = '6rem';
-            }
-        }
-
-        // Listen for window resize to adjust controls
-        window.addEventListener('resize', adjustVideoControlsPosition);
-
-        // Mobile Sidebar Functions
-        function toggleMobileSidebar() {
-            const mobileSidebar = document.getElementById('mobileSidebar');
-            mobileSidebar.classList.toggle('open');
-            
-            // Copy chat messages to mobile sidebar
-            if (mobileSidebar.classList.contains('open')) {
-                copyChatToMobile();
-            }
-        }
-
-        function copyChatToMobile() {
-            const desktopChat = document.getElementById('liveChatMessages');
-            const mobileChat = document.getElementById('mobileChatMessages');
-            
-            if (desktopChat && mobileChat) {
-                mobileChat.innerHTML = desktopChat.innerHTML;
-            }
-        }
-
-        function sendMobileChatMessage() {
-            const input = document.getElementById('mobileChatInput');
-            const message = input.value.trim();
-            
-            if (message) {
-                // Send to both desktop and mobile chat
-                addLiveChatMessage('You', message, true);
-                input.value = '';
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 
-                // Copy updated chat to mobile
-                copyChatToMobile();
+                const userVideo = document.getElementById('userVideo');
+                const userVideoContainer = document.getElementById('userVideoContainer');
                 
-                // Simulate mentor responding
-                setTimeout(() => {
-                    const mentorResponses = [
-                        'That\'s a great question! Let me explain that concept in detail.',
-                        'I understand your concern. Let\'s work through this step by step.',
-                        'Excellent observation! This is exactly what we need to focus on.',
-                        'I\'m glad you asked that. This is a common challenge many students face.',
-                        'Perfect! You\'re thinking like a developer. Let me show you the best practice.',
-                        'That\'s a very insightful question. Let me share my screen to demonstrate.',
-                        'Great progress! You\'re really grasping the concepts well.',
-                        'I can see you\'re putting a lot of thought into this. Let\'s dive deeper.',
-                        'That\'s exactly right! You\'re understanding the fundamentals perfectly.',
-                        'I love your enthusiasm! This is the kind of thinking that makes great developers.'
-                    ];
-                    const randomResponse = mentorResponses[Math.floor(Math.random() * mentorResponses.length)];
-                    addLiveChatMessage('Dr. Sarah Ahmed', randomResponse, false);
-                    
-                    // Copy to mobile chat after mentor response
-                    copyChatToMobile();
-                }, 1500 + Math.random() * 3000);
+                userVideo.srcObject = localStream;
+                userVideoContainer.classList.remove('hidden');
+
+                isMicOn = true;
+                isCamOn = true;
+                updateCallButtons();
+
+            } catch (err) {
+                console.error("Error accessing media devices.", err);
+                alert("Could not access camera and microphone. Please check permissions and try again.");
+                closeVideoCall();
             }
         }
-
-        function handleMobileChatKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMobileChatMessage();
-            }
-        }
-
+        
         function closeVideoCall() {
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+                localStream = null;
+            }
+
             const videoCallPage = document.getElementById('videoCallPage');
             videoCallPage.classList.add('hidden');
+            videoCallPage.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.endCall = function() {
+            // Directly close the call without confirmation for a smoother user experience.
+            closeVideoCall();
+        }
+
+        window.toggleMicrophone = function() {
+            if (!localStream) return;
+            isMicOn = !isMicOn;
+            localStream.getAudioTracks()[0].enabled = isMicOn;
+            updateCallButtons();
+        }
+
+        window.toggleCamera = function() {
+            if (!localStream) return;
+            isCamOn = !isCamOn;
+            localStream.getVideoTracks()[0].enabled = isCamOn;
             
-            // Stop user stream
-            if (userStream) {
-                userStream.getTracks().forEach(track => track.stop());
-                userStream = null;
-            }
+            const userVideo = document.getElementById('userVideo');
+            const userVideoPlaceholder = document.getElementById('userVideoPlaceholder');
             
-            // Reset video display
-            document.getElementById('userVideo').style.display = 'none';
-            document.getElementById('userVideoPlaceholder').style.display = 'block';
-            document.getElementById('videoStatus').textContent = 'Camera Off';
+            if (isCamOn) {
+                userVideo.style.display = 'block';
+                userVideoPlaceholder.style.display = 'none';
+            } else {
+                userVideo.style.display = 'none';
+                userVideoPlaceholder.style.display = 'flex';
+            }
+            updateCallButtons();
+        }
+
+        function updateCallButtons() {
+            const micBtn = document.getElementById('micBtn');
+            const camBtn = document.getElementById('camBtn');
             
-            // Show the dashboard again
-            document.getElementById('dashboard').classList.remove('hidden');
-        }
+            micBtn.className = `w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-colors ${isMicOn ? 'bg-gray-700 hover:bg-gray-600' : 'bg-red-600 hover:bg-red-700'}`;
+            micBtn.innerHTML = `<i class="fas ${isMicOn ? 'fa-microphone' : 'fa-microphone-slash'} text-xl"></i>`;
 
-        // Video Control Functions
-        function toggleVideo() {
-            if (userStream) {
-                const videoTrack = userStream.getVideoTracks()[0];
-                if (videoTrack) {
-                    videoTrack.enabled = !videoTrack.enabled;
-                    isVideoOn = videoTrack.enabled;
-                    
-                    if (isVideoOn) {
-                        document.getElementById('userVideo').style.display = 'block';
-                        document.getElementById('userVideoPlaceholder').style.display = 'none';
-                        document.getElementById('videoStatus').textContent = 'Camera On';
-                    } else {
-                        document.getElementById('userVideo').style.display = 'none';
-                        document.getElementById('userVideoPlaceholder').style.display = 'flex';
-                        document.getElementById('videoStatus').textContent = 'Camera Off';
-                    }
-                }
-            } else {
-                // If no stream, try to get camera access
-                navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-                    .then(stream => {
-                        userStream = stream;
-                        const userVideo = document.getElementById('userVideo');
-                        userVideo.srcObject = stream;
-                        userVideo.style.display = 'block';
-                        document.getElementById('userVideoPlaceholder').style.display = 'none';
-                        document.getElementById('videoStatus').textContent = 'Camera On';
-                        isVideoOn = true;
-                        isMicOn = true;
-                    })
-                    .catch(err => {
-                        console.error('Error accessing camera:', err);
-                        alert('Unable to access camera. Please check permissions.');
-                    });
-            }
-            updateControlButtons();
-        }
-
-        function toggleMicrophone() {
-            if (userStream) {
-                const audioTrack = userStream.getAudioTracks()[0];
-                if (audioTrack) {
-                    audioTrack.enabled = !audioTrack.enabled;
-                    isMicOn = audioTrack.enabled;
-                    
-                    // Update microphone status indicator
-                    const micStatus = document.getElementById('micStatus');
-                    if (micStatus) {
-                        if (isMicOn) {
-                            micStatus.innerHTML = '<i class="fas fa-microphone text-white text-xs"></i>';
-                            micStatus.className = 'absolute top-2 right-2 bg-green-500 rounded-full p-1';
-                        } else {
-                            micStatus.innerHTML = '<i class="fas fa-microphone-slash text-white text-xs"></i>';
-                            micStatus.className = 'absolute top-2 right-2 bg-red-500 rounded-full p-1';
-                        }
-                    }
-                }
-            } else {
-                // If no stream, try to get microphone access
-                navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-                    .then(stream => {
-                        userStream = stream;
-                        const userVideo = document.getElementById('userVideo');
-                        userVideo.srcObject = stream;
-                        userVideo.style.display = 'block';
-                        document.getElementById('userVideoPlaceholder').style.display = 'none';
-                        document.getElementById('videoStatus').textContent = 'Camera On';
-                        isVideoOn = true;
-                        isMicOn = true;
-                        
-                        // Update microphone status
-                        const micStatus = document.getElementById('micStatus');
-                        if (micStatus) {
-                            micStatus.innerHTML = '<i class="fas fa-microphone text-white text-xs"></i>';
-                            micStatus.className = 'absolute top-2 right-2 bg-green-500 rounded-full p-1';
-                        }
-                    })
-                    .catch(err => {
-                        console.error('Error accessing microphone:', err);
-                        alert('Unable to access microphone. Please check permissions.');
-                    });
-            }
-            updateControlButtons();
-        }
-
-        function updateControlButtons() {
-            const micButton = document.getElementById('micButton');
-            const videoButton = document.getElementById('videoButton');
-            
-            // Update microphone button
-            if (isMicOn) {
-                micButton.className = 'bg-green-600 hover:bg-green-700 text-white p-3 rounded-full transition-colors';
-                micButton.innerHTML = '<i class="fas fa-microphone"></i>';
-            } else {
-                micButton.className = 'bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors';
-                micButton.innerHTML = '<i class="fas fa-microphone-slash"></i>';
-            }
-            
-            // Update video button
-            if (isVideoOn) {
-                videoButton.className = 'bg-green-600 hover:bg-green-700 text-white p-3 rounded-full transition-colors';
-                videoButton.innerHTML = '<i class="fas fa-video"></i>';
-            } else {
-                videoButton.className = 'bg-red-600 hover:bg-red-700 text-white p-3 rounded-full transition-colors';
-                videoButton.innerHTML = '<i class="fas fa-video-slash"></i>';
-            }
-        }
-
-        function shareScreen() {
-            if (navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
-                navigator.mediaDevices.getDisplayMedia({ video: true, audio: true })
-                    .then(stream => {
-                        // Replace user video with screen share
-                        const userVideo = document.getElementById('userVideo');
-                        userVideo.srcObject = stream;
-                        userVideo.style.display = 'block';
-                        document.getElementById('userVideoPlaceholder').style.display = 'none';
-                        document.getElementById('videoStatus').textContent = 'Screen Sharing';
-                        
-                        // Stop previous stream
-                        if (userStream) {
-                            userStream.getTracks().forEach(track => track.stop());
-                        }
-                        userStream = stream;
-                        
-                        // Listen for when user stops sharing
-                        stream.getVideoTracks()[0].addEventListener('ended', () => {
-                            // Restart camera
-                            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-                                .then(cameraStream => {
-                                    userStream = cameraStream;
-                                    userVideo.srcObject = cameraStream;
-                                    document.getElementById('videoStatus').textContent = 'Camera On';
-                                });
-                        });
-                    })
-                    .catch(err => {
-                        console.log('Screen sharing not supported or denied:', err);
-                        alert('Screen sharing is not supported or was denied. Please try again.');
-                    });
-            } else {
-                alert('Screen sharing is not supported in this browser.');
-            }
-        }
-
-        function raiseHand() {
-            // Add a message to chat about raising hand
-            addLiveChatMessage('You', '✋ Raised hand', true);
-        }
-
-        function endCall() {
-            if (confirm('Are you sure you want to end the call?')) {
-                closeVideoCall();
-                setTimeout(function() {
-                    document.getElementById('dashboard').classList.remove('hidden');
-                }, 300); // slight delay to ensure videoCallPage is hidden first
-            }
-        }
-
-        // Tools Panel Functions
-        function toggleToolsPanel() {
-            const toolsPanel = document.getElementById('toolsPanel');
-            toolsPanel.classList.toggle('hidden');
-        }
-
-        function toggleChatPanel() {
-            // Chat is always visible in the sidebar, this could be used for additional chat features
-            console.log('Chat panel toggle - chat is always visible in sidebar');
-        }
-
-        function toggleMoreOptions() {
-            // Show additional options menu
-            console.log('More options toggle - additional settings menu');
-            // This could open a dropdown with more meeting options
+            camBtn.className = `w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-colors ${isCamOn ? 'bg-gray-700 hover:bg-gray-600' : 'bg-red-600 hover:bg-red-700'}`;
+            camBtn.innerHTML = `<i class="fas ${isCamOn ? 'fa-video' : 'fa-video-slash'} text-xl"></i>`;
         }
 
         // Code Compiler Functions
-        function runCode() {
+        window.runCode = function() {
             const code = document.getElementById('compilerCode').value;
             const language = document.getElementById('compilerLanguage').value;
             const output = document.getElementById('compilerOutput');
@@ -2245,25 +2666,23 @@ console.log(greet("BridgeLearn"));</textarea>
             }
         }
 
-        function clearCode() {
+        window.clearCode = function() {
             document.getElementById('compilerCode').value = '';
             document.getElementById('compilerOutput').innerHTML = '<div class="text-gray-500">Click "Run Code" to see output...</div>';
         }
 
-        function shareCodeInSession() {
+        window.shareCodeInSession = function() {
             const code = document.getElementById('compilerCode').value;
             const language = document.getElementById('compilerLanguage').value;
             
             if (code.trim()) {
-                // Add a message to the live chat about code sharing
-                addLiveChatMessage('You', `Shared ${language} code: ${code.substring(0, 50)}${code.length > 50 ? '...' : ''}`, true);
                 alert('Code shared with session participants!');
             } else {
                 alert('Please write some code before sharing.');
             }
         }
 
-        function saveCode() {
+        window.saveCode = function() {
             const code = document.getElementById('compilerCode').value;
             const language = document.getElementById('compilerLanguage').value;
             
@@ -2286,25 +2705,35 @@ console.log(greet("BridgeLearn"));</textarea>
                 alert('Please write some code before saving.');
             }
         }
+        
+        window.openCompiler = function() {
+            document.getElementById('compilerModal').classList.add('flex');
+            document.getElementById('compilerModal').classList.remove('hidden');
+        }
 
-        function openCodeShare() {
+        window.closeCompiler = function() {
+            document.getElementById('compilerModal').classList.add('hidden');
+            document.getElementById('compilerModal').classList.remove('flex');
+        }
+        
+        window.openCodeShare = function() {
             alert('Code sharing feature would open here. This would allow participants to share code snippets in real-time.');
         }
 
         // Translator Functions
-        function openTranslator() {
+        window.openTranslator = function() {
             const modal = document.getElementById('translatorModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
 
-        function closeTranslator() {
+        window.closeTranslator = function() {
             const modal = document.getElementById('translatorModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
 
-        function translateText() {
+        window.translateText = function() {
             const text = document.getElementById('textToTranslate').value;
             const fromLang = document.getElementById('fromLanguage').value;
             const toLang = document.getElementById('toLanguage').value;
@@ -2332,19 +2761,19 @@ console.log(greet("BridgeLearn"));</textarea>
         }
 
         // Dictionary Functions
-        function openDictionary() {
+        window.openDictionary = function() {
             const modal = document.getElementById('dictionaryModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
 
-        function closeDictionary() {
+        window.closeDictionary = function() {
             const modal = document.getElementById('dictionaryModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
 
-        function lookupWord() {
+        window.lookupWord = function() {
             const word = document.getElementById('dictionaryWord').value.trim();
             const result = document.getElementById('dictionaryResult');
             
@@ -2382,14 +2811,14 @@ console.log(greet("BridgeLearn"));</textarea>
         }
 
         // Whiteboard Functions
-        function openWhiteboard() {
+        window.openWhiteboard = function() {
             const modal = document.getElementById('whiteboardModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             initWhiteboard();
         }
 
-        function closeWhiteboard() {
+        window.closeWhiteboard = function() {
             const modal = document.getElementById('whiteboardModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
@@ -2432,22 +2861,22 @@ console.log(greet("BridgeLearn"));</textarea>
             ctx.lineCap = 'round';
         }
 
-        function clearWhiteboard() {
+        window.clearWhiteboard = function() {
             const canvas = document.getElementById('whiteboardCanvas');
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
 
         // Other Tool Functions
-        function openNotes() {
+        window.openNotes = function() {
             alert('Notes feature would open here. This would allow participants to take and share notes during the session.');
         }
 
-        function openDesignBoard() {
+        window.openDesignBoard = function() {
             alert('Design board feature would open here. This would provide collaborative design tools for creative sessions.');
         }
 
-        function openColorPicker() {
+        window.openColorPicker = function() {
             alert('Color picker feature would open here. This would provide color selection tools for design sessions.');
         }
 
@@ -2522,11 +2951,11 @@ console.log(greet("BridgeLearn"));</textarea>
             applyTranslations(currentLang || (localStorage.getItem('lang') || 'en'));
         }
 
-        function editSession(sessionId) {
+        window.editSession = function(sessionId) {
             alert('Edit functionality coming soon!');
         }
 
-        function deleteSession(sessionId) {
+        window.deleteSession = function(sessionId) {
             if (confirm('Are you sure you want to delete this session?')) {
                 userSessions = userSessions.filter(session => session.id !== sessionId);
                 displayUserSessions();
@@ -2542,19 +2971,36 @@ console.log(greet("BridgeLearn"));</textarea>
             const userType = document.getElementById('userType').value;
 
             if (fullName && email) {
-                currentUser = { fullName, email, userType };
+                // Check for existing profile in localStorage
+                const savedProfile = localStorage.getItem(`userProfile_${email}`);
+                if (savedProfile) {
+                    currentUser = JSON.parse(savedProfile);
+                    // Ensure name from login form is used if it's different,
+                    // as the user might be logging in on a new device.
+                    currentUser.fullName = fullName;
+                    currentUser.userType = userType;
+                } else {
+                    currentUser = {
+                        fullName,
+                        email,
+                        userType,
+                        profilePic: null,
+                        bio: '',
+                        interests: []
+                    };
+                }
 
                 // Hide main sections and show dashboard
                 document.querySelector('nav').classList.add('hidden');
                 document.querySelector('section[id="home"]').classList.add('hidden');
                 document.querySelector('section[id="sessions"]').classList.add('hidden');
+                document.querySelector('section[id="modeSelection"]').classList.add('hidden');
                 const aboutToHide = document.querySelector('section[id="about"]');
                 if (aboutToHide) aboutToHide.classList.add('hidden');
                 document.getElementById('dashboard').classList.remove('hidden');
 
                 // Update greeting
-                document.getElementById('userGreeting').textContent =
-                    `Welcome, ${fullName} (${userType === 'student' ? 'Student' : 'Mentor'})`;
+                updateDashboardHeader();
 
                 // Display user sessions
                 displayUserSessions();
@@ -2722,8 +3168,8 @@ console.log(greet("BridgeLearn"));</textarea>
                 'about.title': 'ब्रिजलर्न के बारे में',
                 'about.body': 'ज्ञान साझा करने के माध्यम से पीढ़ियों को जोड़ने वाला मंच।',
                 'login.title': 'BridgeLearn में आपका स्वागत है',
-                'login.subtitle': 'लर्निंग कम्युनिटी से जुड़ने के लिए अपनी जानकारी दर्ज करें',
-                'login.fullName': 'पूरा नाम',
+                'login.subtitle': 'Enter your details to join the learning community',
+                'login.fullName': 'पूर्ण नाव',
                 'login.email': 'ईमेल',
                 'login.iam': 'मैं हूँ:',
                 'login.roleStudent': 'छात्र',
@@ -2764,7 +3210,7 @@ console.log(greet("BridgeLearn"));</textarea>
                 'login.email': 'ബെരുദ് ഇമെയിൽ',
                 'login.iam': 'ഞാൻ:',
                 'login.roleStudent': 'വിദ്യാർത്ഥി',
-                'login.roleMentor': 'വിശ്രമജീവിതത്തിലുള്ള പ്രൊഫഷണൽ / മെന്റർ',
+                'login.roleMentor': 'വിരമിച്ച നിപുണൻ / മാർഗ്ഗദർശകൻ',
                 'login.submit': 'തുടങ്ങുക',
                 'common.cancel': 'റദ്ദാക്കുക'
             },
